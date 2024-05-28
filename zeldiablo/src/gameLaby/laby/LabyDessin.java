@@ -25,26 +25,11 @@ public class LabyDessin implements DessinJeu {
 
         // dessin perso
         gc.setFill(Color.BLACK);
-        Raquette raquette = arkanoid.getRaquette();
-        double px = raquette.getPx() - Raquette.RAQUETTE_TAILLE / 2;
-        double py = raquette.getPy();
+        Perso perso = jeu.laby;
+        double px = perso.getX();
+        double py = perso.getY();
         gc.fillRect(px, py, Raquette.RAQUETTE_TAILLE, 10);
 
-        // dessin balle
-        gc.setFill(Color.RED);
-        Perso perso = jeu.getPerso();
-        double px = perso.getX();
-        double py = balle.getY();
-        gc.fillOval(bx - 5, by - 5, 10, 10);
-
-
-
-        // dessin balle
-        gc.setFill(Color.RED);
-        Balle balle = arkanoid.getBalle();
-        double bx = balle.getPx();
-        double by = balle.getPy();
-        gc.fillOval(bx - 5, by - 5, 10, 10);
 
     }
     }
