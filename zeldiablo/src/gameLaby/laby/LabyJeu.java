@@ -6,11 +6,9 @@ import java.io.IOException;
 
 public class LabyJeu implements Jeu {
 
-    private final Perso perso;
     private final Labyrinthe laby;
 
-    public LabyJeu (Perso perso) throws IOException {
-        this.perso = perso;
+    public LabyJeu () throws IOException {
         laby = new Labyrinthe("laby1.txt");
     }
 
