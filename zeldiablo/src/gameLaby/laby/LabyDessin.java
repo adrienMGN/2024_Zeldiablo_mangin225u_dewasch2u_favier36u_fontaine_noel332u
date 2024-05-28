@@ -48,8 +48,7 @@ public class LabyDessin implements DessinJeu {
         Perso perso = laby.pj;
         double px = perso.getX();
         double py = perso.getY();
-        gc.fillRect(px*100, py*100, 100, 100);
-
+        gc.fillOval(px*100, py*100, 100, 100);
 
     }
     }
