@@ -1,4 +1,4 @@
-package moteurJeu;
+package gameLaby.laby;
 
 import gameArkanoid.ArkanoidJeu;
 import gameArkanoid.Balle;
@@ -7,6 +7,8 @@ import gameLaby.laby.Perso;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
+import moteurJeu.DessinJeu;
+import moteurJeu.Jeu;
 
 public class LabyDessin implements DessinJeu {
 
