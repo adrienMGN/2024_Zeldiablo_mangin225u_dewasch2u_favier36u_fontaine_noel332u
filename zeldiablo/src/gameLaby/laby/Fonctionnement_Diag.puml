@@ -1,0 +1,40 @@
+@startuml
+title Diagramme de Classe pour LabyJeu avec Moteur de Jeu
+
+interface Jeu {
+    +update(secondes: double, clavier: Clavier): void
+    +init(): void
+    +etreFini(): boolean
+}
+
+class LabyJeu {
+    -laby: Labyrinthe
+    +LabyJeu(labyrinthe: Labyrinthe)
+    +update(secondes: double, clavier: Clavier): void
+    +init(): void
+    +etreFini(): boolean
+}
+
+class Labyrinthe {
+    +deplacerPerso(direction: int): void
+    +etreFini(): boolean
+}
+
+class Clavier {
+    +droite: boolean
+    +gauche: boolean
+    +haut: boolean
+    +bas: boolean
+}
+
+class MoteurJeu {
+    -jeu: Jeu
+    +MoteurJeu(jeu: Jeu)
+    +lancerJeu(): void
+}
+
+Jeu <|.. LabyJeu
+LabyJeu --> Labyrinthe
+LabyJeu --> Clavier
+MoteurJeu --> Jeu
+@enduml

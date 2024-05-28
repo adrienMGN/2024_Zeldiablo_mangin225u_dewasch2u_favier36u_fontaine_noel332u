@@ -1,4 +1,6 @@
 @startuml
+title Diagramme de Séquence pour LabyJeu - Méthode update
+
 actor User
 
 participant LabyJeu
