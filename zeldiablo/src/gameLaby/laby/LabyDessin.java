@@ -12,6 +12,8 @@ import moteurJeu.Jeu;
 
 public class LabyDessin implements DessinJeu {
 
+    public static int tailleCase = 50;
+
     @Override
     public void dessinerJeu(Jeu jeu, Canvas canvas) {
 
@@ -33,11 +35,11 @@ public class LabyDessin implements DessinJeu {
             for (int x = 0; x < laby.getLength(); x++) {
                 if (laby.getMur(x, y)){
                     gc.setFill(Color.BLACK);
-                    gc.fillRect(x*100, y*100, 100, 100);
+                    gc.fillRect(x*tailleCase, y*tailleCase, tailleCase, tailleCase);
                 }
                 else {
                     gc.setFill(Color.WHITE);
-                    gc.fillRect(x*100,y*100, 100, 100);
+                    gc.fillRect(x*tailleCase,y*tailleCase, tailleCase, tailleCase);
                 }
             }
         }
@@ -48,7 +50,7 @@ public class LabyDessin implements DessinJeu {
         Perso perso = laby.pj;
         double px = perso.getX();
         double py = perso.getY();
-        gc.fillOval(px*100, py*100, 100, 100);
+        gc.fillOval(px*tailleCase, py*tailleCase, tailleCase, tailleCase);
 
     }
     }

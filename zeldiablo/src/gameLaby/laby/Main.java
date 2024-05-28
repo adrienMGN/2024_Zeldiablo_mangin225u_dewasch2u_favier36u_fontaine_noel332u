@@ -11,7 +11,7 @@ public class Main {
     public static void main(String[] args) throws IOException {
 
         // charge le labyrinthe
-        Labyrinthe laby = new Labyrinthe("labySimple/laby1.txt");
+        Labyrinthe laby = new Labyrinthe("labySimple/laby2.txt");
 
         //affiche le labyrinthe charge
         for (int y = 0; y < laby.getLengthY(); y++) {
@@ -26,8 +26,8 @@ public class Main {
             System.out.println();
         }
 
-        int width = laby.getLength()*100;
-        int height = laby.getLengthY()*100;
+        int width = laby.getLength()*LabyDessin.tailleCase;
+        int height = laby.getLengthY()*LabyDessin.tailleCase;
         int pFPS = 100;
 
         // creation des objets
