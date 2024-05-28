@@ -24,12 +24,18 @@ public class LabyDessin implements DessinJeu {
         gc.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
 
         // dessin perso
-        gc.setFill(Color.BLACK);
-        Perso perso = jeu.laby;
+        gc.setFill(Color.RED);
+        Perso perso = ((Labyrinthe) jeu).pj;
         double px = perso.getX();
         double py = perso.getY();
-        gc.fillRect(px, py, Raquette.RAQUETTE_TAILLE, 10);
+        gc.fillRect(px, py, , 10);
 
+        // dessin mur
+        gc.setFill(Color.BLACK);
+        boolean[][] mur = ((Labyrinthe) jeu).MUR;
+        double px = perso.getX();
+        double py = perso.getY();
+        gc.fillRect(px, py, , 10);
 
     }
     }
