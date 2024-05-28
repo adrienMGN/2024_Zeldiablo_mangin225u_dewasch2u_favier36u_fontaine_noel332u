@@ -36,8 +36,4 @@ public class LabyJeu implements Jeu {
     public boolean etreFini(){
         return laby.etreFini();
     }
-
-    public Perso getPerso() {
-        return perso;
-    }
 }
