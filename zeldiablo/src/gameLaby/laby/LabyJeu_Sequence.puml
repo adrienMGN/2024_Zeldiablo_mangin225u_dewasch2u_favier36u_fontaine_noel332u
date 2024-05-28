@@ -1,0 +1,28 @@
+@startuml
+actor User
+
+participant LabyJeu
+participant Clavier
+participant Labyrinthe
+
+User -> LabyJeu: update(secondes, clavier)
+activate LabyJeu
+
+alt clavier.droite
+    LabyJeu -> Labyrinthe: deplacerPerso(Labyrinthe.DROITE)
+end
+
+alt clavier.gauche
+    LabyJeu -> Labyrinthe: deplacerPerso(Labyrinthe.GAUCHE)
+end
+
+alt clavier.haut
+    LabyJeu -> Labyrinthe: deplacerPerso(Labyrinthe.HAUT)
+end
+
+alt clavier.bas
+    LabyJeu -> Labyrinthe: deplacerPerso(Labyrinthe.BAS)
+end
+
+deactivate LabyJeu
+@enduml

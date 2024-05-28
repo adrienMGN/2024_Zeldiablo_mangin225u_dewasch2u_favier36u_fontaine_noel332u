@@ -1,11 +1,14 @@
-package moteurJeu;
+package gameLaby.laby;
 
 import gameArkanoid.ArkanoidJeu;
 import gameArkanoid.Balle;
 import gameArkanoid.Raquette;
+import gameLaby.laby.Perso;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
+import moteurJeu.DessinJeu;
+import moteurJeu.Jeu;
 
 public class LabyDessin implements DessinJeu {
 
@@ -20,15 +23,13 @@ public class LabyDessin implements DessinJeu {
         gc.setFill(Color.LIGHTGRAY);
         gc.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
 
-        // dessin
+        // dessin perso
+        gc.setFill(Color.BLACK);
+        Perso perso = jeu.laby;
+        double px = perso.getX();
+        double py = perso.getY();
+        gc.fillRect(px, py, Raquette.RAQUETTE_TAILLE, 10);
 
-
-        // dessin balle
-        gc.setFill(Color.RED);
-        Balle balle = arkanoid.getBalle();
-        double bx = balle.getPx();
-        double by = balle.getPy();
-        gc.fillOval(bx - 5, by - 5, 10, 10);
 
     }
     }
