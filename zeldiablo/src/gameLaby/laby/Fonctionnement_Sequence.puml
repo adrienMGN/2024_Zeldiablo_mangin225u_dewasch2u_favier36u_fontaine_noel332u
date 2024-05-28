@@ -1,12 +1,47 @@
 @startuml
-title Fonctionnement de l'application avec le moteur de Jeu
-'https://plantuml.com/sequence-diagram
+title Diagramme de Séquence pour LabyJeu avec Moteur de Jeu
 
-autonumber
+actor User
 
-Alice -> Bob: Authentication Request
-Bob --> Alice: Authentication Response
+participant MoteurJeu
+participant Jeu
+participant Clavier
+participant Labyrinthe
+participant DessinJeu
 
-Alice -> Bob: Another authentication Request
-Alice <-- Bob: another authentication Response
+User -> MoteurJeu: launch(jeu, dessin)
+activate MoteurJeu
+
+MoteurJeu -> Jeu: init()
+activate Jeu
+Jeu -> Clavier: (initialisation)
+Jeu -> Labyrinthe: (initialisation)
+deactivate Jeu
+
+loop chaque frame
+    MoteurJeu -> Jeu: update(secondes, clavier)
+    activate Jeu
+
+    alt clavier.droite
+        Jeu -> Labyrinthe: deplacerPerso(Labyrinthe.DROITE)
+    end
+
+    alt clavier.gauche
+        Jeu -> Labyrinthe: deplacerPerso(Labyrinthe.GAUCHE)
+    end
+
+    alt clavier.haut
+        Jeu -> Labyrinthe: deplacerPerso(Labyrinthe.HAUT)
+    end
+
+    alt clavier.bas
+        Jeu -> Labyrinthe: deplacerPerso(Labyrinthe.BAS)
+    end
+
+    Jeu -> Labyrinthe: etreFini()
+    deactivate Jeu
+
+    MoteurJeu -> DessinJeu: dessinerJeu(jeu, canvas)
+end
+
 @enduml
