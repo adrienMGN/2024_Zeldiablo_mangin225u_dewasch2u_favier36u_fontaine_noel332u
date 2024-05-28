@@ -26,8 +26,8 @@ public class Main {
             System.out.println();
         }
 
-        int width = 800;
-        int height = 600;
+        int width = laby.getLengthY();
+        int height = laby.getLength();
         int pFPS = 100;
 
         // creation des objets
