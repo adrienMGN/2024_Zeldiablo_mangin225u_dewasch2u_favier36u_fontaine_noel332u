@@ -7,6 +7,10 @@ interface Jeu {
     +etreFini(): boolean
 }
 
+interface DessinJeu {
+    +dessinerJeu(jeu: Jeu, canvas: Canvas): void
+}
+
 class LabyJeu {
     -laby: Labyrinthe
     +LabyJeu(labyrinthe: Labyrinthe)
@@ -21,20 +25,35 @@ class Labyrinthe {
 }
 
 class Clavier {
-    +droite: boolean
-    +gauche: boolean
     +haut: boolean
     +bas: boolean
+    +gauche: boolean
+    +droite: boolean
+    +appuyerTouche(event: KeyEvent): void
+    +relacherTouche(event: KeyEvent): void
 }
 
 class MoteurJeu {
+    -FPS: double
+    -dureeFPS: double
+    -WIDTH: double
+    -HEIGHT: double
+    -frameStats: FrameStats
     -jeu: Jeu
-    +MoteurJeu(jeu: Jeu)
-    +lancerJeu(): void
+    -dessin: DessinJeu
+    -controle: Clavier
+    +launch(jeu: Jeu, dessin: DessinJeu): void
+    +setFPS(FPSSouhaitees: int): void
+    +setTaille(width: double, height: double): void
+    +start(primaryStage: Stage): void
+    -startAnimation(canvas: Canvas): void
 }
 
 Jeu <|.. LabyJeu
 LabyJeu --> Labyrinthe
 LabyJeu --> Clavier
 MoteurJeu --> Jeu
+MoteurJeu --> DessinJeu
+MoteurJeu --> Clavier
+
 @enduml
