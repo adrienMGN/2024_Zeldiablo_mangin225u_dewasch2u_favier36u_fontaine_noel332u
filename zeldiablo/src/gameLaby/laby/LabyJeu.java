@@ -8,8 +8,8 @@ public class LabyJeu implements Jeu {
 
     private final Labyrinthe laby;
 
-    public LabyJeu () throws IOException {
-        laby = new Labyrinthe("laby1.txt");
+    public LabyJeu (Labyrinthe labyrinthe) throws IOException {
+        laby = labyrinthe;
     }
 
     public void update(double secondes, Clavier clavier){
