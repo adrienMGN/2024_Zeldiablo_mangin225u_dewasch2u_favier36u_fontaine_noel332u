@@ -15,6 +15,8 @@ public class LabyDessin implements DessinJeu {
     @Override
     public void dessinerJeu(Jeu jeu, Canvas canvas) {
 
+        LabyJeu jeuLaby = (LabyJeu) jeu;
+        Labyrinthe laby = jeuLaby.getLaby();
 
         // recupere un pinceau pour dessiner
         final GraphicsContext gc = canvas.getGraphicsContext2D();
@@ -28,14 +30,26 @@ public class LabyDessin implements DessinJeu {
         Perso perso = ((Labyrinthe) jeu).pj;
         double px = perso.getX();
         double py = perso.getY();
-        gc.fillRect(px, py, , 10);
+        gc.fillRect(px, py, 10, 10);
 
         // dessin mur
         gc.setFill(Color.BLACK);
-        boolean[][] mur = ((Labyrinthe) jeu).MUR;
-        double px = perso.getX();
-        double py = perso.getY();
-        gc.fillRect(px, py, , 10);
+        boolean[][] mur = ((Labyrinthe) jeu).murs;
+
+        for (int y = 0; y < laby.getLengthY(); y++) {
+            // affiche la ligne
+            for (int x = 0; x < laby.getLength(); x++) {
+                if (laby.getMur(x, y)){
+                    gc.setFill(Color.BLACK);
+                    gc.fillRect(x, y, 10, 10);
+                }
+                else {
+                    gc.setFill(Color.WHITE);
+                    gc.fillRect(x,y, 10, 10);
+                }
+            }
+        }
+
 
     }
     }
