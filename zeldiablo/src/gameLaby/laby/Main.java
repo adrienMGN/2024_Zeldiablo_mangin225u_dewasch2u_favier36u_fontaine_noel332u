@@ -2,8 +2,6 @@ package gameLaby.laby;
 
 import java.io.IOException;
 
-import gameArkanoid.ArkanoidDessin;
-import gameArkanoid.ArkanoidJeu;
 import moteurJeu.MoteurJeu;
 
 /**
@@ -11,20 +9,6 @@ import moteurJeu.MoteurJeu;
  */
 public class Main {
     public static void main(String[] args) throws IOException {
-        int width = 800;
-        int height = 600;
-        int pFPS = 100;
-
-        // creation des objets
-        LabyJeu jeuLaby = new LabyJeu();
-        LabyDessin dessinLaby = new LabyDessin();
-
-        // parametrage du moteur de jeu
-        MoteurJeu.setTaille(width,height);
-        MoteurJeu.setFPS(pFPS);
-
-        // lancement du jeu
-        MoteurJeu.launch(jeuLaby, dessinLaby);
 
         // charge le labyrinthe
         Labyrinthe laby = new Labyrinthe("labySimple/laby1.txt");
@@ -41,5 +25,20 @@ public class Main {
             // saut de ligne
             System.out.println();
         }
+
+        int width = 800;
+        int height = 600;
+        int pFPS = 100;
+
+        // creation des objets
+        LabyJeu jeuLaby = new LabyJeu(laby);
+        LabyDessin dessinLaby = new LabyDessin();
+
+        // parametrage du moteur de jeu
+        MoteurJeu.setTaille(width,height);
+        MoteurJeu.setFPS(pFPS);
+
+        // lancement du jeu
+        MoteurJeu.launch(jeuLaby, dessinLaby);
     }
 }
