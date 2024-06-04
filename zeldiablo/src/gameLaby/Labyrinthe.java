@@ -195,4 +195,8 @@ public class Labyrinthe {
         // utilise le tableau de boolean
         return this.murs[x][y];
     }
+
+    public int[] getPersonnage() {
+        return new int[]{this.pj.y, this.pj.x};
+    }
 }
