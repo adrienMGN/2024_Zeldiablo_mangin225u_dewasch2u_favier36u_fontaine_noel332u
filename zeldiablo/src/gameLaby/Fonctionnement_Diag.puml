@@ -12,11 +12,16 @@ interface DessinJeu {
 }
 
 class LabyJeu {
-    -laby: Labyrinthe
     +LabyJeu(labyrinthe: Labyrinthe)
     +update(secondes: double, clavier: Clavier): void
     +init(): void
     +etreFini(): boolean
+    +getLaby(): Labyrinthe
+}
+
+class LabyDessin {
+    +<static> tailleCase: int
+    +dessinerJeu(jeu: Jeu, canvas: Canvas): void
 }
 
 class Labyrinthe {
@@ -50,10 +55,10 @@ class MoteurJeu {
 }
 
 Jeu <|.. LabyJeu
-LabyJeu --> Labyrinthe
-LabyJeu --> Clavier
-MoteurJeu --> Jeu
-MoteurJeu --> DessinJeu
-MoteurJeu --> Clavier
+LabyJeu --> Labyrinthe : -laby
+MoteurJeu --> Jeu : -<static> jeu
+MoteurJeu --> DessinJeu : -<static> dessin
+MoteurJeu --> Clavier : -<static> clavier
+DessinJeu <|.. LabyDessin
 
 @enduml

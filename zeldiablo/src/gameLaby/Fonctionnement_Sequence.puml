@@ -1,47 +1,83 @@
 @startuml
-title Diagramme de Séquence pour LabyJeu avec Moteur de Jeu
+title Diagramme de Séquence pour LabyJeu avec Moteur de LabyJeu
 
-actor User
 
+participant Main
 participant MoteurJeu
-participant Jeu
-participant Clavier
-participant Labyrinthe
-participant DessinJeu
 
-User -> MoteurJeu: launch(jeu, dessin)
+create LabyJeu
+Main -> LabyJeu: new
+
+create LabyDessin
+Main -> LabyDessin: new
+
+create Labyrinthe
+Main -> Labyrinthe: new
+
+Main -> MoteurJeu: setTaille(width, height)
 activate MoteurJeu
+Main <-- MoteurJeu
+deactivate MoteurJeu
 
-MoteurJeu -> Jeu: init()
-activate Jeu
-Jeu -> Clavier: (initialisation)
-Jeu -> Labyrinthe: (initialisation)
-deactivate Jeu
+Main -> MoteurJeu: setFPS(pFPS)
+activate MoteurJeu
+Main <-- MoteurJeu
+deactivate MoteurJeu
+
+Main -> MoteurJeu: launch(jeuLaby, dessinLaby)
+activate MoteurJeu
+create Clavier
+MoteurJeu -> Clavier: new
+
+create Canvas
+MoteurJeu -> Canvas: new
 
 loop chaque frame
-    MoteurJeu -> Jeu: update(secondes, clavier)
-    activate Jeu
+    MoteurJeu -> LabyJeu: update(secondes, clavier)
+    activate LabyJeu
 
     alt clavier.droite
-        Jeu -> Labyrinthe: deplacerPerso(Labyrinthe.DROITE)
+        LabyJeu -> Labyrinthe: deplacerPerso(Labyrinthe.DROITE)
+        activate Labyrinthe
+        LabyJeu <-- Labyrinthe
+        deactivate Labyrinthe
     end
 
     alt clavier.gauche
-        Jeu -> Labyrinthe: deplacerPerso(Labyrinthe.GAUCHE)
+        LabyJeu -> Labyrinthe: deplacerPerso(Labyrinthe.GAUCHE)
+        activate Labyrinthe
+        LabyJeu <-- Labyrinthe
+        deactivate Labyrinthe
     end
 
     alt clavier.haut
-        Jeu -> Labyrinthe: deplacerPerso(Labyrinthe.HAUT)
+        LabyJeu -> Labyrinthe: deplacerPerso(Labyrinthe.HAUT)
+        activate Labyrinthe
+        LabyJeu <-- Labyrinthe
+        deactivate Labyrinthe
     end
 
     alt clavier.bas
-        Jeu -> Labyrinthe: deplacerPerso(Labyrinthe.BAS)
+        LabyJeu -> Labyrinthe: deplacerPerso(Labyrinthe.BAS)
+        activate Labyrinthe
+        LabyJeu <-- Labyrinthe
+        deactivate Labyrinthe
     end
 
-    Jeu -> Labyrinthe: etreFini()
-    deactivate Jeu
+    LabyJeu -> Labyrinthe: etreFini()
+    activate Labyrinthe
+    LabyJeu <-- Labyrinthe : fin
+    deactivate Labyrinthe
+    MoteurJeu <-- LabyJeu
+    deactivate LabyJeu
 
-    MoteurJeu -> DessinJeu: dessinerJeu(jeu, canvas)
+    MoteurJeu -> LabyDessin: dessinerJeu(jeuLaby, canvas)
+    activate LabyDessin
+    LabyDessin <-- MoteurJeu
+    deactivate LabyDessin
+
 end
+Main <-- MoteurJeu
+deactivate MoteurJeu
 
 @enduml
