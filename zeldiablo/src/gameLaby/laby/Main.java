@@ -28,7 +28,7 @@ public class Main {
 
         int width = laby.getLength()*LabyDessin.tailleCase;
         int height = laby.getLengthY()*LabyDessin.tailleCase;
-        int pFPS = 100;
+        int pFPS = 10;
 
         // creation des objets
         LabyJeu jeuLaby = new LabyJeu(laby);

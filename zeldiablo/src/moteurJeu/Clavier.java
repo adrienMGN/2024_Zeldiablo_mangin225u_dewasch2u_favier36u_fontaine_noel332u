@@ -20,21 +20,25 @@ public class Clavier {
 
             // si touche bas
             case S:
+            case DOWN:
                 this.bas = true;
                 break;
 
             // si touche haut
             case Z:
+            case UP:
                 this.haut = true;
                 break;
 
             // si touche gauche
             case Q:
+            case LEFT:
                 this.gauche = true;
                 break;
 
             // si touche droite
             case D:
+            case RIGHT:
                 this.droite = true;
                 break;
 
@@ -53,21 +57,25 @@ public class Clavier {
 
             // si touche bas
             case S:
+            case DOWN:
                 this.bas = false;
                 break;
 
             // si touche haut
             case Z:
+            case UP:
                 this.haut = false;
                 break;
 
             // si touche gauche
             case Q:
+            case LEFT:
                 this.gauche = false;
                 break;
 
             // si touche droite
             case D:
+            case RIGHT:
                 this.droite = false;
                 break;
 

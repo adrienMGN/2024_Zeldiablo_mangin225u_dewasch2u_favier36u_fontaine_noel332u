@@ -17,15 +17,15 @@ public class LabyJeu implements Jeu {
             laby.deplacerPerso(Labyrinthe.DROITE);
         }
 
-        if (clavier.gauche){
+        else if (clavier.gauche){
             laby.deplacerPerso(Labyrinthe.GAUCHE);
         }
 
-        if (clavier.haut){
+        else if (clavier.haut){
             laby.deplacerPerso(Labyrinthe.HAUT);
         }
 
-        if (clavier.bas){
+        else if (clavier.bas){
             laby.deplacerPerso(Labyrinthe.BAS);
         }
     }
