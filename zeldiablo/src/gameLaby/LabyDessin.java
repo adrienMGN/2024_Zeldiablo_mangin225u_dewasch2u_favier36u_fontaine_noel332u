@@ -33,7 +33,15 @@ public class LabyDessin implements DessinJeu {
                     gc.setFill(Color.BLACK);
                     gc.fillRect(x*tailleCase, y*tailleCase, tailleCase, tailleCase);
                 }
-                else {
+                else if (laby.getPsecret(x,y)!=-1) {
+                    if(laby.psecrets.get(laby.getPsecret(x,y)).isActive()){
+                        gc.setStroke(Color.BLACK);
+                        gc.strokeRect(x*tailleCase, y*tailleCase, tailleCase, tailleCase);
+                    } else {
+                        gc.setFill(Color.BLACK);
+                        gc.fillRect(x*tailleCase,y*tailleCase, tailleCase, tailleCase);
+                    }
+                } else {
                     gc.setFill(Color.WHITE);
                     gc.fillRect(x*tailleCase,y*tailleCase, tailleCase, tailleCase);
                 }

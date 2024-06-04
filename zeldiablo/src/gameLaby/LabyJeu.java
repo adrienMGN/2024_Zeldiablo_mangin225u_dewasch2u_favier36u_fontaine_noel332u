@@ -27,6 +27,15 @@ public class LabyJeu implements Jeu {
         else if (clavier.bas){
             laby.deplacerPerso(Labyrinthe.BAS);
         }
+
+        for (int i = 0; i < laby.leviers.size(); i++) {
+            Levier levier = laby.leviers.get(i);
+            if (levier.persoPresent(laby.pj)) {
+                PassageSecret psecret = laby.psecrets.get(i);
+                psecret.ouvrir();
+                laby.murs[psecret.getX()][psecret.getY()] = false;
+            }
+        }
     }
 
     public void init() {

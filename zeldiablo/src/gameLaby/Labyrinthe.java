@@ -3,6 +3,7 @@ package gameLaby;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
 
 /**
  * classe labyrinthe. represente un labyrinthe avec
@@ -38,6 +39,9 @@ public class Labyrinthe {
      * les murs du labyrinthe
      */
     public boolean[][] murs;
+
+    public ArrayList<Levier> leviers = new ArrayList<>();
+    public ArrayList<PassageSecret> psecrets = new ArrayList<>();
 
     /**
      * retourne la case suivante selon une actions
@@ -120,18 +124,13 @@ public class Labyrinthe {
                         this.pj = new Perso(colonne, numeroLigne);
                         break;
                     case LEVIER:
-                        // pas de mur
+                        leviers.add(new Levier(colonne, numeroLigne));
                         this.murs[colonne][numeroLigne] = false;
                         break;
                     case PSECRET:
-                        for (p : listePSecret) {
-                            if (p.isActive) {
-                                this.murs[colonne][numeroLigne]] = false;
-
-                            }
-
-
-                    }
+                        psecrets.add(new PassageSecret(colonne, numeroLigne));
+                        this.murs[colonne][numeroLigne] = true;
+                        break;
                     default:
                         throw new Error("caractere inconnu " + c);
                 }
@@ -209,6 +208,16 @@ public class Labyrinthe {
     public boolean getMur(int x, int y) {
         // utilise le tableau de boolean
         return this.murs[x][y];
+    }
+
+    public int getPsecret(int x, int y) {
+        for (int i = 0; i < psecrets.size(); i++) {
+            PassageSecret psecret = psecrets.get(i);
+            if (psecret.getX() == x && psecret.getY() == y) {
+                return i;
+            }
+        }
+        return -1;
     }
 
     public int[] getPersonnage() {
