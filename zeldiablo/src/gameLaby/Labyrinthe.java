@@ -17,6 +17,9 @@ public class Labyrinthe {
     public static final char MUR = 'X';
     public static final char PJ = 'P';
     public static final char VIDE = '.';
+    public static final char LEVIER = 'L';
+    public static final char PSECRET = 'O';
+
 
     /**
      * constantes actions possibles
@@ -116,7 +119,19 @@ public class Labyrinthe {
                         // ajoute PJ
                         this.pj = new Perso(colonne, numeroLigne);
                         break;
+                    case LEVIER:
+                        // pas de mur
+                        this.murs[colonne][numeroLigne] = false;
+                        break;
+                    case PSECRET:
+                        for (p : listePSecret) {
+                            if (p.isActive) {
+                                this.murs[colonne][numeroLigne]] = false;
 
+                            }
+
+
+                    }
                     default:
                         throw new Error("caractere inconnu " + c);
                 }
