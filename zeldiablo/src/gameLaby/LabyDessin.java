@@ -1,9 +1,5 @@
-package gameLaby.laby;
+package gameLaby;
 
-import gameArkanoid.ArkanoidJeu;
-import gameArkanoid.Balle;
-import gameArkanoid.Raquette;
-import gameLaby.laby.Perso;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;

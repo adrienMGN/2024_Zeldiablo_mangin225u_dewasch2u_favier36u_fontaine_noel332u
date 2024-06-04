@@ -1,14 +1,13 @@
-package gameLaby.laby;
+package gameLaby;
 import moteurJeu.Clavier;
 import moteurJeu.Jeu;
 
-import java.io.IOException;
 
 public class LabyJeu implements Jeu {
 
     private final Labyrinthe laby;
 
-    public LabyJeu (Labyrinthe labyrinthe) throws IOException {
+    public LabyJeu (Labyrinthe labyrinthe) {
         laby = labyrinthe;
     }
 
