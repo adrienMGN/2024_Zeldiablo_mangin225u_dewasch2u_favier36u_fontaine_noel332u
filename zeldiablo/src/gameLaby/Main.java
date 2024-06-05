@@ -11,7 +11,7 @@ public class Main {
     public static void main(String[] args) throws IOException {
 
         // charge le labyrinthe
-        Labyrinthe laby = new Labyrinthe("labySimple/labyTest/labyTestFermetureDoubleOk.txt");
+        Labyrinthe laby = new Labyrinthe("labySimple/laby2.txt");
 
         //affiche le labyrinthe charge
         for (int y = 0; y < laby.getLengthY(); y++) {
