@@ -45,4 +45,7 @@ public class TestLaby {
         assertArrayEquals(labyrinthe.getPersonnage(),new int[]{1,1},"le personnage traverse le mur");
     }
 
+
+
+
 }
