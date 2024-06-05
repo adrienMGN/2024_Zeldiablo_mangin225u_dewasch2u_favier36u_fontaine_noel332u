@@ -1,83 +1,35 @@
 @startuml
-title Diagramme de Séquence pour LabyJeu avec Moteur de LabyJeu
+title Fermeture d'un passage secret quand un personnage est sur la case
 
 
-participant Main
 participant MoteurJeu
+participant "laby:Labyrinthe" as laby
+participant "jeuLaby:LabyJeu" as jeuLaby
+participant "traversables:ArrayList<Traversable>" as traversables
+participant "traversable:Fermeture" as traversable
+participant "passage:PassageSecret" as passage
 
-create LabyJeu
-Main -> LabyJeu: new
+MoteurJeu -> jeuLaby : update(secondes, clavier)
+activate jeuLaby
+loop traversables.size()
+    jeuLaby -> traversables : get(i)
+    activate traversables
+    traversables --> jeuLaby : traversable
+    deactivate traversables
 
-create LabyDessin
-Main -> LabyDessin: new
-
-create Labyrinthe
-Main -> Labyrinthe: new
-
-Main -> MoteurJeu: setTaille(width, height)
-activate MoteurJeu
-Main <-- MoteurJeu
-deactivate MoteurJeu
-
-Main -> MoteurJeu: setFPS(pFPS)
-activate MoteurJeu
-Main <-- MoteurJeu
-deactivate MoteurJeu
-
-Main -> MoteurJeu: launch(jeuLaby, dessinLaby)
-activate MoteurJeu
-create Clavier
-MoteurJeu -> Clavier: new
-
-create Canvas
-MoteurJeu -> Canvas: new
-
-loop chaque frame
-    MoteurJeu -> LabyJeu: update(secondes, clavier)
-    activate LabyJeu
-
-    alt clavier.droite
-        LabyJeu -> Labyrinthe: deplacerPerso(Labyrinthe.DROITE)
-        activate Labyrinthe
-        LabyJeu <-- Labyrinthe
-        deactivate Labyrinthe
-    end
-
-    alt clavier.gauche
-        LabyJeu -> Labyrinthe: deplacerPerso(Labyrinthe.GAUCHE)
-        activate Labyrinthe
-        LabyJeu <-- Labyrinthe
-        deactivate Labyrinthe
-    end
-
-    alt clavier.haut
-        LabyJeu -> Labyrinthe: deplacerPerso(Labyrinthe.HAUT)
-        activate Labyrinthe
-        LabyJeu <-- Labyrinthe
-        deactivate Labyrinthe
-    end
-
-    alt clavier.bas
-        LabyJeu -> Labyrinthe: deplacerPerso(Labyrinthe.BAS)
-        activate Labyrinthe
-        LabyJeu <-- Labyrinthe
-        deactivate Labyrinthe
-    end
-
-    LabyJeu -> Labyrinthe: etreFini()
-    activate Labyrinthe
-    LabyJeu <-- Labyrinthe : fin
-    deactivate Labyrinthe
-    MoteurJeu <-- LabyJeu
-    deactivate LabyJeu
-
-    MoteurJeu -> LabyDessin: dessinerJeu(jeuLaby, canvas)
-    activate LabyDessin
-    LabyDessin <-- MoteurJeu
-    deactivate LabyDessin
-
+    jeuLaby -> traversable : persoPresent(laby)
+    activate traversable
+    traversable -> traversable : action(laby)
+    activate traversable
+    traversable -> passage : fermer()
+    activate passage
+    passage --> traversable
+    deactivate passage
+    traversable --> traversable
+    deactivate traversable
+    traversable --> jeuLaby
+    deactivate traversable
 end
-Main <-- MoteurJeu
-deactivate MoteurJeu
-
+    jeuLaby --> MoteurJeu
+    deactivate jeuLaby
 @enduml
