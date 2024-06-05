@@ -21,6 +21,24 @@ public class Perso extends Entite {
         return (this.x == dx && this.y == dy);
     }
 
+
+    public boolean estVideCase(Labyrinthe laby, int x, int y) {
+        boolean vide = true;
+        for (Entite entite : laby.entites) {
+            if (entite.etrePresent(x, y)) {
+                vide = false;
+            }
+
+        }
+
+        //if (laby.murs[x][y]) {
+         //   vide = false;
+       // }
+
+
+        return vide;
+    }
+
     @Override
     public void ajouterEntite(Labyrinthe laby) {
 

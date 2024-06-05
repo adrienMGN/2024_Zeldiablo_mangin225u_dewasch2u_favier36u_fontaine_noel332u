@@ -87,4 +87,9 @@ public abstract class Entite {
         return vide;
     }
 
+    /*
+    * methode collision
+    * */
+
+
 }
