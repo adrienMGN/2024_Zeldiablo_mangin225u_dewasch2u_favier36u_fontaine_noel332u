@@ -31,11 +31,6 @@ public class Perso extends Entite {
 
         }
 
-        //if (laby.murs[x][y]) {
-         //   vide = false;
-       // }
-
-
         return vide;
     }
 

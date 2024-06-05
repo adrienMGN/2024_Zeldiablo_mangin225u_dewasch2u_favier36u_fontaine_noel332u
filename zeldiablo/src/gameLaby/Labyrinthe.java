@@ -193,17 +193,22 @@ public class Labyrinthe {
                 String monstre = g.getNoeud(m.getX(),m.getY());
                 Valeur v = d.resoudre(g, monstre);
                 List<String> l = v.calculerChemin(g.getNoeud(pj.getX(),pj.getY()));
-                System.out.println(l);
+                //System.out.println(l);
                 if (l.size()>=2) {
                     String prochain = l.get(l.size() - 2);
                     int[] coords = g.getCoord(prochain);
-                    System.out.println(coords[0] + " " + coords[1]);
+                    //System.out.println(coords[0] + " " + coords[1]);
                     m.x = coords[0];
                     m.y = coords[1];
+
+                    if (m.x == this.pj.x && m.y == this.pj.y) {
+                        m.attaquer(this.pj);
+                    }
                 }
             }
         }
     }
+
 
 
     /**

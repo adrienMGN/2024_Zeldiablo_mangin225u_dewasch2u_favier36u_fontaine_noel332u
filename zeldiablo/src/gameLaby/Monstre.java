@@ -12,6 +12,7 @@ public class Monstre extends Entite {
         this.pv = 2;
     }
 
+    // ajout entie sur case vide
     public void ajouterEntite(Labyrinthe laby) {
         if(estVideCase(laby, this.x, this.y)) {
         laby.entites.add(this);}
@@ -22,13 +23,15 @@ public class Monstre extends Entite {
 
 
 
-    /*
+
     public int attaquer(Perso perso) {
+
         perso.pv--;
-        perso.checkPv();
-        return ;
+        System.out.println("attaquer");
+
+        return -1;
     }
-     */
+
 
 
 

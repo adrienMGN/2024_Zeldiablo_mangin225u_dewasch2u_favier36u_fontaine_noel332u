@@ -17,6 +17,8 @@ public class Main {
         Monstre monstre = new Monstre(8,8, laby);
         monstre.ajouterEntite(laby);
 
+
+
         //affiche le labyrinthe charge
         for (int y = 0; y < laby.getLengthY(); y++) {
             // affiche la ligne
@@ -43,6 +45,7 @@ public class Main {
         // parametrage du moteur de jeu
         MoteurJeu.setTaille(width,height);
         MoteurJeu.setFPS(pFPS);
+
 
         // lancement du jeu
         MoteurJeu.launch(jeuLaby, dessinLaby);
