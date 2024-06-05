@@ -28,6 +28,7 @@ public class LabyJeu implements Jeu {
             laby.deplacerPerso(Labyrinthe.BAS);
         }
 
+        // Gestion des cases traversables
         for (int i = 0; i < laby.traversables.size(); i++) {
             Traversable traversable = laby.traversables.get(i);
             traversable.persoPresent(laby);

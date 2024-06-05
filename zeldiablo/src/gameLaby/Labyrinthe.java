@@ -215,6 +215,12 @@ public class Labyrinthe {
         return this.murs[x][y];
     }
 
+    /**
+     * return l'indice du passage secret en (x,y) si il y en a un
+     * @param x
+     * @param y
+     * @return
+     */
     public int getPsecret(int x, int y) {
         for (int i = 0; i < psecrets.size(); i++) {
             PassageSecret psecret = psecrets.get(i);
@@ -225,6 +231,10 @@ public class Labyrinthe {
         return -1;
     }
 
+    /**
+     * return la position du personnage
+     * @return
+     */
     public int[] getPersonnage() {
         return new int[]{this.pj.y, this.pj.x};
     }
