@@ -42,7 +42,7 @@ public class TestOuverture {
     @Test
     public void test_ouverture_double() throws Exception{
 
-        Labyrinthe labyrinthe = new Labyrinthe("labySimple/labyTestOuvertureSimple.txt");
+        Labyrinthe labyrinthe = new Labyrinthe("labySimple/labyTestOuvertureDouble.txt");
         LabyJeu labyJeu = new LabyJeu(labyrinthe);
         labyrinthe.deplacerPerso(Labyrinthe.DROITE); // deplace gauche atteint ouverture
         Clavier clavier = new Clavier(); // necessaire pour update
