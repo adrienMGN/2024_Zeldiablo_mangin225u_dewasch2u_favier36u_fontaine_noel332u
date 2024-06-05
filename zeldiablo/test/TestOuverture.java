@@ -66,7 +66,7 @@ public class TestOuverture {
     @Test
     public void test_ouverture_double_ok() throws Exception{
         Clavier clavier = new Clavier();
-        Labyrinthe labyrinthe = new Labyrinthe("./labySimple/labyTestOuvertureDoubleOk.txt");
+        Labyrinthe labyrinthe = new Labyrinthe("labySimple/labyTestOuvertureDoubleOk.txt");
         LabyJeu labyJeu = new LabyJeu(labyrinthe);
         labyrinthe.deplacerPerso(Labyrinthe.GAUCHE); // deplace gauche atteint ouverture
         labyJeu.update(0, clavier); // màj de l'état du jeu'
