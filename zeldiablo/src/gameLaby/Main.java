@@ -1,6 +1,7 @@
 package gameLaby;
 
 import java.io.IOException;
+import java.util.Scanner;
 
 import moteurJeu.MoteurJeu;
 
@@ -12,6 +13,9 @@ public class Main {
 
         // charge le labyrinthe
         Labyrinthe laby = new Labyrinthe("labySimple/laby2.txt");
+
+        Monstre monstre = new Monstre(8,8, laby);
+        monstre.ajouterEntite(laby);
 
         //affiche le labyrinthe charge
         for (int y = 0; y < laby.getLengthY(); y++) {
@@ -29,6 +33,8 @@ public class Main {
         int width = laby.getLength()*LabyDessin.tailleCase;
         int height = laby.getLengthY()*LabyDessin.tailleCase;
         int pFPS = 10;
+
+
 
         // creation des objets
         LabyJeu jeuLaby = new LabyJeu(laby);

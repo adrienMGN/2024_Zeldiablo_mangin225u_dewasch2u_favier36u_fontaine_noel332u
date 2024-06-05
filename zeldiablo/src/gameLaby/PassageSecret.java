@@ -20,6 +20,10 @@ public class PassageSecret {
         this.active = true;
     }
 
+    public boolean etrePresent(int dx, int dy) {
+        return (this.x == dx && this.y == dy);
+    }
+
     public void fermer() {
         this.active = false;
     }

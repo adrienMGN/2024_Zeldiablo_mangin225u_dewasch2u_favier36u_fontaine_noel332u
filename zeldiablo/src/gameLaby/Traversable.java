@@ -16,6 +16,11 @@ public abstract class Traversable {
             action(laby);
     }
 
+    public boolean etrePresent(int dx, int dy) {
+
+        return (this.x == dx && this.y == dy);
+    }
+
     public int getX() {
         return x;
     }

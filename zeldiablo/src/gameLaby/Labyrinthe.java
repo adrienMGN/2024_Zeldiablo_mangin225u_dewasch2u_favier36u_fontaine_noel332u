@@ -21,6 +21,7 @@ public class Labyrinthe {
     public static final char OUVERTURE = 'O';
     public static final char FERMETURE = 'F';
     public static final char PSECRET = 'H';
+    public static final char MONSTRE= 'M';
 
 
     /**
@@ -43,6 +44,7 @@ public class Labyrinthe {
 
     public ArrayList<Traversable> traversables = new ArrayList<>();
     public ArrayList<PassageSecret> psecrets = new ArrayList<>();
+    public ArrayList<Entite> entites = new ArrayList<>();
 
     /**
      * retourne la case suivante selon une actions
@@ -136,8 +138,13 @@ public class Labyrinthe {
                         psecrets.add(new PassageSecret(PassageSecret.nbPassages,colonne, numeroLigne));
                         this.murs[colonne][numeroLigne] = true;
                         break;
+                    case MONSTRE:
+                        entites.add(new Monstre(colonne, numeroLigne, this));
+                        this.murs[colonne][numeroLigne] = false;
+                        break;
                     default:
                         throw new Error("caractere inconnu " + c);
+
                 }
             }
 
@@ -170,6 +177,7 @@ public class Labyrinthe {
             this.pj.x = suivante[0];
             this.pj.y = suivante[1];
         }
+
     }
 
 
