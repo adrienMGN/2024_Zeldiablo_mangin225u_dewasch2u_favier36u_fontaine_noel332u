@@ -63,7 +63,7 @@ class Perso {
     +getY(): int
 }
 
-abstract class Entite {
+abstract class Traversable {
     -x: int
     -y: int
     +Entite(int dx, int dy)

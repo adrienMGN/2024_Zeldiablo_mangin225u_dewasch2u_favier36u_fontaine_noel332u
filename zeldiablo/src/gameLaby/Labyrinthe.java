@@ -18,8 +18,9 @@ public class Labyrinthe {
     public static final char MUR = 'X';
     public static final char PJ = 'P';
     public static final char VIDE = '.';
-    public static final char LEVIER = 'L';
-    public static final char PSECRET = 'O';
+    public static final char OUVERTURE = 'O';
+    public static final char FERMETURE = 'F';
+    public static final char PSECRET = 'H';
 
 
     /**
@@ -40,7 +41,7 @@ public class Labyrinthe {
      */
     public boolean[][] murs;
 
-    public ArrayList<Levier> leviers = new ArrayList<>();
+    public ArrayList<Traversable> traversables = new ArrayList<>();
     public ArrayList<PassageSecret> psecrets = new ArrayList<>();
 
     /**
@@ -123,12 +124,16 @@ public class Labyrinthe {
                         // ajoute PJ
                         this.pj = new Perso(colonne, numeroLigne);
                         break;
-                    case LEVIER:
-                        leviers.add(new Levier(colonne, numeroLigne));
+                    case OUVERTURE:
+                        traversables.add(new Ouverture(Ouverture.nbOuvertures, colonne, numeroLigne));
+                        this.murs[colonne][numeroLigne] = false;
+                        break;
+                    case FERMETURE:
+                        traversables.add(new Fermeture(Fermeture.nbFermetures, colonne, numeroLigne));
                         this.murs[colonne][numeroLigne] = false;
                         break;
                     case PSECRET:
-                        psecrets.add(new PassageSecret(colonne, numeroLigne));
+                        psecrets.add(new PassageSecret(PassageSecret.nbPassages,colonne, numeroLigne));
                         this.murs[colonne][numeroLigne] = true;
                         break;
                     default:
