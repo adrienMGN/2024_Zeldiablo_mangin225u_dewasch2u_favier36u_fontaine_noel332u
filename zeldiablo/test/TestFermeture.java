@@ -13,7 +13,7 @@ public class TestFermeture {
     @Test
     public void test_fermeture1passage() throws Exception {
 
-        Labyrinthe laby = new Labyrinthe("../labySimple/labyTestFermeture.txt");
+        Labyrinthe laby = new Labyrinthe("labySimple/labyTestFermeture.txt");
 
         LabyJeu labyJeu = new LabyJeu(laby);
 
@@ -22,7 +22,7 @@ public class TestFermeture {
         labyJeu.update(0, clavier); // màj de l'état du jeu'
 
         laby.deplacerPerso(Labyrinthe.DROITE);
-        laby.deplacerPerso(Labyrinthe.DROITE);// necessaire pour update
+        laby.deplacerPerso(Labyrinthe.DROITE);
         labyJeu.update(0, clavier);
 
         boolean active = laby.psecrets.get(0).isActive(); // recupère l'état du passage secret
