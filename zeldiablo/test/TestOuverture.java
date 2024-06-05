@@ -17,7 +17,7 @@ public class TestOuverture {
     /*
     * Test un passage secrat avec son ouverture*/
     public void test_ouverture_simple() throws Exception{
-        Labyrinthe labyrinthe = new Labyrinthe("labySimple/labyTestOuvertureSimple.txt");
+        Labyrinthe labyrinthe = new Labyrinthe("labySimple/labyTest/labyTestOuvertureSimple.txt");
         LabyJeu labyJeu = new LabyJeu(labyrinthe);
         labyrinthe.deplacerPerso(Labyrinthe.GAUCHE); // deplace gauche atteint ouverture
         Clavier clavier = new Clavier(); // necessaire pour update
@@ -42,7 +42,7 @@ public class TestOuverture {
     @Test
     public void test_ouverture_double() throws Exception{
 
-        Labyrinthe labyrinthe = new Labyrinthe("labySimple/labyTestOuvertureDouble.txt");
+        Labyrinthe labyrinthe = new Labyrinthe("labySimple/labyTest/labyTestOuvertureDouble.txt");
         LabyJeu labyJeu = new LabyJeu(labyrinthe);
         labyrinthe.deplacerPerso(Labyrinthe.DROITE); // deplace gauche atteint ouverture
         Clavier clavier = new Clavier(); // necessaire pour update
@@ -66,7 +66,7 @@ public class TestOuverture {
     @Test
     public void test_ouverture_double_ok() throws Exception{
         Clavier clavier = new Clavier();
-        Labyrinthe labyrinthe = new Labyrinthe("labySimple/labyTestOuvertureDoubleOk.txt");
+        Labyrinthe labyrinthe = new Labyrinthe("labySimple/labyTest/labyTestOuvertureDoubleOk.txt");
         LabyJeu labyJeu = new LabyJeu(labyrinthe);
         labyrinthe.deplacerPerso(Labyrinthe.GAUCHE); // deplace gauche atteint ouverture
         labyJeu.update(0, clavier); // màj de l'état du jeu'
