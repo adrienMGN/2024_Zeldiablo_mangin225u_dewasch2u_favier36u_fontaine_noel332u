@@ -1,6 +1,8 @@
 package moteurJeu;
 
 
+import java.io.IOException;
+
 /**
  * modele de jeu
  */

@@ -2,6 +2,8 @@ package gameLaby;
 import moteurJeu.Clavier;
 import moteurJeu.Jeu;
 
+import java.util.List;
+
 
 public class LabyJeu implements Jeu {
 
@@ -11,7 +13,7 @@ public class LabyJeu implements Jeu {
         laby = labyrinthe;
     }
 
-    public void update(double secondes, Clavier clavier){
+    public void update(double secondes, Clavier clavier) {
         if (clavier.droite){
             laby.deplacerPerso(Labyrinthe.DROITE);
         }
@@ -33,6 +35,8 @@ public class LabyJeu implements Jeu {
             Traversable traversable = laby.traversables.get(i);
             traversable.persoPresent(laby);
         }
+
+
     }
 
     public void init() {

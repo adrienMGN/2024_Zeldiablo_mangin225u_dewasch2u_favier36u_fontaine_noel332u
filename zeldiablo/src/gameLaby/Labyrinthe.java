@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * classe labyrinthe. represente un labyrinthe avec
@@ -173,11 +174,35 @@ public class Labyrinthe {
 
         // si c'est pas un mur, on effectue le deplacement
         if (!this.murs[suivante[0]][suivante[1]] && pj.estVideCase(this, suivante[0], suivante[1])) {
+            mouvementsMonstres();
             // on met a jour personnage
             this.pj.x = suivante[0];
             this.pj.y = suivante[1];
         }
 
+    }
+
+
+    public void mouvementsMonstres(){
+        GrapheListe g = new GrapheListe(this);
+        Dijkstra d = new Dijkstra();
+
+        for (Entite entite : entites) {
+            if (entite instanceof Monstre) {
+                Monstre m = (Monstre) entite;
+                String monstre = g.getNoeud(m.getX(),m.getY());
+                Valeur v = d.resoudre(g, monstre);
+                List<String> l = v.calculerChemin(g.getNoeud(pj.getX(),pj.getY()));
+                System.out.println(l);
+                if (l.size()>=2) {
+                    String prochain = l.get(l.size() - 2);
+                    int[] coords = g.getCoord(prochain);
+                    System.out.println(coords[0] + " " + coords[1]);
+                    m.x = coords[0];
+                    m.y = coords[1];
+                }
+            }
+        }
     }
 
 
