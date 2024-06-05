@@ -125,9 +125,9 @@ MoteurJeu --> Jeu : -<static> jeu
 MoteurJeu --> DessinJeu : -<static> dessin
 MoteurJeu --> Clavier : -<static> clavier
 DessinJeu <|.. LabyDessin
-Labyrinthe -> Perso : -perso
-PassageSecret <|-- Labyrinthe : -laby /*mettre l'étoile*/
-Traversable <- Labyrinthe : -laby /*mettre l'étoile*/
+Labyrinthe "*"->"1" Perso : -perso
+  Labyrinthe "*"-->"*" PassageSecret : -laby
+Traversable "*"<-"*" Labyrinthe : -laby
  Traversable <|-- Ouverture
  Traversable <|-- Fermeture
 
