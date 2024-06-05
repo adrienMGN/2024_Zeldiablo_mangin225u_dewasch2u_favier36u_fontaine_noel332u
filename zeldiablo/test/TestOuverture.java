@@ -49,7 +49,7 @@ public class TestOuverture {
         labyJeu.update(0, clavier); // màj de l'état du jeu'
 
 
-        boolean active = labyrinthe.psecrets.getFirst().isActive(); // recupère l'état du passage secret
+        boolean active = labyrinthe.psecrets.get(0).isActive(); // recupère l'état du passage secret
         assertEquals(false, active,"le passage doit etre fermer");
 
         labyrinthe.deplacerPerso(Labyrinthe.GAUCHE); // deplace gauche atteint ouverture

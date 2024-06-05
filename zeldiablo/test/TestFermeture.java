@@ -13,7 +13,7 @@ public class TestFermeture {
     @Test
     public void test_fermeture1passage() throws Exception {
 
-        Labyrinthe laby = new Labyrinthe("labySimple/labyTest/labyTestFermeture.txt");
+        Labyrinthe laby = new Labyrinthe("zeldiablo/labySimple/labyTestFermeture.txt");
 
         LabyJeu labyJeu = new LabyJeu(laby);
 
@@ -45,7 +45,7 @@ public class TestFermeture {
 @Test
 public void test_fermeture_double() throws Exception{
 
-    Labyrinthe labyrinthe = new Labyrinthe("labySimple/labyTest/labyTestFermetureDouble.txt");
+    Labyrinthe labyrinthe = new Labyrinthe("zeldiablo/labySimple/labyTestFermetureDouble.txt");
     LabyJeu labyJeu = new LabyJeu(labyrinthe);
     labyrinthe.deplacerPerso(Labyrinthe.DROITE); // deplace gauche atteint ouverture
     Clavier clavier = new Clavier(); // necessaire pour update
@@ -79,7 +79,7 @@ public void test_fermeture_double() throws Exception{
  * Test double fermeture et double passage secrets*/
 @Test
 public void test_fermeture_double_ok() throws Exception {
-    Labyrinthe labyrinthe = new Labyrinthe("labySimple/labyTest/labyTestFermetureDoubleOk.txt");
+    Labyrinthe labyrinthe = new Labyrinthe("zeldiablo/labySimple/labyTestFermetureDoubleOk.txt");
     LabyJeu labyJeu = new LabyJeu(labyrinthe);
     labyrinthe.deplacerPerso(Labyrinthe.DROITE); // deplace gauche atteint ouverture
     Clavier clavier = new Clavier(); // necessaire pour update
