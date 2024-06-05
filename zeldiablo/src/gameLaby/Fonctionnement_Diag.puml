@@ -12,6 +12,8 @@ interface DessinJeu {
 }
 
 class LabyJeu {
+    - <final> laby: Labyrinthe
+
     +LabyJeu(labyrinthe: Labyrinthe)
     +update(secondes: double, clavier: Clavier): void
     +init(): void
@@ -25,8 +27,34 @@ class LabyDessin {
 }
 
 class Labyrinthe {
+'    + <static final> MUR = 'X' : String
+'    + <static final> PJ = 'P' : String
+'    + <static final> VIDE = '.' : String
+'    + <static final> OUVERTURE = 'O' : String
+'    + <static final> FERMETURE = 'F' : String
+'    + <static final> PSECRET = 'H' : String
+'
+'    + <static final> HAUT = 'Haut' : String
+'    + <static final> BAS = 'Bas' : String
+'    + <static final> GAUCHE = 'Gauche' : String
+'    + <static final> DROITE = 'Droite' : String
+
+    +pj : Perso
+    +murs : boolean[][]
+
+    +traversables : ArrayList<Traversable>
+    +psecrets : ArrayList<PassageSecret>
+
     +deplacerPerso(direction: int): void
     +etreFini(): boolean
+    +getSuivant(int x, int y, String action): int[]
+    +Labyrinthe(String nom)
+    +deplacerPerso(String action): void
+    +getLengthY(): int
+    +getLength(): int
+    +getMur(int x, int y): boolean
+    +getPsecret(int x, int y): int
+    +getPersonnage(): int[]
 }
 
 class Clavier {
@@ -71,15 +99,6 @@ abstract class Traversable {
     +getY(): int
 }
 
-class Levier {
-    -id: int
-    -x: int
-    -y: int
-    +Levier(int id, int dx, int dy)
-    +persoPresent(Perso p): boolean
-    +getID(): int
-}
-
 class PassageSecret{
     -id: int
     -x: int
@@ -90,6 +109,16 @@ class PassageSecret{
     +getID(): int
 }
 
+class Ouverture{
+    +Ouverture(int id, int x, int y)
+    +action(Labyrinthe laby): void
+}
+
+class Fermeture{
+    +Fermeture(int id, int x, int y)
+    +action(Labyrinthe laby): void
+}
+
 Jeu <|.. LabyJeu
 LabyJeu --> Labyrinthe : -laby
 MoteurJeu --> Jeu : -<static> jeu
@@ -97,5 +126,10 @@ MoteurJeu --> DessinJeu : -<static> dessin
 MoteurJeu --> Clavier : -<static> clavier
 DessinJeu <|.. LabyDessin
 Labyrinthe -> Perso : -perso
+PassageSecret <|-- Labyrinthe : -laby /*mettre l'étoile*/
+Traversable <- Labyrinthe : -laby /*mettre l'étoile*/
+ Traversable <|-- Ouverture
+ Traversable <|-- Fermeture
+
 
 @enduml
