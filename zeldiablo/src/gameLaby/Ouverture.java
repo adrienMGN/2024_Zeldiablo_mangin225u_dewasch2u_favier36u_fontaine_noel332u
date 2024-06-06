@@ -1,6 +1,6 @@
 package gameLaby;
 
-public class Ouverture extends Traversable{
+public class Ouverture extends Declenchable {
 
     public static int nbOuvertures = 0;
 

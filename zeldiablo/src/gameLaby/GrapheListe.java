@@ -32,16 +32,16 @@ public class GrapheListe{
         for (int y = 0; y < laby.getLengthY(); y++) {
             for (int x = 0; x < laby.getLength(); x++) {
                 if (!laby.getMur(x, y)) {
-                    if (x > 0 && !laby.getMur(x - 1, y)) {
+                    if (x > 0 && !laby.getMur(x - 1, y) && !laby.getMonstre(x - 1, y)) {
                         ajouterArc(graphe[x][y], graphe[x - 1][y], 1);
                     }
-                    if (x < laby.getLength() - 1 && !laby.getMur(x + 1, y)) {
+                    if (x < laby.getLength() - 1 && !laby.getMur(x + 1, y) && !laby.getMonstre(x + 1, y)) {
                         ajouterArc(graphe[x][y], graphe[x + 1][y], 1);
                     }
-                    if (y > 0 && !laby.getMur(x, y - 1)) {
+                    if (y > 0 && !laby.getMur(x, y - 1) && !laby.getMonstre(x, y - 1)) {
                         ajouterArc(graphe[x][y], graphe[x][y - 1], 1);
                     }
-                    if (y < laby.getLengthY() - 1 && !laby.getMur(x, y + 1)) {
+                    if (y < laby.getLengthY() - 1 && !laby.getMur(x, y + 1)&& !laby.getMonstre(x, y + 1)) {
                         ajouterArc(graphe[x][y], graphe[x][y + 1], 1);
                     }
                 }

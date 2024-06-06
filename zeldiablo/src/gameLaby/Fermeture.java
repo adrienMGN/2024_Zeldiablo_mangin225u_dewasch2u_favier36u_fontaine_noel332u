@@ -1,6 +1,6 @@
 package gameLaby;
 
-public class Fermeture extends Traversable{
+public class Fermeture extends Declenchable {
 
     public static int nbFermetures = 0;
 

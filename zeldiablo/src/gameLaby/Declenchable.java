@@ -1,9 +1,9 @@
 package gameLaby;
 
-public abstract class Traversable {
+public abstract class Declenchable {
     private int x,y,id;
 
-    public Traversable(int id,int x, int y) {
+    public Declenchable(int id, int x, int y) {
         this.x = x;
         this.y = y;
         this.id = id;
@@ -11,9 +11,11 @@ public abstract class Traversable {
 
     public abstract void action(Labyrinthe laby);
 
-    public void persoPresent(Labyrinthe laby) {
-        if (laby.pj.getX() == x && laby.pj.getY() == y)
-            action(laby);
+    public void entitePresent(Labyrinthe laby) {
+        for (Entite e : laby.entites) {
+            if (e.getX() == x && e.getY() == y)
+                action(laby);
+        }
     }
 
     public boolean etrePresent(int dx, int dy) {

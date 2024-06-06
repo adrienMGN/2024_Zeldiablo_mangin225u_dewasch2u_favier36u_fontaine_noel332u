@@ -2,6 +2,8 @@ package gameLaby;
 
 import java.io.IOException;
 import java.util.Scanner;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import moteurJeu.MoteurJeu;
 
@@ -17,7 +19,12 @@ public class Main {
         Monstre monstre = new Monstre(8,8, laby);
         monstre.ajouterEntite(laby);
 
-
+        // setInterval()
+        new Timer().scheduleAtFixedRate(new TimerTask(){
+            public void run(){
+                laby.mouvementsMonstres();
+            }
+        },0,100);
 
         //affiche le labyrinthe charge
         for (int y = 0; y < laby.getLengthY(); y++) {

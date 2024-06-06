@@ -26,7 +26,6 @@ public abstract class Entite {
 
 
     public boolean etrePresent(int dx, int dy) {
-
         return (this.x == dx && this.y == dy);
     }
 
@@ -65,8 +64,8 @@ public abstract class Entite {
             }
 
         }
-        for (Traversable traversable : laby.traversables) {
-            if (traversable.etrePresent(x, y)) {
+        for (Declenchable declenchable : laby.declenchables) {
+            if (declenchable.etrePresent(x, y)) {
                 vide = false;
             }
         }
@@ -90,6 +89,14 @@ public abstract class Entite {
     /*
     * methode collision
     * */
+    public Entite collision(int[] xy){
+        for (Entite entite : laby.entites) {
+            if (entite.etrePresent(xy[0], xy[1])) {
+                return entite;
+            }
+        }
+        return null;
+    }
 
 
 }

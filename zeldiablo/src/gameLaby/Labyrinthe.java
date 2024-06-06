@@ -43,7 +43,7 @@ public class Labyrinthe {
      */
     public boolean[][] murs;
 
-    public ArrayList<Traversable> traversables = new ArrayList<>();
+    public ArrayList<Declenchable> declenchables = new ArrayList<>();
     public ArrayList<PassageSecret> psecrets = new ArrayList<>();
     public ArrayList<Entite> entites = new ArrayList<>();
 
@@ -126,13 +126,14 @@ public class Labyrinthe {
                         this.murs[colonne][numeroLigne] = false;
                         // ajoute PJ
                         this.pj = new Perso(colonne, numeroLigne);
+                        this.entites.add(pj);
                         break;
                     case OUVERTURE:
-                        traversables.add(new Ouverture(Ouverture.nbOuvertures, colonne, numeroLigne));
+                        declenchables.add(new Ouverture(Ouverture.nbOuvertures, colonne, numeroLigne));
                         this.murs[colonne][numeroLigne] = false;
                         break;
                     case FERMETURE:
-                        traversables.add(new Fermeture(Fermeture.nbFermetures, colonne, numeroLigne));
+                        declenchables.add(new Fermeture(Fermeture.nbFermetures, colonne, numeroLigne));
                         this.murs[colonne][numeroLigne] = false;
                         break;
                     case PSECRET:
@@ -174,7 +175,7 @@ public class Labyrinthe {
 
         // si c'est pas un mur, on effectue le deplacement
         if (!this.murs[suivante[0]][suivante[1]] && pj.estVideCase(this, suivante[0], suivante[1])) {
-            mouvementsMonstres();
+            //mouvementsMonstres();
             // on met a jour personnage
             this.pj.x = suivante[0];
             this.pj.y = suivante[1];
@@ -193,16 +194,19 @@ public class Labyrinthe {
                 String monstre = g.getNoeud(m.getX(),m.getY());
                 Valeur v = d.resoudre(g, monstre);
                 List<String> l = v.calculerChemin(g.getNoeud(pj.getX(),pj.getY()));
-                //System.out.println(l);
+
                 if (l.size()>=2) {
                     String prochain = l.get(l.size() - 2);
                     int[] coords = g.getCoord(prochain);
-                    //System.out.println(coords[0] + " " + coords[1]);
-                    m.x = coords[0];
-                    m.y = coords[1];
 
-                    if (m.x == this.pj.x && m.y == this.pj.y) {
-                        m.attaquer(this.pj);
+                    Entite collision = m.collision(coords);
+                    if (collision==null) {
+                        m.x = coords[0];
+                        m.y = coords[1];
+                    }
+                    else{
+                        if(collision instanceof Perso)
+                            m.attaquer(this.pj);
                     }
                 }
             }
@@ -267,6 +271,17 @@ public class Labyrinthe {
             }
         }
         return -1;
+    }
+
+    public boolean getMonstre(int x, int y) {
+        for (Entite entite : entites) {
+            if (entite instanceof Monstre) {
+                if (entite.getX() == x && entite.getY() == y) {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
     /**

@@ -2,8 +2,6 @@ package gameLaby;
 import moteurJeu.Clavier;
 import moteurJeu.Jeu;
 
-import java.util.List;
-
 
 public class LabyJeu implements Jeu {
 
@@ -30,10 +28,10 @@ public class LabyJeu implements Jeu {
             laby.deplacerPerso(Labyrinthe.BAS);
         }
 
-        // Gestion des cases traversables
-        for (int i = 0; i < laby.traversables.size(); i++) {
-            Traversable traversable = laby.traversables.get(i);
-            traversable.persoPresent(laby);
+        // Gestion des cases declenchables
+        for (int i = 0; i < laby.declenchables.size(); i++) {
+            Declenchable declenchable = laby.declenchables.get(i);
+            declenchable.entitePresent(laby);
         }
 
 

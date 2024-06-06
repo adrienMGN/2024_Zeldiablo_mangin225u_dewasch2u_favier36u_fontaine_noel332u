@@ -1,6 +1,6 @@
 package gameLaby;
 
-public class PassageSecret {
+public class PassageSecret{
     private int x;
     private int y;
     private int id;
