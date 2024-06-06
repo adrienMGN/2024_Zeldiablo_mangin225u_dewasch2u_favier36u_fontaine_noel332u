@@ -1,0 +1,38 @@
+@startuml
+title Choix du deplacement d'un monstre
+
+participant "main:Main" as main
+participant "laby:Labyrinthe" as laby
+participant "monstre:Monstre" as monstre
+
+
+main -> laby: mouvementsMonstres()
+activate laby
+create "graphe:GrapheList" as graphe
+laby -> graphe: new GrapheList(laby)
+create "dijkstra:Dijkstra" as dijkstra
+laby -> dijkstra: new dijkstra()
+
+laby -> dijkstra: resoudre(graphe, monstre)
+activate dijkstra
+create "v:Valeur" as v
+dijkstra -> v: new Valeur()
+dijkstra --> laby: v
+deactivate dijkstra
+
+laby -> v: calculerChemin(personnage)
+activate v
+create "chemin:ArrayList<String>" as chemin
+v -> chemin: new
+v --> laby: chemin
+deactivate v
+
+laby -> monstre: deplacement(chemin)
+activate monstre
+monstre --> laby
+deactivate monstre
+
+laby --> main
+deactivate laby
+
+@enduml
