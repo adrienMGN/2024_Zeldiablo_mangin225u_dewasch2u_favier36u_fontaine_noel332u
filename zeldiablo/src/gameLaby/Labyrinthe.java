@@ -191,13 +191,13 @@ public class Labyrinthe {
         for (Entite entite : entites) {
             if (entite instanceof Monstre) {
                 Monstre m = (Monstre) entite;
-                String monstre = g.getNoeud(m.getX(),m.getY());
+                String monstre = m.x+","+m.y;
                 Valeur v = d.resoudre(g, monstre);
-                List<String> l = v.calculerChemin(g.getNoeud(pj.getX(),pj.getY()));
+                List<String> l = v.calculerChemin(pj.getX()+","+pj.getY());
 
                 if (l.size()>=2) {
-                    String prochain = l.get(l.size() - 2);
-                    int[] coords = g.getCoord(prochain);
+                    String[] prochain = l.get(l.size() - 2).split(",");
+                    int[] coords = {Integer.parseInt(prochain[0]), Integer.parseInt(prochain[1])};
 
                     Entite collision = m.collision(coords);
                     if (collision==null) {

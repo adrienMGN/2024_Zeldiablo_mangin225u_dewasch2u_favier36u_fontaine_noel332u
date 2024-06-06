@@ -20,12 +20,10 @@ public class GrapheListe{
      * @param laby Le nom du fichier à charger.
      */
     public GrapheListe(Labyrinthe laby) {
-        int nbNoeuds = 0;
         graphe = new String[laby.getLength()][laby.getLengthY()];
         for (int y = 0; y < laby.getLengthY(); y++) {
             for (int x = 0; x < laby.getLength(); x++) {
-                graphe[x][y] = "" + nbNoeuds;
-                nbNoeuds++;
+                graphe[x][y] = x+","+y;
             }
         }
 
@@ -56,22 +54,6 @@ public class GrapheListe{
      */
     public int getIndice(String n){
         return noeuds.indexOf(n);
-    }
-    public String getNoeud(int x, int y){
-        return graphe[x][y];
-    }
-    public int[] getCoord(String n){
-        int[] coord = new int[2];
-        for (int y = 0; y < graphe[0].length; y++) {
-            for (int x = 0; x < graphe.length; x++) {
-                if (graphe[x][y].equals(n)) {
-                    coord[0] = x;
-                    coord[1] = y;
-                    return coord;
-                }
-            }
-        }
-        return coord;
     }
 
     /**
