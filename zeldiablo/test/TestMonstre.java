@@ -12,7 +12,7 @@ public class TestMonstre {
     @Test
 
     /*
-    * test ajout d'un monstre par une méthode*/
+     * test ajout d'un monstre par une méthode*/
     public void test_ajout_monstre_attaque() throws Exception{
         Labyrinthe labyrinthe = new Labyrinthe("labySimple/labyTest/labyMonstre.txt");
         Clavier clavier = new Clavier();
@@ -46,14 +46,12 @@ public class TestMonstre {
 
         //labyrinthe.mouvementsMonstres();
         Monstre m = (Monstre) labyrinthe.entites.get(1);
-        System.out.println("position x : "+m.x + " " +  m.y);
-        labyrinthe.deplacerPerso(Labyrinthe.HAUT);
-        labyJeu.update(10, clavier);
+
         labyrinthe.mouvementsMonstres();
         labyJeu.update(0, clavier);
 
 
-        assertTrue(m.etrePresent(3,1),"le monstre devrait être en 1,3");
+        assertTrue(m.etrePresent(3,2),"le monstre devrait être en 3,2");
 
 
 
@@ -70,19 +68,23 @@ public class TestMonstre {
         labyJeu.update(0, clavier);
 
         //System.out.println(labyrinthe.entites.size());
-
-        labyrinthe.mouvementsMonstres();
         Monstre m = (Monstre) labyrinthe.entites.get(1);
-        System.out.println(m.getX() + " " +  m.getY());
-        System.out.println(m.getX() + " " +  m.getY());
+
         labyrinthe.mouvementsMonstres();
-        labyJeu.update(0, clavier);
+        //le monstre contourne un obstacle
+        assertTrue(m.etrePresent(3,3),"le monstre devrait être en 3,3");
 
-        int actual [] = {m.getX(), m.getY()};
-        int expected [] = {2,1};
-        assertArrayEquals(expected, actual, "le monstre devrait être en 2,1");
+        labyrinthe.mouvementsMonstres();
 
+        assertTrue(m.etrePresent(3,2),"le monstre devrait être en 3,2");
 
+        labyrinthe.mouvementsMonstres();
+
+        assertTrue(m.etrePresent(3,1),"le monstre devrait être en 3,1");
+
+        labyrinthe.mouvementsMonstres();
+
+        assertTrue(m.etrePresent(2,1),"le monstre devrait être en 2,1");
 
     }
 
