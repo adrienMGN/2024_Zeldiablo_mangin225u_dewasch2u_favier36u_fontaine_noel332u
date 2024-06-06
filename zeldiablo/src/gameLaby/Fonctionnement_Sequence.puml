@@ -1,35 +1,38 @@
 @startuml
-title Fermeture d'un passage secret quand un personnage est sur la case
+title Choix du deplacement d'un monstre
 
-
-participant MoteurJeu
+participant "main:Main" as main
 participant "laby:Labyrinthe" as laby
-participant "jeuLaby:LabyJeu" as jeuLaby
-participant "traversables:ArrayList<Traversable>" as traversables
-participant "traversable:Fermeture" as traversable
-participant "passage:PassageSecret" as passage
+participant "monstre:Monstre" as monstre
 
-MoteurJeu -> jeuLaby : update(secondes, clavier)
-activate jeuLaby
-loop traversables.size()
-    jeuLaby -> traversables : get(i)
-    activate traversables
-    traversables --> jeuLaby : traversable
-    deactivate traversables
 
-    jeuLaby -> traversable : persoPresent(laby)
-    activate traversable
-    traversable -> traversable : action(laby)
-    activate traversable
-    traversable -> passage : fermer()
-    activate passage
-    passage --> traversable
-    deactivate passage
-    traversable --> traversable
-    deactivate traversable
-    traversable --> jeuLaby
-    deactivate traversable
-end
-    jeuLaby --> MoteurJeu
-    deactivate jeuLaby
+main -> laby: mouvementsMonstres()
+activate laby
+create "graphe:GrapheList" as graphe
+laby -> graphe: new GrapheList(laby)
+create "dijkstra:Dijkstra" as dijkstra
+laby -> dijkstra: new dijkstra()
+
+laby -> dijkstra: resoudre(graphe, monstre)
+activate dijkstra
+create "v:Valeur" as v
+dijkstra -> v: new Valeur()
+dijkstra --> laby: v
+deactivate dijkstra
+
+laby -> v: calculerChemin(personnage)
+activate v
+create "chemin:ArrayList<String>" as chemin
+v -> chemin: new
+v --> laby: chemin
+deactivate v
+
+laby -> monstre: deplacement(chemin)
+activate monstre
+monstre --> laby
+deactivate monstre
+
+laby --> main
+deactivate laby
+
 @enduml
