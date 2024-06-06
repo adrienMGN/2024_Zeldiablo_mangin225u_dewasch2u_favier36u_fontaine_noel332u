@@ -174,7 +174,7 @@ public class Labyrinthe {
         int[] suivante = getSuivant(courante[0], courante[1], action);
 
         // si c'est pas un mur, on effectue le deplacement
-        if (!this.murs[suivante[0]][suivante[1]] && this.estVideCase(suivante[0], suivante[1])) {
+        if (!this.murs[suivante[0]][suivante[1]] && estVideCase(suivante[0], suivante[1])) {
             //mouvementsMonstres();
             // on met a jour personnage
             this.pj.x = suivante[0];
@@ -303,27 +303,15 @@ public class Labyrinthe {
             if (entite.etrePresent(x, y)) {
                 vide = false;
             }
-
-        }
-        for (Declenchable declenchable : this.declenchables) {
-            if (declenchable.etrePresent(x, y)) {
-                vide = false;
-            }
         }
         for (PassageSecret passageSecret : this.psecrets) {
             if (passageSecret.etrePresent(x, y)) {
                 vide = false;
             }
         }
-
-        if (this.pj.etrePresent(x,y)) {
-            vide = false;
-        }
         if (this.murs[x][y]) {
             vide = false;
         }
-
-
         return vide;
     }
 }
