@@ -4,6 +4,7 @@ title Collision avant deplacement d'un monstre
 participant "main:Main" as main
 participant "laby:Labyrinthe" as laby
 participant "monstre:Monstre" as monstre
+participant "entites:ArrayList<Entite>" as entites
 
 
 main -> laby: mouvementsMonstres()
@@ -28,6 +29,13 @@ v --> laby: chemin
 deactivate v
 
 laby -> monstre: collision
+activate monstre
+loop entites.size()
+    monstre -> entites: get
+    activate entites
+    entites --> monstre: e: Entite
+    deactivate entites
+end
 
 laby -> monstre: deplacement(chemin)
 activate monstre
