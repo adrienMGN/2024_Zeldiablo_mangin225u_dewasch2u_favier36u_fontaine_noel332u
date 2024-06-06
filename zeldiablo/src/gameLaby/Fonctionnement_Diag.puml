@@ -2,10 +2,11 @@
 title Diagramme de Classe pour LabyJeu avec Moteur de Jeu
 
 interface Jeu {
-    + update(secondes: double, clavier: Clavier): void
-    + init(): void
-    + etreFini(): boolean
-};
+    +update(secondes: double, clavier: Clavier): void
+    +init(): void
+    +etreFini(): boolean
+}
+
 class LabyJeu {
     - <final> laby: Labyrinthe
 
@@ -14,11 +15,11 @@ class LabyJeu {
     +init(): void
     +etreFini(): boolean
     +getLaby(): Labyrinthe
-};
+}
 
 interface DessinJeu {
     +dessinerJeu(jeu: Jeu, canvas: Canvas): void
-};
+}
 
 class LabyJeu {
     - <final> laby: Labyrinthe
@@ -28,31 +29,16 @@ class LabyJeu {
     +init(): void
     +etreFini(): boolean
     +getLaby(): Labyrinthe
-};
+}
 
 class LabyDessin {
     +<static> tailleCase: int
     +dessinerJeu(jeu: Jeu, canvas: Canvas): void
-};
+}
 
 class Labyrinthe {
-'    + <static final> MUR = 'X' : String
-'    + <static final> PJ = 'P' : String
-'    + <static final> VIDE = '.' : String
-'    + <static final> OUVERTURE = 'O' : String
-'    + <static final> FERMETURE = 'F' : String
-'    + <static final> PSECRET = 'H' : String
-'
-'    + <static final> HAUT = 'Haut' : String
-'    + <static final> BAS = 'Bas' : String
-'    + <static final> GAUCHE = 'Gauche' : String
-'    + <static final> DROITE = 'Droite' : String
-
-    +pj : Perso
     +murs : boolean[][]
 
-    +traversables : ArrayList<Traversable>
-    +psecrets : ArrayList<PassageSecret>
 
     +deplacerPerso(direction: int): void
     +etreFini(): boolean
@@ -64,7 +50,7 @@ class Labyrinthe {
     +getMur(x: int, y: int): boolean
     +getPsecret(x: int, y: int): int
     +getPersonnage(): int[]
-};
+}
 
 class Clavier {
     +haut: boolean
@@ -73,7 +59,7 @@ class Clavier {
     +droite: boolean
     +appuyerTouche(event: KeyEvent): void
     +relacherTouche(event: KeyEvent): void
-};
+}
 
 class MoteurJeu {
     -FPS: double
@@ -89,7 +75,7 @@ class MoteurJeu {
     +setTaille(width: double, height: double): void
     +start(primaryStage: Stage): void
     -startAnimation(canvas: Canvas): void
-};
+}
 
 class Perso {
     +x: int
@@ -98,21 +84,20 @@ class Perso {
     +etrePresent(x: int, y: int): boolean
     +getX(): int
     +getY(): int
-};
+}
 
-class Monstre{
-    +Monstre(x: int, y: int, pv: int);
-    +ajouterEntite(laby: Labyrinthe): void
-    +attaquer(perso: Perso): int
-};
-
-abstract class Traversable {
+abstract class Declenchable {
     -x: int
     -y: int
-    +Entite(dx: int, dy: int)
+    -id: int
+    +Declenchable(id: int, dx: int, dy: int)
+    +abstract action(laby: Labyrinthe): void
+    +entitePresent(laby: Labyrinthe): void
+    +etrePresent(dx: int, dy:int): boolean
     +getX(): int
     +getY(): int
-};
+    +getID(): int
+}
 
 class PassageSecret{
     -id: int
@@ -122,17 +107,30 @@ class PassageSecret{
     +PassageSecret(id: int, dx: int, dy: int)
     +ouvrirPorte(): void
     +getID(): int
-};
+}
 
 class Ouverture{
     +Ouverture(id: int, dx: int, dy: int)
     +action(laby: Labyrinthe): void
-};
+}
 
 class Fermeture{
     +Fermeture(id: int, dx: int, dy: int)
     +action(laby: Labyrinthe): void
-};
+}
+
+abstract class Entite{
+    -x: int
+    -y: int
+    -pv: int
+    -laby: Labyrinthe
+    +Entite(x: int, y: int)
+    +Entite(x: int, y: int, pv: int, laby: Labyrinthe)
+    +etrePresent(dx: int, dy: int): boolean
+    +getX(): int
+    +getY(): int
+    +collision(int[] xy): Entite
+}
 
 Jeu <|.. LabyJeu
 LabyJeu --> Labyrinthe : -laby
@@ -140,9 +138,9 @@ MoteurJeu --> Jeu : -<static> jeu
 MoteurJeu --> DessinJeu : -<static> dessin
 MoteurJeu --> Clavier : -<static> clavier
 DessinJeu <|.. LabyDessin
-Labyrinthe "*"->"1" Perso : -perso
-  Labyrinthe "*"-->"*" PassageSecret : -laby
-Traversable "*"<-"*" Labyrinthe : -laby
- Traversable <|-- Ouverture
- Traversable <|-- Fermeture
+Labyrinthe "*"->"1" Perso : -pj
+  Labyrinthe "*"-->"*" PassageSecret : -psecrets
+Declenchable "*"<-"*" Labyrinthe : -declenchables
+ Declenchable <|-- Ouverture
+ Declenchable <|-- Fermeture
 @enduml
