@@ -12,6 +12,7 @@ import moteurJeu.MoteurJeu;
  */
 public class Main {
     public static void main(String[] args) throws IOException {
+        
 
         // charge le labyrinthe
         Labyrinthe laby = new Labyrinthe("labySimple/laby2.txt");
