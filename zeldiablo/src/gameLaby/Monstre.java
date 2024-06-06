@@ -16,6 +16,9 @@ public class Monstre extends Entite {
     public void ajouterEntite(Labyrinthe laby) {
         if(estVideCase(laby, this.x, this.y)) {
         laby.entites.add(this);}
+
+
+
     }
 
 

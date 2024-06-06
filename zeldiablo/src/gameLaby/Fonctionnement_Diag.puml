@@ -2,14 +2,23 @@
 title Diagramme de Classe pour LabyJeu avec Moteur de Jeu
 
 interface Jeu {
+    + update(secondes: double, clavier: Clavier): void
+    + init(): void
+    + etreFini(): boolean
+};
+class LabyJeu {
+    - <final> laby: Labyrinthe
+
+    +LabyJeu(labyrinthe: Labyrinthe)
     +update(secondes: double, clavier: Clavier): void
     +init(): void
     +etreFini(): boolean
-}
+    +getLaby(): Labyrinthe
+};
 
 interface DessinJeu {
     +dessinerJeu(jeu: Jeu, canvas: Canvas): void
-}
+};
 
 class LabyJeu {
     - <final> laby: Labyrinthe
@@ -19,12 +28,12 @@ class LabyJeu {
     +init(): void
     +etreFini(): boolean
     +getLaby(): Labyrinthe
-}
+};
 
 class LabyDessin {
     +<static> tailleCase: int
     +dessinerJeu(jeu: Jeu, canvas: Canvas): void
-}
+};
 
 class Labyrinthe {
 '    + <static final> MUR = 'X' : String
@@ -47,15 +56,15 @@ class Labyrinthe {
 
     +deplacerPerso(direction: int): void
     +etreFini(): boolean
-    +getSuivant(int x, int y, String action): int[]
-    +Labyrinthe(String nom)
-    +deplacerPerso(String action): void
+    +getSuivant(x: int, y: int, action: String): int[]
+    +Labyrinthe(nom: String)
+    +deplacerPerso(action: String): void
     +getLengthY(): int
     +getLength(): int
-    +getMur(int x, int y): boolean
-    +getPsecret(int x, int y): int
+    +getMur(x: int, y: int): boolean
+    +getPsecret(x: int, y: int): int
     +getPersonnage(): int[]
-}
+};
 
 class Clavier {
     +haut: boolean
@@ -64,7 +73,7 @@ class Clavier {
     +droite: boolean
     +appuyerTouche(event: KeyEvent): void
     +relacherTouche(event: KeyEvent): void
-}
+};
 
 class MoteurJeu {
     -FPS: double
@@ -80,44 +89,50 @@ class MoteurJeu {
     +setTaille(width: double, height: double): void
     +start(primaryStage: Stage): void
     -startAnimation(canvas: Canvas): void
-}
+};
 
 class Perso {
     +x: int
     +y: int
-    +Perso(int dx, int dy)
+    +Perso(dx: int, dy: int)
     +etrePresent(x: int, y: int): boolean
     +getX(): int
     +getY(): int
-}
+};
+
+class Monstre{
+    +Monstre(x: int, y: int, pv: int);
+    +ajouterEntite(laby: Labyrinthe): void
+    +attaquer(perso: Perso): int
+};
 
 abstract class Traversable {
     -x: int
     -y: int
-    +Entite(int dx, int dy)
+    +Entite(dx: int, dy: int)
     +getX(): int
     +getY(): int
-}
+};
 
 class PassageSecret{
     -id: int
     -x: int
     -y: int
     -ouverte: boolean
-    +PassageSecret(int id, int dx, int dy)
+    +PassageSecret(id: int, dx: int, dy: int)
     +ouvrirPorte(): void
     +getID(): int
-}
+};
 
 class Ouverture{
-    +Ouverture(int id, int x, int y)
-    +action(Labyrinthe laby): void
-}
+    +Ouverture(id: int, dx: int, dy: int)
+    +action(laby: Labyrinthe): void
+};
 
 class Fermeture{
-    +Fermeture(int id, int x, int y)
-    +action(Labyrinthe laby): void
-}
+    +Fermeture(id: int, dx: int, dy: int)
+    +action(laby: Labyrinthe): void
+};
 
 Jeu <|.. LabyJeu
 LabyJeu --> Labyrinthe : -laby
@@ -130,6 +145,4 @@ Labyrinthe "*"->"1" Perso : -perso
 Traversable "*"<-"*" Labyrinthe : -laby
  Traversable <|-- Ouverture
  Traversable <|-- Fermeture
-
-
 @enduml
