@@ -1,37 +1,34 @@
 @startuml
-title Choix du deplacement d'un monstre
+title Ajout d'un monstre au projet
 
 participant "main:Main" as main
 participant "laby:Labyrinthe" as laby
-participant "monstre:Monstre" as monstre
+participant "entites:ArrayList<Entite>" as entites
 
+create "monstre:Monstre" as monstre
+main -> monstre: new Monstre(x,y,pv,laby)
 
-main -> laby: mouvementsMonstres()
+main -> laby: ajouterEntite(monstre)
 activate laby
-create "graphe:GrapheList" as graphe
-laby -> graphe: new GrapheList(laby)
-create "dijkstra:Dijkstra" as dijkstra
-laby -> dijkstra: new dijkstra()
-
-laby -> dijkstra: resoudre(graphe, monstre)
-activate dijkstra
-create "v:Valeur" as v
-dijkstra -> v: new Valeur()
-dijkstra --> laby: v
-deactivate dijkstra
-
-laby -> v: calculerChemin(personnage)
-activate v
-create "chemin:ArrayList<String>" as chemin
-v -> chemin: new
-v --> laby: chemin
-deactivate v
-
-laby -> monstre: deplacement(chemin)
+laby -> monstre: getX()
 activate monstre
-monstre --> laby
+monstre -> laby: x
+deactivate monstre
+laby -> monstre: getY()
+activate monstre
+monstre -> laby: y
 deactivate monstre
 
+laby -> laby: estVideCase(x,y)
+activate laby
+laby --> laby: vide
+deactivate laby
+alt vide
+    laby -> entites : add(monstre)
+    activate entites
+    entites --> laby
+    deactivate entites
+end
 laby --> main
 deactivate laby
 
