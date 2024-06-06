@@ -91,6 +91,12 @@ class Perso {
     +getY(): int
 }
 
+class Monstre{
+    +Monstre(int x, int y, int pv);
+    +ajouterEntite(Labyrinthe laby): void
+    +attaquer(Perso perso): int
+}
+
 abstract class Traversable {
     -x: int
     -y: int
