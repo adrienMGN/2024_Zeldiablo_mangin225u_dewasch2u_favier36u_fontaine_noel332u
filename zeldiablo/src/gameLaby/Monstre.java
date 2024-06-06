@@ -17,12 +17,7 @@ public class Monstre extends Entite {
         if(estVideCase(laby, this.x, this.y)) {
         laby.entites.add(this);}
 
-
-
     }
-
-
-
 
     public int attaquer(Perso perso) {
 
@@ -31,11 +26,5 @@ public class Monstre extends Entite {
 
         return -1;
     }
-
-
-
-
-
-
 
 }
