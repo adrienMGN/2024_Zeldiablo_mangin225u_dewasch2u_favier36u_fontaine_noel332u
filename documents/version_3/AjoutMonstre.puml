@@ -1,0 +1,35 @@
+@startuml
+title Ajout d'un monstre au projet
+
+participant "main:Main" as main
+participant "laby:Labyrinthe" as laby
+participant "entites:ArrayList<Entite>" as entites
+
+create "monstre:Monstre" as monstre
+main -> monstre: new Monstre(x,y,pv,laby)
+
+main -> laby: ajouterEntite(monstre)
+activate laby
+laby -> monstre: getX()
+activate monstre
+monstre -> laby: x
+deactivate monstre
+laby -> monstre: getY()
+activate monstre
+monstre -> laby: y
+deactivate monstre
+
+laby -> laby: estVideCase(x,y)
+activate laby
+laby --> laby: vide
+deactivate laby
+alt vide
+    laby -> entites : add(monstre)
+    activate entites
+    entites --> laby
+    deactivate entites
+end
+laby --> main
+deactivate laby
+
+@enduml

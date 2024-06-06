@@ -1,0 +1,515 @@
+@startuml
+
+/' diagram meta data start
+config=StructureConfiguration;
+{
+  "projectClassification": {
+    "searchMode": "OpenProject", // OpenProject, AllProjects
+    "includedProjects": "",
+    "pathEndKeywords": "*.impl",
+    "isClientPath": "",
+    "isClientName": "",
+    "isTestPath": "",
+    "isTestName": "",
+    "isMappingPath": "",
+    "isMappingName": "",
+    "isDataAccessPath": "",
+    "isDataAccessName": "",
+    "isDataStructurePath": "",
+    "isDataStructureName": "",
+    "isInterfaceStructuresPath": "",
+    "isInterfaceStructuresName": "",
+    "isEntryPointPath": "",
+    "isEntryPointName": "",
+    "treatFinalFieldsAsMandatory": false
+  },
+  "graphRestriction": {
+    "classPackageExcludeFilter": "",
+    "classPackageIncludeFilter": "",
+    "classNameExcludeFilter": "",
+    "classNameIncludeFilter": "",
+    "methodNameExcludeFilter": "",
+    "methodNameIncludeFilter": "",
+    "removeByInheritance": "", // inheritance/annotation based filtering is done in a second step
+    "removeByAnnotation": "",
+    "removeByClassPackage": "", // cleanup the graph after inheritance/annotation based filtering is done
+    "removeByClassName": "",
+    "cutMappings": false,
+    "cutEnum": true,
+    "cutTests": true,
+    "cutClient": true,
+    "cutDataAccess": false,
+    "cutInterfaceStructures": false,
+    "cutDataStructures": false,
+    "cutGetterAndSetter": true,
+    "cutConstructors": true
+  },
+  "graphTraversal": {
+    "forwardDepth": 6,
+    "backwardDepth": 6,
+    "classPackageExcludeFilter": "",
+    "classPackageIncludeFilter": "",
+    "classNameExcludeFilter": "",
+    "classNameIncludeFilter": "",
+    "methodNameExcludeFilter": "",
+    "methodNameIncludeFilter": "",
+    "hideMappings": false,
+    "hideDataStructures": false,
+    "hidePrivateMethods": true,
+    "hideInterfaceCalls": true, // indirection: implementation -> interface (is hidden) -> implementation
+    "onlyShowApplicationEntryPoints": false, // root node is included
+    "useMethodCallsForStructureDiagram": "ForwardOnly" // ForwardOnly, BothDirections, No
+  },
+  "details": {
+    "aggregation": "GroupByClass", // ByClass, GroupByClass, None
+    "showClassGenericTypes": true,
+    "showMethods": true,
+    "showMethodParameterNames": true,
+    "showMethodParameterTypes": true,
+    "showMethodReturnType": true,
+    "showPackageLevels": 2,
+    "showDetailedClassStructure": true
+  },
+  "rootClass": "gameLaby.Main",
+  "extensionCallbackMethod": "" // qualified.class.name#methodName - signature: public static String method(String)
+}
+diagram meta data end '/
+
+
+
+digraph g {
+    rankdir="TB"
+    splines=polyline
+    
+
+'nodes 
+subgraph cluster_1338367371 { 
+   	label=gameArkanoid
+	labeljust=l
+	fillcolor="#ececec"
+	style=filled
+   
+   ArkanoidDessin1338367371[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)ArkanoidDessin</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ dessinerJeu(jeu: Jeu, canvas: Canvas)</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+ArkanoidJeu1338367371[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)ArkanoidJeu</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   balle: Balle [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   raquette: Raquette [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ etreFini(): boolean</TD></TR>
+<TR><TD ALIGN="LEFT" >+ init()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ update(secondes: double, clavier: Clavier)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ update_menu(secondes: double, clavier: Clavier): boolean</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+Balle1338367371[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Balle</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >#   balleSousRaquette: boolean [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   posx: double [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   posy: double [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   tailleEcran: double [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   vx: double [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   vy: double [1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ collision(raquette: Raquette)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ evoluer(secondes: double)</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+Raquette1338367371[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Raquette</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >#   posX: double [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   posY: double [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   tailleEcran: double [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   vx: double [1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ allerDroite(width: int, secondes: double)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ allerGauche(width: int, secondes: double)</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+} 
+
+subgraph cluster_1769404514 { 
+   	label=gameLaby
+	labeljust=l
+	fillcolor="#ececec"
+	style=filled
+   
+   Arc1769404514[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Arc</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   cout: double [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   dest: String [0..1]</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+Arcs1769404514[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Arcs</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   arcs: List&lt;Arc&gt; [0..*]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ ajouterArc(a: Arc)</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+Declenchable1769404514[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Declenchable</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   id: int [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   x: int [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   y: int [1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ action(laby: Labyrinthe)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ entitePresent(laby: Labyrinthe)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ etrePresent(dx: int, dy: int): boolean</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+Dijkstra1769404514[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Dijkstra</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ resoudre(g: GrapheListe, depart: String): Valeur</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+Entite1769404514[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Entite</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   laby: Labyrinthe [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   pv: int [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   x: int [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   y: int [1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ collision(xy: int[]): Entite</TD></TR>
+<TR><TD ALIGN="LEFT" >+ etrePresent(dx: int, dy: int): boolean</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+Fermeture1769404514[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Fermeture</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ action(laby: Labyrinthe)</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+GrapheListe1769404514[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)GrapheListe</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   adjacence: ArrayList&lt;Arcs&gt; [0..*]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   graphe: String[][] [0..*]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   noeuds: ArrayList&lt;String&gt; [0..*]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ ajouterArc(depart: String, destination: String, cout: double)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ getIndice(n: String): int</TD></TR>
+<TR><TD ALIGN="LEFT" >+ listeNoeuds(): List&lt;String&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" >+ suivants(n: String): List&lt;Arc&gt;</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+LabyDessin1769404514[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)LabyDessin</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ dessinerJeu(jeu: Jeu, canvas: Canvas)</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+LabyJeu1769404514[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)LabyJeu</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   laby: Labyrinthe [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ etreFini(): boolean</TD></TR>
+<TR><TD ALIGN="LEFT" >+ init()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ update(secondes: double, clavier: Clavier)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ update_menu(secondes: double, clavier: Clavier): boolean</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+Labyrinthe1769404514[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Labyrinthe</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+   declenchables: ArrayList&lt;Declenchable&gt; [0..*]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   entites: ArrayList&lt;Entite&gt; [0..*]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   murs: boolean[][] [0..*]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   pj: Perso [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   psecrets: ArrayList&lt;PassageSecret&gt; [0..*]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ ajouterEntite(e: Entite)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ deplacerPerso(action: String)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ estVideCase(x: int, y: int): boolean</TD></TR>
+<TR><TD ALIGN="LEFT" >+ etreFini(): boolean</TD></TR>
+<TR><TD ALIGN="LEFT" >+ getMonstre(x: int, y: int): boolean</TD></TR>
+<TR><TD ALIGN="LEFT" >+ getMur(x: int, y: int): boolean</TD></TR>
+<TR><TD ALIGN="LEFT" >+ getPsecret(x: int, y: int): int</TD></TR>
+<TR><TD ALIGN="LEFT" ># getSuivant(x: int, y: int, action: String): int[]</TD></TR>
+<TR><TD ALIGN="LEFT" >+ mouvementsMonstres()</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+Main1769404514[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Main</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ main(args: String[])</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+Monstre1769404514[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Monstre</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ attaquer(perso: Perso): int</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+Ouverture1769404514[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Ouverture</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ action(laby: Labyrinthe)</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+PassageSecret1769404514[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)PassageSecret</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   active: boolean [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   id: int [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   x: int [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   y: int [1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ etrePresent(dx: int, dy: int): boolean</TD></TR>
+<TR><TD ALIGN="LEFT" >+ fermer()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ ouvrir()</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+Perso1769404514[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Perso</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+Valeur1769404514[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Valeur</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >#   parent: Map&lt;String, String&gt; [0..*]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   valeur: Map&lt;String, Double&gt; [0..*]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ calculerChemin(destination: String): List&lt;String&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" >+ getParent(nom: String): String</TD></TR>
+<TR><TD ALIGN="LEFT" >+ getValeur(nom: String): double</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+} 
+
+subgraph cluster_686310646 { 
+   	label=moteurJeu
+	labeljust=l
+	fillcolor="#ececec"
+	style=filled
+   
+   Clavier686310646[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Clavier</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+   bas: boolean [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   droite: boolean [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   enter: boolean [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   escape: boolean [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   gauche: boolean [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   haut: boolean [1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ appuyerTouche(event: KeyEvent)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ relacherTouche(event: KeyEvent)</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+FrameStats686310646[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)FrameStats</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   frameCount: long [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   meanFrameInterval: double [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   text: ReadOnlyStringWrapper [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ addFrame(frameDurationNanos: long)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ textProperty(): ReadOnlyStringProperty</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+MoteurJeu686310646[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)MoteurJeu</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >#   controle: Clavier [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   frameStats: FrameStats [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ launch(jeu: Jeu, dessin: DessinJeu)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ launch_menu(menu: Menu, dessin: DessinJeu)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ start(primaryStage: Stage)</TD></TR>
+<TR><TD ALIGN="LEFT" >- startAnimation(canvas: Canvas)</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+} 
+
+'edges    
+Arcs1769404514 -> Arc1769404514[label="arcs
+[0..*]"];
+ArkanoidJeu1338367371 -> Balle1338367371[label="balle
+[0..1]"];
+ArkanoidJeu1338367371 -> Raquette1338367371[label="raquette
+[0..1]"];
+Declenchable1769404514 -> Fermeture1769404514[arrowhead=none, arrowtail=empty, dir=both];
+Declenchable1769404514 -> Ouverture1769404514[arrowhead=none, arrowtail=empty, dir=both];
+Entite1769404514 -> Labyrinthe1769404514[label="laby
+[0..1]"];
+Entite1769404514 -> Monstre1769404514[arrowhead=none, arrowtail=empty, dir=both];
+Entite1769404514 -> Perso1769404514[arrowhead=none, arrowtail=empty, dir=both];
+Fermeture1769404514 -> PassageSecret1769404514[label="action() -> fermer()"];
+GrapheListe1769404514 -> Arcs1769404514[label="adjacence
+[0..*]"];
+LabyJeu1769404514 -> Declenchable1769404514[label="update() -> entitePresent()"];
+LabyJeu1769404514 -> Labyrinthe1769404514[label="laby
+[0..1]"];
+Labyrinthe1769404514 -> Declenchable1769404514[label="declenchables
+[0..*]"];
+Labyrinthe1769404514 -> Dijkstra1769404514[label="mouvementsMonstres() -> resoudre()"];
+Labyrinthe1769404514 -> Entite1769404514[label="entites
+[0..*]"];
+Labyrinthe1769404514 -> Monstre1769404514[label="mouvementsMonstres() -> attaquer()"];
+Labyrinthe1769404514 -> PassageSecret1769404514[label="psecrets
+[0..*]"];
+Labyrinthe1769404514 -> Perso1769404514[label="pj
+[0..1]"];
+Labyrinthe1769404514 -> Valeur1769404514[label="mouvementsMonstres() -> calculerChemin()"];
+Main1769404514 -> MoteurJeu686310646[label="main() -> launch()"];
+MoteurJeu686310646 -> ArkanoidDessin1338367371[arrowhead=none];
+MoteurJeu686310646 -> ArkanoidJeu1338367371[arrowhead=none];
+MoteurJeu686310646 -> Clavier686310646[label="controle
+[0..1]"];
+MoteurJeu686310646 -> FrameStats686310646[label="frameStats
+[0..1]"];
+MoteurJeu686310646 -> LabyDessin1769404514[arrowhead=none];
+MoteurJeu686310646 -> LabyJeu1769404514[arrowhead=none];
+Ouverture1769404514 -> PassageSecret1769404514[label="action() -> ouvrir()"];
+    
+}
+@enduml
