@@ -2,13 +2,8 @@ package gameLaby;
 
 public class Monstre extends Entite {
 
-
-    public Monstre(int x, int y, int pv) {
-        super(x, y, pv);
-    }
-
-    public Monstre(int x, int y, Labyrinthe laby) {
-        super(x, y, laby);
+    public Monstre(int x, int y, int pv, Labyrinthe laby) {
+        super(x, y, pv, laby);
         this.pv = 2;
     }
 

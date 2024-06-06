@@ -16,7 +16,7 @@ public class Main {
         // charge le labyrinthe
         Labyrinthe laby = new Labyrinthe("labySimple/laby2.txt");
 
-        Monstre monstre = new Monstre(8,8, laby);
+        Monstre monstre = new Monstre(8,8, 5, laby);
         laby.ajouterEntite(monstre);
 
         // setInterval()

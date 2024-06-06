@@ -141,7 +141,7 @@ public class Labyrinthe {
                         this.murs[colonne][numeroLigne] = true;
                         break;
                     case MONSTRE:
-                        entites.add(new Monstre(colonne, numeroLigne, this));
+                        entites.add(new Monstre(colonne, numeroLigne, 5, this));
                         this.murs[colonne][numeroLigne] = false;
                         break;
                     default:
@@ -174,7 +174,7 @@ public class Labyrinthe {
         int[] suivante = getSuivant(courante[0], courante[1], action);
 
         // si c'est pas un mur, on effectue le deplacement
-        if (!this.murs[suivante[0]][suivante[1]] && pj.estVideCase(this, suivante[0], suivante[1])) {
+        if (!this.murs[suivante[0]][suivante[1]] && this.estVideCase(suivante[0], suivante[1])) {
             //mouvementsMonstres();
             // on met a jour personnage
             this.pj.x = suivante[0];

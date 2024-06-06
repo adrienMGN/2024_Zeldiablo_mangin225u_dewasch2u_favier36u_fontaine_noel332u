@@ -4,18 +4,13 @@ public abstract class Entite {
     public int x;
     public int y;
     public int pv ;
-    public boolean estVivant = true;
+    //public boolean estVivant = true;
     private Labyrinthe laby;
 
-    public Entite(int x, int y, int pv) {
+    public Entite(int x, int y, int pv, Labyrinthe laby) {
         this.x = x;
         this.y = y;
         this.pv = pv;
-    }
-
-    public Entite(int x, int y, Labyrinthe laby) {
-        this.x = x;
-        this.y = y;
         this.laby = laby;
     }
 
@@ -34,10 +29,6 @@ public abstract class Entite {
     }
     public int getX() {
         return x;
-    }
-
-    public Labyrinthe getLaby() {
-        return this.laby;
     }
 
 /*
@@ -65,6 +56,4 @@ public abstract class Entite {
         }
         return null;
     }
-
-
 }
