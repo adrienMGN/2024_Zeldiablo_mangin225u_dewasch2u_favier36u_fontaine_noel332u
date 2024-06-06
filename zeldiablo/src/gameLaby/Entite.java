@@ -54,38 +54,6 @@ public abstract class Entite {
     }
 
 */
-    public abstract void ajouterEntite(Labyrinthe laby);
-
-    public boolean estVideCase(Labyrinthe laby, int x, int y) {
-        boolean vide = true;
-        for (Entite entite : laby.entites) {
-            if (entite.etrePresent(x, y)) {
-                vide = false;
-            }
-
-        }
-        for (Declenchable declenchable : laby.declenchables) {
-            if (declenchable.etrePresent(x, y)) {
-                vide = false;
-            }
-        }
-        for (PassageSecret passageSecret : laby.psecrets) {
-            if (passageSecret.etrePresent(x, y)) {
-                vide = false;
-            }
-        }
-
-            if (laby.pj.etrePresent(x,y)) {
-                vide = false;
-            }
-            if (laby.murs[x][y]) {
-                vide = false;
-            }
-
-
-        return vide;
-    }
-
     /*
     * methode collision
     * */

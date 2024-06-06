@@ -17,7 +17,7 @@ public class Main {
         Labyrinthe laby = new Labyrinthe("labySimple/laby2.txt");
 
         Monstre monstre = new Monstre(8,8, laby);
-        monstre.ajouterEntite(laby);
+        laby.ajouterEntite(monstre);
 
         // setInterval()
         new Timer().scheduleAtFixedRate(new TimerTask(){

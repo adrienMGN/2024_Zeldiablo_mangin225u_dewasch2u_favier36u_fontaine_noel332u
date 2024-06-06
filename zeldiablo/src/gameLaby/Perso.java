@@ -33,13 +33,4 @@ public class Perso extends Entite {
 
         return vide;
     }
-
-    @Override
-    public void ajouterEntite(Labyrinthe laby) {
-
-    }
-
-
-
-
 }

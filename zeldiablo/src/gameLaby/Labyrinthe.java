@@ -291,4 +291,39 @@ public class Labyrinthe {
     public int[] getPersonnage() {
         return new int[]{this.pj.y, this.pj.x};
     }
+
+    public void ajouterEntite(Entite e) {
+        if(estVideCase(e.getX(), e.getY())) {
+            this.entites.add(e);}
+    }
+
+    public boolean estVideCase(int x, int y){
+        boolean vide = true;
+        for (Entite entite : this.entites) {
+            if (entite.etrePresent(x, y)) {
+                vide = false;
+            }
+
+        }
+        for (Declenchable declenchable : this.declenchables) {
+            if (declenchable.etrePresent(x, y)) {
+                vide = false;
+            }
+        }
+        for (PassageSecret passageSecret : this.psecrets) {
+            if (passageSecret.etrePresent(x, y)) {
+                vide = false;
+            }
+        }
+
+        if (this.pj.etrePresent(x,y)) {
+            vide = false;
+        }
+        if (this.murs[x][y]) {
+            vide = false;
+        }
+
+
+        return vide;
+    }
 }
