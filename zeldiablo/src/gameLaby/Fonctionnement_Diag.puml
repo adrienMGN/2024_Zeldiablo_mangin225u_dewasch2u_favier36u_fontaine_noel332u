@@ -8,7 +8,6 @@ interface Jeu {
 }
 
 class LabyJeu {
-    - <final> laby: Labyrinthe
 
     +LabyJeu(labyrinthe: Labyrinthe)
     +update(secondes: double, clavier: Clavier): void
@@ -21,16 +20,6 @@ interface DessinJeu {
     +dessinerJeu(jeu: Jeu, canvas: Canvas): void
 }
 
-class LabyJeu {
-    - <final> laby: Labyrinthe
-
-    +LabyJeu(labyrinthe: Labyrinthe)
-    +update(secondes: double, clavier: Clavier): void
-    +init(): void
-    +etreFini(): boolean
-    +getLaby(): Labyrinthe
-}
-
 class LabyDessin {
     +<static> tailleCase: int
     +dessinerJeu(jeu: Jeu, canvas: Canvas): void
@@ -40,16 +29,20 @@ class Labyrinthe {
     +murs : boolean[][]
 
 
-    +deplacerPerso(direction: int): void
-    +etreFini(): boolean
     +getSuivant(x: int, y: int, action: String): int[]
     +Labyrinthe(nom: String)
     +deplacerPerso(action: String): void
+    +mouvementsMonstres(): void
+
+    +etreFini(): boolean
     +getLengthY(): int
     +getLength(): int
     +getMur(x: int, y: int): boolean
     +getPsecret(x: int, y: int): int
+    +getMonstre(x: int, y: int): boolean
     +getPersonnage(): int[]
+    +ajouterEntite(Entite e): void
+    +estVideCase(x: int, y: int): boolean
 }
 
 class Clavier {
@@ -76,21 +69,20 @@ class MoteurJeu {
     +start(primaryStage: Stage): void
     -startAnimation(canvas: Canvas): void
 }
-
+class Monstre{
+    + Monstre(x : int, y : int, pv : int, laby : Labyrinthe)
+    + attaquer(perso : Perso) : int
+             }
 class Perso {
-    +x: int
-    +y: int
+
     +Perso(dx: int, dy: int)
-    +etrePresent(x: int, y: int): boolean
-    +getX(): int
-    +getY(): int
 }
 
 abstract class Declenchable {
     -x: int
     -y: int
     -id: int
-    +Declenchable(id: int, dx: int, dy: int)
+    +Declenchable(id: int, x: int, y: int)
     +abstract action(laby: Labyrinthe): void
     +entitePresent(laby: Labyrinthe): void
     +etrePresent(dx: int, dy:int): boolean
@@ -100,12 +92,15 @@ abstract class Declenchable {
 }
 
 class PassageSecret{
-    -id: int
     -x: int
     -y: int
-    -ouverte: boolean
-    +PassageSecret(id: int, dx: int, dy: int)
-    +ouvrirPorte(): void
+    -id: int
+    +PassageSecret(id: int, x: int, y: int)
+    +ouvrir(): void
+    +fermer(): void
+    +isActive(): boolean
+    +getX(): int
+    +getY(): int
     +getID(): int
 }
 
@@ -115,7 +110,7 @@ class Ouverture{
 }
 
 class Fermeture{
-    +Fermeture(id: int, dx: int, dy: int)
+    +Fermeture(id: int, x: int, y: int)
     +action(laby: Labyrinthe): void
 }
 
@@ -124,13 +119,62 @@ abstract class Entite{
     -y: int
     -pv: int
     -laby: Labyrinthe
-    +Entite(x: int, y: int)
     +Entite(x: int, y: int, pv: int, laby: Labyrinthe)
+    +Entite(x: int, y: int)
     +etrePresent(dx: int, dy: int): boolean
     +getX(): int
     +getY(): int
     +collision(int[] xy): Entite
 }
+
+class Arc{
+    - dest : String
+    - cout : double
+
+    + Arc(dest : String, cout : double)
+    + getDest() : String
+    + getCout() : double
+    + toString() : String
+}
+class Arcs{
+        - arcs : List<Arc>
+
+        + Arcs()
+        + ajouterArc(a : Arc) : void
+        + getArcs() : List<Arc>
+    }
+
+
+class Dijkstra{
+    +resoudre(g: GrapheListe, depart: String) : Valeur
+    +toString() : String
+              }
+class GrapheListe{
+    - noeuds : ArrayList<String>
+    - graphe : String[][]
+
+    + GrapheListe(laby: Labyrinthe)
+    + getIndice(n : String) : int
+    + ajouterArc(depart : String, destination : String, cout : double) : void
+    + listeNoeuds() : List<String>
+    + suivants(n : String) : List<Arc>
+    + toString() : String
+                 }
+
+class Valeur{
+    - valeur : Map<String, Double>
+    - parent : Map<String, String>
+
+    + Valeur()
+    + setValeur(nom : String, valeur : double) : void
+    + setParent(nom : String, parent : String) : void
+    + getValeur(nom : String) : double
+    + getParent(nom : String) : String
+    + toString() : String
+    + calculerChemin(destination : String) : List<String>
+            }
+
+
 
 Jeu <|.. LabyJeu
 LabyJeu --> Labyrinthe : -laby
@@ -138,9 +182,25 @@ MoteurJeu --> Jeu : -<static> jeu
 MoteurJeu --> DessinJeu : -<static> dessin
 MoteurJeu --> Clavier : -<static> clavier
 DessinJeu <|.. LabyDessin
-Labyrinthe "*"->"1" Perso : -pj
+Labyrinthe "*"-->"1" Perso : -pj
   Labyrinthe "*"-->"*" PassageSecret : -psecrets
-Declenchable "*"<-"*" Labyrinthe : -declenchables
+Declenchable "*"<-u-"*" Labyrinthe : -declenchables
  Declenchable <|-- Ouverture
  Declenchable <|-- Fermeture
+
+LabyDessin -[hidden]> Dijkstra
+Dijkstra -[hidden]-> Valeur
+'Perso -[hidden]> GrapheListe
+GrapheListe "*"-->"*" Arcs : - adjacence
+Arcs "*"-->"*" Arc : - arcs
+Perso -u-|> Entite
+Monstre -u-|> Entite
+
+Labyrinthe "*"-> "*" Entite : entites
+
+
+
+
+
+
 @enduml
