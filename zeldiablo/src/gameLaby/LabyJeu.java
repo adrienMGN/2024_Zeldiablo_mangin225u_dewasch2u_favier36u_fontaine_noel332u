@@ -31,6 +31,10 @@ public class LabyJeu implements Jeu {
             laby.deplacerPerso(Labyrinthe.BAS);
         }
 
+        else if (clavier.i){
+            //A compléter
+        }
+
         // Gestion des cases declenchables
         for (int i = 0; i < laby.declenchables.size(); i++) {
             Declenchable declenchable = laby.declenchables.get(i);
