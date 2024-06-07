@@ -209,10 +209,25 @@ public class Labyrinthe {
                             m.attaquer(this.pj);
                     }
                 }
+                else{
+                    mouvementAleatoireMonstres(m, g.suivants(monstre));
+                }
             }
         }
     }
 
+    public void mouvementAleatoireMonstres(Monstre m, List<Arc> v) {
+        int random = (int) (Math.random() * v.size());
+        String dest = v.get(random).getDest();
+        String[] prochain = dest.split(",");
+        int[] coords = {Integer.parseInt(prochain[0]), Integer.parseInt(prochain[1])};
+
+        Entite collision = m.collision(coords);
+        if (collision==null) {
+            m.x = coords[0];
+            m.y = coords[1];
+        }
+    }
 
 
     /**

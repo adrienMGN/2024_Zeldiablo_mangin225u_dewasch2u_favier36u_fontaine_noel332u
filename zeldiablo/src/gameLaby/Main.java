@@ -40,8 +40,11 @@ public class Main {
             System.out.println();
         }
 
-        int width = laby.getLength()*LabyDessin.tailleCase;
-        int height = laby.getLengthY()*LabyDessin.tailleCase;
+        int width = 1000;
+                //laby.getLength()*LabyDessin.tailleCase;
+        int height = 700;
+                //laby.getLengthY()*LabyDessin.tailleCase;
+        LabyDessin.tailleCase = Math.min(width/laby.getLength(), height/laby.getLengthY());
         int pFPS = 10;
 
 
