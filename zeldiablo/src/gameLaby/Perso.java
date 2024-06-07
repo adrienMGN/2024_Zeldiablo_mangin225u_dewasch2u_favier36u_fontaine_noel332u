@@ -17,10 +17,20 @@ public class Perso extends Entite {
         this.setPv(5);
     }
 
+    /**
+     * tue le personnage et affiche un message
+     */
     public void mourir() {
         super.mourir();
         System.out.println("Vous avez perdu");
     }
+
+    /**
+     * attaque un monstre
+     *
+     * @param monstre monstre a attaquer
+     * @return -1
+     **/
 
    public int attaquer(Monstre monstre) {
         monstre.subirDegats(1);

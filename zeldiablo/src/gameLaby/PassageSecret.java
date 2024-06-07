@@ -6,6 +6,7 @@ public class PassageSecret{
     private int id;
     private boolean active;
 
+    // gestion du nombre de passages secrets pour id
     public static int nbPassages = 0;
 
     public PassageSecret( int id, int x, int y) {
@@ -16,6 +17,9 @@ public class PassageSecret{
         nbPassages++;
     }
 
+    /**
+     * met active a true
+     */
     public void ouvrir() {
         this.active = true;
     }

@@ -20,6 +20,12 @@ public abstract class Entite {
     }
 
 
+    /**
+     * méthode etrePresent permet de savoir si une entite est presente dans une case
+     * @param dx
+     * @param dy
+     * @return
+     */
     public boolean etrePresent(int dx, int dy) {
         return (this.x == dx && this.y == dy);
     }
@@ -44,22 +50,34 @@ public abstract class Entite {
         this.pv = pv;
     }
 
+    /**
+     * @return boolean si l'entite est vivante ou non'
+     */
     public boolean etreVivant() {
         return estVivant;
     }
 
 
+    /**
+     * mourir change estVivant a false
+     */
     public void mourir() {
         estVivant = false;
     }
 
+    /**
+     * enite subit degats
+     * @param degats
+     */
     public void subirDegats(int degats) {
         this.pv -= degats;
     }
 
 
     /*
-    * methode collision
+    * methode collision pour savoir si une entite est presente dans une case et s'il faut gérer une collision
+    * @param int[] xy
+    * return Entite presente dans la cases
     * */
     public Entite collision(int[] xy){
         for (Entite entite : laby.entites) {

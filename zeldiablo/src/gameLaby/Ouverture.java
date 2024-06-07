@@ -9,6 +9,10 @@ public class Ouverture extends Declenchable {
         nbOuvertures++;
     }
 
+    /**
+     * action pour ouvrir les passages secrets
+     * @param laby
+     */
     public void action(Labyrinthe laby){
         for (PassageSecret passage : laby.psecrets) {
             if (passage.getId() == getId()){

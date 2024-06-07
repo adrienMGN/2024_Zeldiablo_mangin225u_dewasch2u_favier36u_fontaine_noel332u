@@ -52,7 +52,7 @@ public class LabyDessin implements DessinJeu {
             }
 
 
-        // dessin entites
+        // dessin entites si vivantes
 
         for (int i = 0; i < laby.entites.size(); i++) {
 
@@ -66,7 +66,7 @@ public class LabyDessin implements DessinJeu {
         }
 
 
-        // dessin perso
+        // dessin perso si vivant
         if (laby.getPerso().etreVivant()) {
             gc.setFill(Color.BLUE);
             Perso perso = laby.getPerso();

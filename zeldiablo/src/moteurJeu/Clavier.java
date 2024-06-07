@@ -41,11 +41,12 @@ public class Clavier {
             case RIGHT:
                 this.droite = true;
                 break;
+                // gestion attaque avec SPACE
             case SPACE:
                 this.space = true;
                 break;
 
-
+            // gestion inventaire avec I
             case I:
                 this.i = true;
                 break;
@@ -87,6 +88,10 @@ public class Clavier {
                 break;
             case SPACE:
                 this.space = false;
+                break;
+                // gestion inventaire avec I
+            case I:
+                this.i = false;
                 break;
 
         }

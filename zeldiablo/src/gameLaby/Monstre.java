@@ -7,11 +7,14 @@ public class Monstre extends Entite {
         this.setPv(2);
     }
 
+    /**
+     * méthode attaquer attaque le perso
+     * @param perso
+     * @return
+     */
     public int attaquer(Perso perso) {
 
         perso.subirDegats(1);
-        System.out.println("attaquer");
-
         return -1;
     }
 }

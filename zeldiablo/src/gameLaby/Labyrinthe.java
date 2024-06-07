@@ -343,26 +343,40 @@ public class Labyrinthe {
             this.entites.add(e);}
     }
 
+    /**
+     * méthode estVideCase indique si la case est vide
+     * @param x
+     * @param y
+     * @return
+     */
     public boolean estVideCase(int x, int y){
         boolean vide = true;
         for (Entite entite : this.entites) {
+            // si entite est presente dans la case + vivante
             if (entite.etrePresent(x, y) && entite.etreVivant()) {
                 vide = false;
             }
         }
+        // si passage secret est present dans la case + non active
         for (PassageSecret passageSecret : this.psecrets) {
             if (passageSecret.etrePresent(x, y) && !passageSecret.isActive()) {
                 vide = false;
             }
         }
+        // si mur est present dans la case
         if (this.murs[x][y]) {
             vide = false;
         }
         return vide;
     }
 
+    /**
+     * méthode majLaby permet de mettre a jour le labyrinthe (état des murs, des passages secrets, des monstres)
+     */
     public void majLaby(){
+        // maj passage secret
         for (PassageSecret psecret : psecrets) {
+            // si le passage secret est active alors il n'est pas un mur
             if (psecret.isActive()) {
                 murs[psecret.getX()][psecret.getY()] = false;
             }

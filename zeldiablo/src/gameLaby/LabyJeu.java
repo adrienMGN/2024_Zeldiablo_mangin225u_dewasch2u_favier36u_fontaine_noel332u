@@ -47,19 +47,23 @@ public class LabyJeu implements Jeu {
             declenchable.entitePresent(laby);
         }
 
+        // update le mouvement des monstres toutes les 0.5 secondes
         timer+=secondes;
         if (timer >= 0.5){
             laby.mouvementsMonstres();
             timer = 0;
 
         }
+
         laby.gestionEntite();
         laby.majLaby();
 
+        // Gestion attaque du personnage
         if (clavier.space){
             laby.attaqueDirectionnel(DERNIER_MOUVEMENT);
         }
 
+        // Fin du jeu si le personnage est mort ou si le labyrinthe est fini
         if (laby.etreFini()){
             System.exit(0);
         }
