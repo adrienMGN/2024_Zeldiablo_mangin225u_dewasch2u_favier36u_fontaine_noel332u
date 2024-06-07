@@ -64,12 +64,13 @@ public class LabyDessin implements DessinJeu {
 
 
         // dessin perso
-        gc.setFill(Color.BLUE);
-        Perso perso = laby.pj;
-        double px = perso.x;
-        double py = perso.y;
-        gc.fillOval(px*tailleCase, py*tailleCase, tailleCase, tailleCase);
-
+        if (laby.pj.estVivant) {
+            gc.setFill(Color.BLUE);
+            Perso perso = laby.pj;
+            double px = perso.x;
+            double py = perso.y;
+            gc.fillOval(px * tailleCase, py * tailleCase, tailleCase, tailleCase);
+        }
     }
     }
 

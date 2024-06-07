@@ -174,7 +174,7 @@ public class Labyrinthe {
         int[] suivante = getSuivant(courante[0], courante[1], action);
 
         // si c'est pas un mur, on effectue le deplacement
-        if (!this.murs[suivante[0]][suivante[1]] && estVideCase(suivante[0], suivante[1])) {
+        if (!this.murs[suivante[0]][suivante[1]] && estVideCase(suivante[0], suivante[1]) && pj.estVivant) {
             //mouvementsMonstres();
             // on met a jour personnage
             this.pj.x = suivante[0];
@@ -229,6 +229,15 @@ public class Labyrinthe {
         }
     }
 
+    public void gestionEntite(){
+        for (Entite entite : entites) {
+            if (entite.pv <= 0) {
+                entite.mourir(this);
+            }
+        }
+    }
+
+
 
     /**
      * jamais fini
@@ -236,7 +245,7 @@ public class Labyrinthe {
      * @return fin du jeu
      */
     public boolean etreFini() {
-        return false;
+        return !this.pj.estVivant;
     }
 
     // ##################################
@@ -329,4 +338,5 @@ public class Labyrinthe {
         }
         return vide;
     }
+
 }

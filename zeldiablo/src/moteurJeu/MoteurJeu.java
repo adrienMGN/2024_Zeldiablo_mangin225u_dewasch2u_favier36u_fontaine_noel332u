@@ -138,6 +138,8 @@ public class MoteurJeu extends Application {
                     }
                 });
 
+
+
         // lance la boucle de jeu
         startAnimation(canvas);
     }
@@ -168,6 +170,7 @@ public class MoteurJeu extends Application {
 
                 // si le temps ecoule depasse le necessaire pour FPS souhaite
                 if (dureeEnMilliSecondes > dureeFPS) {
+
                     // met a jour le jeu en passant les touches appuyees
                     jeu.update(dureeEnMilliSecondes / 1_000., controle);
 
@@ -184,7 +187,14 @@ public class MoteurJeu extends Application {
             }
         };
 
+
         // lance l'animation
         timer.start();
+
     }
+
+    /*
+    * quitte le jeu*/
+
+
 }

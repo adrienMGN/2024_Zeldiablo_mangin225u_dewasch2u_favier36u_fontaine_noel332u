@@ -4,7 +4,7 @@ public abstract class Entite {
     public int x;
     public int y;
     public int pv ;
-    //public boolean estVivant = true;
+    public boolean estVivant = true;
     private Labyrinthe laby;
 
     public Entite(int x, int y, int pv, Labyrinthe laby) {
@@ -30,6 +30,13 @@ public abstract class Entite {
     public int getX() {
         return x;
     }
+
+
+    public void mourir(Labyrinthe laby) {
+        laby.entites.remove(this);
+        estVivant = false;
+    }
+
 
 /*
     public int checkPv() {

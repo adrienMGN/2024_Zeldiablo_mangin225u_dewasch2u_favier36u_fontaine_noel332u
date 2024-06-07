@@ -1,6 +1,7 @@
 package gameLaby;
 import moteurJeu.Clavier;
 import moteurJeu.Jeu;
+import moteurJeu.MoteurJeu;
 
 
 public class LabyJeu implements Jeu {
@@ -40,6 +41,17 @@ public class LabyJeu implements Jeu {
         if (timer >= 0.5){
             laby.mouvementsMonstres();
             timer = 0;
+
+            laby.gestionEntite();
+
+
+
+
+
+        }
+
+        if (laby.etreFini()){
+            System.exit(0);
         }
     }
 
