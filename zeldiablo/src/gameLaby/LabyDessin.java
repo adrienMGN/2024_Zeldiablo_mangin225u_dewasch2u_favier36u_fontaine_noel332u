@@ -55,11 +55,14 @@ public class LabyDessin implements DessinJeu {
         // dessin entites
 
         for (int i = 0; i < laby.entites.size(); i++) {
+
             Entite entite = laby.entites.get(i);
-            double px = entite.getX();
-            double py = entite.getY();
-            gc.setFill(Color.RED);
-            gc.fillOval(px*tailleCase, py*tailleCase, tailleCase, tailleCase);
+            if (entite.etreVivant()) {
+                double px = entite.getX();
+                double py = entite.getY();
+                gc.setFill(Color.RED);
+                gc.fillOval(px * tailleCase, py * tailleCase, tailleCase, tailleCase);
+            }
         }
 
 

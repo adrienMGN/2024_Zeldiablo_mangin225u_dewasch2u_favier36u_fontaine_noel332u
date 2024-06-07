@@ -183,6 +183,24 @@ public class Labyrinthe {
 
     }
 
+    public void attaqueDirectionnel(String derniere_direction) {
+        // case courante
+        int[] courante = {this.pj.getX(), this.pj.getY()};
+
+        // case suivante = case courante + direction
+        int[] suivante = getSuivant(courante[0], courante[1], derniere_direction);
+
+        // si c'est pas un mur, on effectue le deplacement
+        for (Entite entite : entites) {
+            if (entite instanceof Monstre && entite.etreVivant() && entite.etrePresent(suivante[0], suivante[1])) {
+                Monstre m = (Monstre) entite;
+                pj.attaquer(m);
+            }
+        }
+        }
+
+
+
 
     public void mouvementsMonstres(){
         GrapheListe g = new GrapheListe(this);
@@ -328,7 +346,7 @@ public class Labyrinthe {
     public boolean estVideCase(int x, int y){
         boolean vide = true;
         for (Entite entite : this.entites) {
-            if (entite.etrePresent(x, y)) {
+            if (entite.etrePresent(x, y) && entite.etreVivant()) {
                 vide = false;
             }
         }
@@ -350,6 +368,13 @@ public class Labyrinthe {
             }
             else{
                 murs[psecret.getX()][psecret.getY()] = true;
+            }
+
+
+        }
+        for (Entite entite : entites) {
+            if (!entite.etreVivant()) {
+                murs[entite.getX()][entite.getY()] = false;
             }
         }
     }

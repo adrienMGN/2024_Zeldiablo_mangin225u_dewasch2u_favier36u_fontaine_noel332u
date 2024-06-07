@@ -8,6 +8,8 @@ public class LabyJeu implements Jeu {
 
     private final Labyrinthe laby;
 
+    public static String DERNIER_MOUVEMENT = "";
+
     private double timer = 0;
 
     public LabyJeu (Labyrinthe labyrinthe) {
@@ -17,21 +19,27 @@ public class LabyJeu implements Jeu {
     public void update(double secondes, Clavier clavier) {
         if (clavier.droite){
             laby.deplacerPerso(Labyrinthe.DROITE);
+            DERNIER_MOUVEMENT = Labyrinthe.DROITE;
         }
 
         else if (clavier.gauche){
             laby.deplacerPerso(Labyrinthe.GAUCHE);
+            DERNIER_MOUVEMENT = Labyrinthe.GAUCHE;
         }
 
         else if (clavier.haut){
             laby.deplacerPerso(Labyrinthe.HAUT);
+            DERNIER_MOUVEMENT = Labyrinthe.HAUT;
         }
 
         else if (clavier.bas){
             laby.deplacerPerso(Labyrinthe.BAS);
+            DERNIER_MOUVEMENT = Labyrinthe.BAS;
         }
 
-        else if (clavier.)
+        else if (clavier.i){
+            //A COMPELTER
+        }
 
         // Gestion des cases declenchables
         for (int i = 0; i < laby.declenchables.size(); i++) {
@@ -44,16 +52,13 @@ public class LabyJeu implements Jeu {
             laby.mouvementsMonstres();
             timer = 0;
 
-
-
-
-
-
-
-
         }
         laby.gestionEntite();
         laby.majLaby();
+
+        if (clavier.space){
+            laby.attaqueDirectionnel(DERNIER_MOUVEMENT);
+        }
 
         if (laby.etreFini()){
             System.exit(0);
