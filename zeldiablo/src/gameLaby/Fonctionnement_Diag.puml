@@ -188,6 +188,19 @@ class Valeur{
     + calculerChemin(destination : String) : List<String>
             }
 
+    skinparam class {
+        BackgroundColor<<new>> Pink
+    }
+    class SpriteManager <<new>> {
+        - spriteSheet : BufferedImage
+        + chargerSpriteSheet(url: String) : void
+        + getSprite(x: int, y: int, width: int, height: int) : BufferedImage
+    }
+
+
+
+
+
 
 
 Jeu <|.. LabyJeu
@@ -203,7 +216,7 @@ Declenchable "*"<-u-"*" Labyrinthe : -declenchables
  Declenchable <|-- Fermeture
 
 LabyDessin -[hidden]> Dijkstra
-Dijkstra -[hidden]-> Valeur
+Monstre -r[hidden]-> Valeur
 'Perso -[hidden]> GrapheListe
 GrapheListe "*"-->"*" Arcs : - adjacence
 Arcs "*"-->"*" Arc : - arcs
@@ -212,8 +225,13 @@ Monstre -u-|> Entite
 
 Labyrinthe "*"-> "*" Entite : entites
 
+'Ajout du SpriteManager
+Entite ..> SpriteManager : <<use>>
+LabyDessin ..> SpriteManager : <<use>>
 
-
+LabyDessin -> SpriteManager : -spriteManager
+Entite -> SpriteManager : -spriteManager
+SpriteManager -[hidden]-> LabyDessin
 
 
 
