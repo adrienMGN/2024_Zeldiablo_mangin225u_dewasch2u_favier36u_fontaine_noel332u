@@ -19,7 +19,10 @@ public class Main {
     private static Labyrinthe[] labyrinthes;
 
 
-
+    /**
+     * charge les labyrinthes
+     * @param laby2
+     */
     public static void afficherLabyrinthe(Labyrinthe laby2) {
 
         int width = 1000;
