@@ -16,7 +16,7 @@ public class Main {
     private static Labyrinthe laby2;
     private static Labyrinthe laby3;
     private static int labyActuel = 0;
-    private static Labyrinthe[] labyrinthes = {laby2, laby3};
+    private static Labyrinthe[] labyrinthes;
 
 
 
@@ -56,6 +56,7 @@ public class Main {
     public static void main(String[] args) throws IOException {
         laby2 = new Labyrinthe("labySimple/laby2.txt");
         laby3 = new Labyrinthe("labySimple/laby3.txt");
+        labyrinthes = new Labyrinthe[]{laby2, laby3};
 
         afficherLabyrinthe(labyrinthes[labyActuel]);
     }
