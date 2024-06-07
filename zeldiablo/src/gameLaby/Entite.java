@@ -49,8 +49,7 @@ public abstract class Entite {
     }
 
 
-    public void mourir(Labyrinthe laby) {
-        laby.entites.remove(this);
+    public void mourir() {
         estVivant = false;
     }
 

@@ -17,8 +17,8 @@ public class Perso extends Entite {
         this.setPv(5);
     }
 
-    public void mourir(Labyrinthe laby) {
-        super.mourir(laby);
+    public void mourir() {
+        super.mourir();
         System.out.println("Vous avez perdu");
     }
 

@@ -189,7 +189,7 @@ public class Labyrinthe {
         Dijkstra d = new Dijkstra();
 
         for (Entite entite : entites) {
-            if (entite instanceof Monstre) {
+            if (entite instanceof Monstre && entite.etreVivant()) {
                 Monstre m = (Monstre) entite;
                 String monstre = m.getX()+","+m.getY();
                 Valeur v = d.resoudre(g, monstre);
@@ -232,7 +232,7 @@ public class Labyrinthe {
     public void gestionEntite(){
         for (Entite entite : entites) {
             if (entite.getPv() <= 0) {
-                entite.mourir(this);
+                entite.mourir();
             }
         }
     }
