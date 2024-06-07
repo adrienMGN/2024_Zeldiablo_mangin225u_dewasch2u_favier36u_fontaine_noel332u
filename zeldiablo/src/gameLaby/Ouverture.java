@@ -14,7 +14,6 @@ public class Ouverture extends Declenchable {
             if (passage.getId() == getId()){
                 if(!passage.isActive()) {
                     passage.ouvrir();
-                    laby.murs[passage.getX()][passage.getY()] = false;
                 }
             }
         }

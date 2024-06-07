@@ -42,13 +42,16 @@ public class LabyJeu implements Jeu {
             laby.mouvementsMonstres();
             timer = 0;
 
-            laby.gestionEntite();
+
+
 
 
 
 
 
         }
+        laby.gestionEntite();
+        laby.majLaby();
 
         if (laby.etreFini()){
             System.exit(0);

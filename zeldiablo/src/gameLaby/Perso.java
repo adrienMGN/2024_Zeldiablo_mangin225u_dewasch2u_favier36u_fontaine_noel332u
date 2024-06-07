@@ -14,7 +14,7 @@ public class Perso extends Entite {
      */
     public Perso(int dx, int dy) {
         super(dx, dy);
-        this.pv = 5;
+        this.setPv(5);
     }
 
     public void mourir(Labyrinthe laby) {

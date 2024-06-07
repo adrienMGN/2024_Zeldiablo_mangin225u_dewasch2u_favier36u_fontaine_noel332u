@@ -17,7 +17,6 @@ public class Fermeture extends Declenchable {
                         laby.mouvementsMonstres();
                     }
                     passage.fermer();
-                    laby.murs[passage.getX()][passage.getY()] = true;
                 }
             }
         }

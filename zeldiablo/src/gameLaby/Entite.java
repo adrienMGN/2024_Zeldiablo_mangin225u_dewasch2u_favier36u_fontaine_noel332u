@@ -1,10 +1,10 @@
 package gameLaby;
 
 public abstract class Entite {
-    public int x;
-    public int y;
-    public int pv ;
-    public boolean estVivant = true;
+    private int x;
+    private int y;
+    private int pv ;
+    private boolean estVivant = true;
     private Labyrinthe laby;
 
     public Entite(int x, int y, int pv, Labyrinthe laby) {
@@ -30,6 +30,23 @@ public abstract class Entite {
     public int getX() {
         return x;
     }
+    public int getPv(){
+        return pv;
+    }
+
+    public void setX(int x) {
+        this.x = x;
+    }
+    public void setY(int y) {
+        this.y = y;
+    }
+    public void setPv(int pv) {
+        this.pv = pv;
+    }
+
+    public boolean etreVivant() {
+        return estVivant;
+    }
 
 
     public void mourir(Labyrinthe laby) {
@@ -37,21 +54,11 @@ public abstract class Entite {
         estVivant = false;
     }
 
-
-/*
-    public int checkPv() {
-        if (this.pv == 0) {
-            estVivant = false;
-        }
-        return this.pv;
-    }
-
-    public int subirDegats(int degats) {
+    public void subirDegats(int degats) {
         this.pv -= degats;
-        return this.checkPv();
     }
 
-*/
+
     /*
     * methode collision
     * */

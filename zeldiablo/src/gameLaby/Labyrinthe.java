@@ -36,12 +36,12 @@ public class Labyrinthe {
     /**
      * attribut du personnage
      */
-    public Perso pj;
+    private Perso pj;
 
     /**
      * les murs du labyrinthe
      */
-    public boolean[][] murs;
+    private boolean[][] murs;
 
     public ArrayList<Declenchable> declenchables = new ArrayList<>();
     public ArrayList<PassageSecret> psecrets = new ArrayList<>();
@@ -168,17 +168,17 @@ public class Labyrinthe {
      */
     public void deplacerPerso(String action) {
         // case courante
-        int[] courante = {this.pj.x, this.pj.y};
+        int[] courante = {this.pj.getX(), this.pj.getY()};
 
         // calcule case suivante
         int[] suivante = getSuivant(courante[0], courante[1], action);
 
         // si c'est pas un mur, on effectue le deplacement
-        if (!this.murs[suivante[0]][suivante[1]] && estVideCase(suivante[0], suivante[1]) && pj.estVivant) {
+        if (!this.murs[suivante[0]][suivante[1]] && estVideCase(suivante[0], suivante[1]) && pj.etreVivant()) {
             //mouvementsMonstres();
             // on met a jour personnage
-            this.pj.x = suivante[0];
-            this.pj.y = suivante[1];
+            this.pj.setX(suivante[0]);
+            this.pj.setY(suivante[1]);
         }
 
     }
@@ -191,7 +191,7 @@ public class Labyrinthe {
         for (Entite entite : entites) {
             if (entite instanceof Monstre) {
                 Monstre m = (Monstre) entite;
-                String monstre = m.x+","+m.y;
+                String monstre = m.getX()+","+m.getY();
                 Valeur v = d.resoudre(g, monstre);
                 List<String> l = v.calculerChemin(pj.getX()+","+pj.getY());
 
@@ -201,8 +201,8 @@ public class Labyrinthe {
 
                     Entite collision = m.collision(coords);
                     if (collision==null) {
-                        m.x = coords[0];
-                        m.y = coords[1];
+                        m.setX(coords[0]);
+                        m.setY(coords[1]);
                     }
                     else{
                         if(collision instanceof Perso)
@@ -224,14 +224,14 @@ public class Labyrinthe {
 
         Entite collision = m.collision(coords);
         if (collision==null) {
-            m.x = coords[0];
-            m.y = coords[1];
+            m.setX(coords[0]);
+            m.setY(coords[1]);
         }
     }
 
     public void gestionEntite(){
         for (Entite entite : entites) {
-            if (entite.pv <= 0) {
+            if (entite.getPv() <= 0) {
                 entite.mourir(this);
             }
         }
@@ -245,7 +245,7 @@ public class Labyrinthe {
      * @return fin du jeu
      */
     public boolean etreFini() {
-        return !this.pj.estVivant;
+        return !this.pj.etreVivant();
     }
 
     // ##################################
@@ -313,7 +313,11 @@ public class Labyrinthe {
      * @return
      */
     public int[] getPersonnage() {
-        return new int[]{this.pj.y, this.pj.x};
+        return new int[]{this.pj.getY(), this.pj.getX()};
+    }
+
+    public Perso getPerso() {
+        return this.pj;
     }
 
     public void ajouterEntite(Entite e) {
@@ -337,6 +341,17 @@ public class Labyrinthe {
             vide = false;
         }
         return vide;
+    }
+
+    public void majLaby(){
+        for (PassageSecret psecret : psecrets) {
+            if (psecret.isActive()) {
+                murs[psecret.getX()][psecret.getY()] = false;
+            }
+            else{
+                murs[psecret.getX()][psecret.getY()] = true;
+            }
+        }
     }
 
 }

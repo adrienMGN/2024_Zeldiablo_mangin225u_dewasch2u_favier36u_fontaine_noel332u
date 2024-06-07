@@ -18,7 +18,6 @@ public class TestMonstre {
         Clavier clavier = new Clavier();
         LabyJeu labyJeu = new LabyJeu(labyrinthe);
         Perso pj = (Perso) labyrinthe.entites.get(0);
-        int pv = pj.pv;
         Monstre m= new Monstre(1,1, 10, labyrinthe);
         labyrinthe.ajouterEntite(m);
         m.attaquer(pj);
@@ -29,7 +28,7 @@ public class TestMonstre {
         Monstre m2 = (Monstre)labyrinthe.entites.get(1);
         assertTrue( m2.etrePresent(3,3),"le monstre devrait être présent en 2,2");
 
-        assertEquals(9, pj.pv , "le monstre devrait avoir 9 pv");
+        assertEquals(9, pj.getPv() , "le monstre devrait avoir 9 pv");
     }
 
     @Test

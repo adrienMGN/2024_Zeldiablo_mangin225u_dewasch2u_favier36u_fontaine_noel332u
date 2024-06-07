@@ -56,19 +56,19 @@ public class LabyDessin implements DessinJeu {
 
         for (int i = 0; i < laby.entites.size(); i++) {
             Entite entite = laby.entites.get(i);
-            double px = entite.x;
-            double py = entite.y;
+            double px = entite.getX();
+            double py = entite.getY();
             gc.setFill(Color.RED);
             gc.fillOval(px*tailleCase, py*tailleCase, tailleCase, tailleCase);
         }
 
 
         // dessin perso
-        if (laby.pj.estVivant) {
+        if (laby.getPerso().etreVivant()) {
             gc.setFill(Color.BLUE);
-            Perso perso = laby.pj;
-            double px = perso.x;
-            double py = perso.y;
+            Perso perso = laby.getPerso();
+            double px = perso.getX();
+            double py = perso.getY();
             gc.fillOval(px * tailleCase, py * tailleCase, tailleCase, tailleCase);
         }
     }
