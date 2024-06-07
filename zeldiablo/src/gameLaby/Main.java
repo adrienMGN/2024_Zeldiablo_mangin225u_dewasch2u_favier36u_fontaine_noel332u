@@ -11,36 +11,26 @@ import moteurJeu.MoteurJeu;
  * charge et affiche un labyrinthe
  */
 public class Main {
-    public static void main(String[] args) throws IOException {
-        
 
-        // charge le labyrinthe
-        Labyrinthe laby = new Labyrinthe("labySimple/laby2.txt");
+    // charge les labyrinthes
+    private static Labyrinthe laby2;
+    private static Labyrinthe laby3;
+    private static int labyActuel = 0;
+    private static Labyrinthe[] labyrinthes = {laby2, laby3};
 
-        //affiche le labyrinthe charge
-        for (int y = 0; y < laby.getLengthY(); y++) {
-            // affiche la ligne
-            for (int x = 0; x < laby.getLength(); x++) {
-                if (laby.getMur(x, y))
-                    System.out.print('X');
-                else
-                    System.out.print('.');
-            }
-            // saut de ligne
-            System.out.println();
-        }
+
+
+    public static void afficherLabyrinthe(Labyrinthe laby2) {
 
         int width = 1000;
-                //laby.getLength()*LabyDessin.tailleCase;
         int height = 700;
-                //laby.getLengthY()*LabyDessin.tailleCase;
-        LabyDessin.tailleCase = Math.min(width/laby.getLength(), height/laby.getLengthY());
+        LabyDessin.tailleCase = Math.min(width/laby2.getLength(), height/laby2.getLengthY());
         int pFPS = 10;
 
 
 
         // creation des objets
-        LabyJeu jeuLaby = new LabyJeu(laby);
+        LabyJeu jeuLaby = new LabyJeu(laby2);
         LabyDessin dessinLaby = new LabyDessin();
 
         // parametrage du moteur de jeu
@@ -49,9 +39,24 @@ public class Main {
 
 
         // lancement du jeu
-        MoteurJeu.launch(jeuLaby, dessinLaby);
+        try{
+            MoteurJeu.launch(jeuLaby, dessinLaby);
+        }catch(IllegalStateException e){
+        }
+    }
 
+    public static void changerLaby(int i){
+        labyActuel+=i;
+        if (labyActuel >= labyrinthes.length){
+            labyActuel = 0;
+        }
+        afficherLabyrinthe(labyrinthes[labyActuel]);
+    }
 
+    public static void main(String[] args) throws IOException {
+        laby2 = new Labyrinthe("labySimple/laby2.txt");
+        laby3 = new Labyrinthe("labySimple/laby3.txt");
 
+        afficherLabyrinthe(labyrinthes[labyActuel]);
     }
 }
