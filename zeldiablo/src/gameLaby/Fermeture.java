@@ -13,6 +13,9 @@ public class Fermeture extends Declenchable {
         for (PassageSecret passage : laby.psecrets) {
             if (passage.getId() == getId()){
                 if(passage.isActive()) {
+                    if (laby.getMonstre(passage.getX(), passage.getY())) {
+                        laby.mouvementsMonstres();
+                    }
                     passage.fermer();
                     laby.murs[passage.getX()][passage.getY()] = true;
                 }

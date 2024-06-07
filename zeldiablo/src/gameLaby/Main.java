@@ -20,13 +20,6 @@ public class Main {
         Monstre monstre = new Monstre(8,8, 5, laby);
         laby.ajouterEntite(monstre);
 
-        // setInterval()
-        new Timer().scheduleAtFixedRate(new TimerTask(){
-            public void run(){
-                laby.mouvementsMonstres();
-            }
-        },0,500);
-
         //affiche le labyrinthe charge
         for (int y = 0; y < laby.getLengthY(); y++) {
             // affiche la ligne

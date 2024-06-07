@@ -7,6 +7,8 @@ public class LabyJeu implements Jeu {
 
     private final Labyrinthe laby;
 
+    private double timer = 0;
+
     public LabyJeu (Labyrinthe labyrinthe) {
         laby = labyrinthe;
     }
@@ -34,7 +36,11 @@ public class LabyJeu implements Jeu {
             declenchable.entitePresent(laby);
         }
 
-
+        timer+=secondes;
+        if (timer >= 0.5){
+            laby.mouvementsMonstres();
+            timer = 0;
+        }
     }
 
     public void init() {
