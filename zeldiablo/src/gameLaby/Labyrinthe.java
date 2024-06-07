@@ -305,7 +305,7 @@ public class Labyrinthe {
             }
         }
         for (PassageSecret passageSecret : this.psecrets) {
-            if (passageSecret.etrePresent(x, y)) {
+            if (passageSecret.etrePresent(x, y) && !passageSecret.isActive()) {
                 vide = false;
             }
         }

@@ -25,7 +25,7 @@ public class Main {
             public void run(){
                 laby.mouvementsMonstres();
             }
-        },0,100);
+        },0,500);
 
         //affiche le labyrinthe charge
         for (int y = 0; y < laby.getLengthY(); y++) {
