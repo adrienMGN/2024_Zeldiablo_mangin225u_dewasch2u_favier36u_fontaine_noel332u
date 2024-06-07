@@ -8,6 +8,7 @@ interface Jeu {
 }
 
 class LabyJeu {
+    -timer: double
 
     +LabyJeu(labyrinthe: Labyrinthe)
     +update(secondes: double, clavier: Clavier): void
@@ -33,7 +34,8 @@ class Labyrinthe {
     +Labyrinthe(nom: String)
     +deplacerPerso(action: String): void
     +mouvementsMonstres(): void
-
+    +mouvementAleatoireMonstres(m: Monstre, v: List<Arc>): void
+    +gestionEntite(): void
     +etreFini(): boolean
     +getLengthY(): int
     +getLength(): int
@@ -74,8 +76,12 @@ class Monstre{
     + attaquer(perso : Perso) : int
              }
 class Perso {
-
-    +Perso(dx: int, dy: int)
+    -boolean[][] murs
+    -Perso(dx: int, dy: int)
+    +mourir(): void
+    +getPersonnage(): int[]
+    +getPerso(): Perso
+    +majLaby(): void
 }
 
 abstract class Declenchable {
@@ -118,12 +124,20 @@ abstract class Entite{
     -x: int
     -y: int
     -pv: int
+    -estVivant: boolean
     -laby: Labyrinthe
     +Entite(x: int, y: int, pv: int, laby: Labyrinthe)
     +Entite(x: int, y: int)
     +etrePresent(dx: int, dy: int): boolean
-    +getX(): int
     +getY(): int
+    +getX(): int
+    +getPv(): int
+    +setX(x: int): void
+    +setY(y: int): void
+    +setPv(pv: int): void
+    +etreVivant(): boolean
+    +mourir(): void
+    +subirDegats(degats: int): void
     +collision(int[] xy): Entite
 }
 
