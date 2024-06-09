@@ -5,6 +5,7 @@ import java.util.Scanner;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import javafx.scene.chart.ScatterChart;
 import moteurJeu.MoteurJeu;
 
 /**
@@ -46,7 +47,7 @@ public class Main {
         }
     }
 
-    public static void changerLaby(String direction){
+    public static void changerLaby(Labyrinthe laby, String direction){
         switch(direction){
             case Labyrinthe.DROITE:
                 labyActuel[1]++;
@@ -61,7 +62,24 @@ public class Main {
                 labyActuel[0]++;
                 break;
         }
-        afficherLabyrinthe(labyrinthes[labyActuel[0]][labyActuel[1]]);
+        try{
+            afficherLabyrinthe(labyrinthes[labyActuel[0]][labyActuel[1]]);
+        }catch (ArrayIndexOutOfBoundsException e){
+            labyActuel = posLaby(laby);
+        }
+    }
+
+    public static int[] posLaby(Labyrinthe laby){
+        for (int i = 0; i < labyrinthes.length; i++){
+            Labyrinthe[] ligne = labyrinthes[i];
+            for (int j = 0; j < ligne.length; j++){
+                Labyrinthe l = ligne[j];
+                if (l!=null && l.equals(laby)){
+                    return new int[]{i,j};
+                }
+            }
+        }
+        return new int[]{0,0};
     }
 
     public static void main(String[] args) throws IOException {

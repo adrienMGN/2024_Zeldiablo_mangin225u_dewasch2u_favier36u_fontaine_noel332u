@@ -181,7 +181,7 @@ public class Labyrinthe {
                 this.pj.setY(suivante[1]);
             }
         }catch (ArrayIndexOutOfBoundsException e){
-            Main.changerLaby(LabyJeu.DERNIER_MOUVEMENT);
+            Main.changerLaby(this, LabyJeu.DERNIER_MOUVEMENT);
         }
 
     }

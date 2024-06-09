@@ -18,23 +18,23 @@ public class LabyJeu implements Jeu {
 
     public void update(double secondes, Clavier clavier) {
         if (clavier.droite){
-            laby.deplacerPerso(Labyrinthe.DROITE);
             DERNIER_MOUVEMENT = Labyrinthe.DROITE;
+            laby.deplacerPerso(Labyrinthe.DROITE);
         }
 
         else if (clavier.gauche){
-            laby.deplacerPerso(Labyrinthe.GAUCHE);
             DERNIER_MOUVEMENT = Labyrinthe.GAUCHE;
+            laby.deplacerPerso(Labyrinthe.GAUCHE);
         }
 
         else if (clavier.haut){
-            laby.deplacerPerso(Labyrinthe.HAUT);
             DERNIER_MOUVEMENT = Labyrinthe.HAUT;
+            laby.deplacerPerso(Labyrinthe.HAUT);
         }
 
         else if (clavier.bas){
-            laby.deplacerPerso(Labyrinthe.BAS);
             DERNIER_MOUVEMENT = Labyrinthe.BAS;
+            laby.deplacerPerso(Labyrinthe.BAS);
         }
 
         else if (clavier.i){
