@@ -33,7 +33,7 @@ public class Perso extends Entite {
      **/
 
    public int attaquer(Monstre monstre) {
-        monstre.subirDegats(1);
+       monstre.subirDegats(1);
        System.out.println("Vous attaquez le monstre");
         return -1;
     }

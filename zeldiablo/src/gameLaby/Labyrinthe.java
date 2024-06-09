@@ -167,18 +167,21 @@ public class Labyrinthe {
      * @param action une des actions possibles
      */
     public void deplacerPerso(String action) {
-        // case courante
-        int[] courante = {this.pj.getX(), this.pj.getY()};
+        try {
+            // case courante
+            int[] courante = {this.pj.getX(), this.pj.getY()};
 
-        // calcule case suivante
-        int[] suivante = getSuivant(courante[0], courante[1], action);
+            // calcule case suivante
+            int[] suivante = getSuivant(courante[0], courante[1], action);
 
-        // si c'est pas un mur, on effectue le deplacement
-        if (!this.murs[suivante[0]][suivante[1]] && estVideCase(suivante[0], suivante[1]) && pj.etreVivant()) {
-            //mouvementsMonstres();
-            // on met a jour personnage
-            this.pj.setX(suivante[0]);
-            this.pj.setY(suivante[1]);
+            // si c'est pas un mur, on effectue le deplacement
+            if (!this.murs[suivante[0]][suivante[1]] && estVideCase(suivante[0], suivante[1]) && pj.etreVivant()) {
+                // on met a jour personnage
+                this.pj.setX(suivante[0]);
+                this.pj.setY(suivante[1]);
+            }
+        }catch (ArrayIndexOutOfBoundsException e){
+            Main.changerLaby(LabyJeu.DERNIER_MOUVEMENT);
         }
 
     }

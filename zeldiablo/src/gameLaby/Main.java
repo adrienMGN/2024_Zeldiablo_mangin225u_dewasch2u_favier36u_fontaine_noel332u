@@ -15,8 +15,8 @@ public class Main {
     // charge les labyrinthes
     private static Labyrinthe laby2;
     private static Labyrinthe laby3;
-    private static int labyActuel = 0;
-    private static Labyrinthe[] labyrinthes;
+    private static int[] labyActuel = {2,0};
+    private static Labyrinthe[][] labyrinthes;
 
 
     /**
@@ -48,19 +48,34 @@ public class Main {
         }
     }
 
-    public static void changerLaby(int i){
-        labyActuel+=i;
-        if (labyActuel >= labyrinthes.length){
-            labyActuel = 0;
+    public static void changerLaby(String direction){
+        switch(direction){
+            case Labyrinthe.DROITE:
+                labyActuel[1]++;
+                break;
+            case Labyrinthe.GAUCHE:
+                labyActuel[1]--;
+                break;
+            case Labyrinthe.HAUT:
+                labyActuel[0]--;
+                break;
+            case Labyrinthe.BAS:
+                labyActuel[0]++;
+                break;
         }
-        afficherLabyrinthe(labyrinthes[labyActuel]);
+        afficherLabyrinthe(labyrinthes[labyActuel[0]][labyActuel[1]]);
     }
 
     public static void main(String[] args) throws IOException {
         laby2 = new Labyrinthe("labySimple/laby2.txt");
         laby3 = new Labyrinthe("labySimple/laby3.txt");
-        labyrinthes = new Labyrinthe[]{laby2, laby3};
+        labyrinthes = new Labyrinthe[][]{
+                {null, null, null},
+                {null, null, null},
+                {laby2, laby3, laby2},
+                {null, null, null},
+                {null, null, null}};
 
-        afficherLabyrinthe(labyrinthes[labyActuel]);
+        afficherLabyrinthe(labyrinthes[labyActuel[0]][labyActuel[1]]);
     }
 }
