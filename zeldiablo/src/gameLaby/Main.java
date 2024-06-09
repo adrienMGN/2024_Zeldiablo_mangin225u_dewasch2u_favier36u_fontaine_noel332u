@@ -13,27 +13,25 @@ import moteurJeu.MoteurJeu;
 public class Main {
 
     // charge les labyrinthes
-    private static Labyrinthe laby2;
-    private static Labyrinthe laby3;
     private static int[] labyActuel = {2,0};
     private static Labyrinthe[][] labyrinthes;
 
 
     /**
      * charge les labyrinthes
-     * @param laby2
+     * @param laby
      */
-    public static void afficherLabyrinthe(Labyrinthe laby2) {
+    public static void afficherLabyrinthe(Labyrinthe laby) {
 
         int width = 1000;
         int height = 700;
-        LabyDessin.tailleCase = Math.min(width/laby2.getLength(), height/laby2.getLengthY());
+        LabyDessin.tailleCase = Math.min(width/laby.getLength(), height/laby.getLengthY());
         int pFPS = 10;
 
 
 
         // creation des objets
-        LabyJeu jeuLaby = new LabyJeu(laby2);
+        LabyJeu jeuLaby = new LabyJeu(laby);
         LabyDessin dessinLaby = new LabyDessin();
 
         // parametrage du moteur de jeu
@@ -67,12 +65,14 @@ public class Main {
     }
 
     public static void main(String[] args) throws IOException {
-        laby2 = new Labyrinthe("labySimple/laby2.txt");
-        laby3 = new Labyrinthe("labySimple/laby3.txt");
+        Labyrinthe laby2 = new Labyrinthe("labySimple/laby2.txt");
+        Labyrinthe laby3 = new Labyrinthe("labySimple/laby3.txt");
+        Labyrinthe laby4 = new Labyrinthe("labySimple/laby4.txt");
+        Labyrinthe laby5 = new Labyrinthe("labySimple/laby5.txt");
         labyrinthes = new Labyrinthe[][]{
                 {null, null, null},
-                {null, null, null},
-                {laby2, laby3, laby2},
+                {null, null, laby5},
+                {laby2, laby3, laby4},
                 {null, null, null},
                 {null, null, null}};
 
