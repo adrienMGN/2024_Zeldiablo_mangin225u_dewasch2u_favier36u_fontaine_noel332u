@@ -57,7 +57,7 @@ public class LabyJeu implements Jeu {
             timer = 0;
         }
 
-        if (regen >= 2){
+        if (regen >= 5){
             if (laby.getPerso().getPv() < 5) {
                 laby.getPerso().addPv(1);
             }

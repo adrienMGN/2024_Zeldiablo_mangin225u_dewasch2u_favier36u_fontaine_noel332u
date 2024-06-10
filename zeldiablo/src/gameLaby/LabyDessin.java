@@ -99,14 +99,22 @@ public class LabyDessin implements DessinJeu {
             }
         }
 
-            Image image = new Image("file:labySimple/imgs/colieror.png");
+            Image amulette = new Image("file:labySimple/imgs/colieror.png");
 
             gc.setFill(Color.LIGHTGRAY);
             gc.clearRect(5,5,240,40);
             gc.setStroke(Color.rgb(140,140,140));
-            for(int i = 0; i <= 200; i+=40) {
-                gc.strokeRect(i+5,5,40,40);
-                gc.drawImage(image,i+5,5,40,40);
+            for(int i = 0; i < 6; i++) {
+                gc.strokeRect(i*40+5,5,40,40);
+
+                if (laby.getPerso().inventaire.size() > i) {
+                    Item item = laby.getPerso().inventaire.get(i);
+                    if (item != null) {
+                        if (item instanceof Amulette) {
+                            gc.drawImage(amulette, i * 40 + 5, 5, 40, 40);
+                        }
+                    }
+                }
             }
     }
 }

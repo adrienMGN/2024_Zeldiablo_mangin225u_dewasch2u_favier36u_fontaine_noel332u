@@ -33,9 +33,11 @@ public abstract class Item {
     }
 
     public void persoPresent(Labyrinthe laby) {
-        Perso p = laby.getPerso();
-        if (p.getX() == x && p.getY() == y)
-            ramasseItem(p);
+        if (!this.dansInventaire) {
+            Perso p = laby.getPerso();
+            if (p.getX() == x && p.getY() == y)
+                ramasseItem(p);
+        }
     }
 
     public void ramasseItem(Perso pj){
