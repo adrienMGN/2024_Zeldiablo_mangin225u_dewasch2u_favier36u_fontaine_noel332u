@@ -12,4 +12,7 @@ Julien : fix sur les versions précédentes
 
 quelques difficultés d'implémentation sur les déplacements intelligent : règle de collision entre monstre, prise en compte par les monstres des autres monstres.
 
+Monstres au comportement intelligent
+Collision avec un monstre
+Déplacement aléatoire des monstres
  
