@@ -244,7 +244,8 @@ public class Labyrinthe {
                     }
                 }
                 else{
-                    mouvementAleatoireMonstres(m, g.suivants(monstre));
+                    if (g.suivants(monstre).size()>0)
+                        mouvementAleatoireMonstres(m, g.suivants(monstre));
                 }
             }
         }

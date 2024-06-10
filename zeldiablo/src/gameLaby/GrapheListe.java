@@ -100,6 +100,9 @@ public class GrapheListe{
      */
     public List<Arc> suivants(String n){
         int indice = getIndice(n);
+        if (indice == -1){
+            return new ArrayList<Arc>();
+        }
         return adjacence.get(indice).getArcs();
     }
 

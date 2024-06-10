@@ -38,7 +38,10 @@ public class LabyJeu implements Jeu {
         }
 
         else if (clavier.i){
-            //A COMPELTER
+            if (Perso.inventaireOuvert())
+                Perso.fermerInventaire();
+            else
+                Perso.ouvrirInventaire();
         }
 
         // Gestion des cases declenchables

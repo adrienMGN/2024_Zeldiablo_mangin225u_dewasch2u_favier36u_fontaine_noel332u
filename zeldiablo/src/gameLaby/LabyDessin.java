@@ -86,6 +86,25 @@ public class LabyDessin implements DessinJeu {
                 gc.fillOval(x * tailleCase, y * tailleCase, tailleCase, tailleCase);
             }
         }
+
+        if (Perso.inventaireOuvert()){
+            gc.setFill(Color.GRAY);
+            gc.fillRect(0,0,canvas.getWidth(),canvas.getHeight());
+            gc.setFill(Color.WHITE);
+            gc.fillText("Inventaire", canvas.getWidth()/2, 50);
+            gc.setTextAlign(TextAlignment.CENTER);
+            Perso pj = laby.getPerso();
+            for (int i = 0; i < pj.getInventaire().size(); i++){
+                Item item = pj.getInventaire().get(i);
+                double x = i%5;
+                double y = i/5;
+                gc.setFill(Color.WHITE);
+                gc.fillRect(x*tailleCase, y*tailleCase, tailleCase, tailleCase);
+                if (item instanceof Amulette)
+                    gc.setFill(Color.YELLOW);
+                gc.fillOval(x * tailleCase, y * tailleCase, tailleCase, tailleCase);
+            }
+        }
     }
     }
 
