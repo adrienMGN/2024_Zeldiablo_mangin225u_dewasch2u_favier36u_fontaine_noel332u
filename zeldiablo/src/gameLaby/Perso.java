@@ -42,6 +42,15 @@ public class Perso extends Entite {
         return -1;
     }
 
+    public boolean possedeAmulette() {
+        for (Item item : inventaire) {
+            if (item instanceof Amulette) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public void ajouterInventaire(Item item){
         this.inventaire.add(item);
     }

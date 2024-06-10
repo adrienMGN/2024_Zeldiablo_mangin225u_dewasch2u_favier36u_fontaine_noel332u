@@ -25,6 +25,7 @@ public class Labyrinthe {
     public static final char MONSTRE= 'M';
     public static final char AMULETTE = 'A';
 
+    public static final char SORTIE = 'S';
 
     /**
      * constantes actions possibles
@@ -38,6 +39,8 @@ public class Labyrinthe {
      * attribut du personnage
      */
     private Perso pj;
+
+    private Sortie sortie = null;
 
     /**
      * les murs du labyrinthe
@@ -148,6 +151,10 @@ public class Labyrinthe {
                         break;
                     case AMULETTE:
                         items.add(new Amulette(colonne, numeroLigne));
+                        this.murs[colonne][numeroLigne] = false;
+                        break;
+                    case SORTIE:
+                        sortie = new Sortie(colonne, numeroLigne);
                         this.murs[colonne][numeroLigne] = false;
                         break;
                     default:
@@ -272,7 +279,7 @@ public class Labyrinthe {
      * @return fin du jeu
      */
     public boolean etreFini() {
-        return !this.pj.etreVivant();
+        return (!this.pj.etreVivant());
     }
 
     // ##################################
@@ -405,6 +412,10 @@ public class Labyrinthe {
                 murs[entite.getX()][entite.getY()] = false;
             }
         }*/
+    }
+
+    public Sortie getSortie() {
+        return sortie;
     }
 
 }

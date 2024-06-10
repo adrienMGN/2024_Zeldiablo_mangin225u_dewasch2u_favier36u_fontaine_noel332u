@@ -8,6 +8,4 @@ public class Amulette extends Item {
         super(dx, dy);
     }
 
-
-
 }
