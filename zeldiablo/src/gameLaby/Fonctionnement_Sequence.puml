@@ -1,58 +1,52 @@
 @startuml
-title Collision avant deplacement d'un monstre
+title Changement de labyrinthe
 
-participant "main:Main" as main
+participant "jeuLaby: LabyJeu" as jeuLaby
 participant "laby:Labyrinthe" as laby
-participant "monstre:Monstre" as monstre
-participant "entites:ArrayList<Entite>" as entites
+participant "pj:Perso" as pj
+participant "main:Main" as main
 
 
-main -> laby: mouvementsMonstres()
+jeuLaby -> laby : deplacerPerso(String : action)
 activate laby
-create "graphe:GrapheList" as graphe
-laby -> graphe: new GrapheList(laby)
-create "dijkstra:Dijkstra" as dijkstra
-laby -> dijkstra: new dijkstra()
+laby -> pj: getX()
+activate pj
+pj --> laby: x
+deactivate pj
 
-laby -> dijkstra: resoudre(graphe, monstre)
-activate dijkstra
-create "v:Valeur" as v
-dijkstra -> v: new Valeur()
-dijkstra --> laby: v
-deactivate dijkstra
+laby -> pj: getY()
+activate pj
+pj --> laby: y
+deactivate pj
 
-laby -> v: calculerChemin(personnage)
-activate v
-create "chemin:ArrayList<String>" as chemin
-v -> chemin: new
-v --> laby: chemin
-deactivate v
+laby -> laby: getSuivant(int[] xy)
+activate laby
+laby --> laby: suivant
+deactivate laby
 
-laby -> monstre: collision
-activate monstre
-loop entites.size()
-    monstre -> entites: get
-    activate entites
-    entites --> monstre: e: Entite
-    deactivate entites
+laby -> pj: setX(int: x)
+activate pj
+pj --> laby
+deactivate pj
 
-    monstre -> "e:Entite" as e : etrePresent
-    activate e
-    e --> monstre: present
-    deactivate e
+laby -> pj: setY(int: y)
+activate pj
+pj --> laby
+deactivate pj
 
-    alt present
-    monstre --> laby: e
-    deactivate monstre
-    end
+break ArrayIndexOutOfBoundsException
+laby -> main: changerLaby(Labyrinthe : laby, String : action)
+activate main
+main -> main: afficherLaby(Labyrinthe : laby)
+activate main
+main --> main
+deactivate main
+
+main --> laby
+deactivate main
 end
-alt e == null
-laby -> monstre: deplacement(chemin)
-activate monstre
-monstre --> laby
-deactivate monstre
-end
-laby --> main
+
+laby --> jeuLaby
 deactivate laby
 
 @enduml
