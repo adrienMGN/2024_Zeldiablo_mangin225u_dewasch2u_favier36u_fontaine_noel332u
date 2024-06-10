@@ -8,6 +8,7 @@ interface Jeu {
 }
 
 class LabyJeu {
+    +<static> DERNIER_MOUVEMENT: String
     -timer: double
 
     +LabyJeu(labyrinthe: Labyrinthe)
@@ -33,6 +34,7 @@ class Labyrinthe {
     +getSuivant(x: int, y: int, action: String): int[]
     +Labyrinthe(nom: String)
     +deplacerPerso(action: String): void
+    +attaqueDirectionnel(String derniere_direction): void
     +mouvementsMonstres(): void
     +mouvementAleatoireMonstres(m: Monstre, v: List<Arc>): void
     +gestionEntite(): void
@@ -52,6 +54,7 @@ class Clavier {
     +bas: boolean
     +gauche: boolean
     +droite: boolean
+    +i: boolean
     +appuyerTouche(event: KeyEvent): void
     +relacherTouche(event: KeyEvent): void
 }
@@ -76,12 +79,13 @@ class Monstre{
     + attaquer(perso : Perso) : int
              }
 class Perso {
-    -boolean[][] murs
+'    -boolean[][] murs
     -Perso(dx: int, dy: int)
     +mourir(): void
-    +getPersonnage(): int[]
-    +getPerso(): Perso
-    +majLaby(): void
+'    +getPersonnage(): int[]
+'    +getPerso(): Perso
+'    +majLaby(): void
+     +attaquer(monstre: Monstre): int
 }
 
 abstract class Declenchable {
@@ -188,14 +192,14 @@ class Valeur{
     + calculerChemin(destination : String) : List<String>
             }
 
-    skinparam class {
-        BackgroundColor<<new>> Pink
-    }
-    class SpriteManager <<new>> {
-        - spriteSheet : BufferedImage
-        + chargerSpriteSheet(url: String) : void
-        + getSprite(x: int, y: int, width: int, height: int) : BufferedImage
-    }
+'    skinparam class {
+'        BackgroundColor<<new>> Pink
+'    }
+'    class SpriteManager <<new>> {
+'        - spriteSheet : BufferedImage
+'        + chargerSpriteSheet(url: String) : void
+'        + getSprite(x: int, y: int, width: int, height: int) : BufferedImage
+'    }
 
 
 
@@ -226,12 +230,12 @@ Monstre -u-|> Entite
 Labyrinthe "*"-> "*" Entite : entites
 
 'Ajout du SpriteManager
-Entite ..> SpriteManager : <<use>>
-LabyDessin ..> SpriteManager : <<use>>
-
-LabyDessin -> SpriteManager : -spriteManager
-Entite -> SpriteManager : -spriteManager
-SpriteManager -[hidden]-> LabyDessin
+'Entite ..> SpriteManager : <<use>>
+'LabyDessin ..> SpriteManager : <<use>>
+'
+'LabyDessin -> SpriteManager : -spriteManager
+'Entite -> SpriteManager : -spriteManager
+'SpriteManager -[hidden]-> LabyDessin
 
 
 
