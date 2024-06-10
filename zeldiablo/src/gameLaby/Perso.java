@@ -27,7 +27,7 @@ public class Perso extends Entite {
      */
     public Perso(int dx, int dy) {
         super(dx, dy);
-        this.setPv(5);
+        this.setPv(50);
     }
 
     /**
