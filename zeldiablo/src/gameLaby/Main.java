@@ -14,7 +14,7 @@ import moteurJeu.MoteurJeu;
 public class Main {
 
     // charge les labyrinthes
-    private static int[] labyActuel = {2,0};
+    private static int[] labyActuel = {2,1};
     private static Labyrinthe[][] labyrinthes;
 
 
@@ -90,12 +90,13 @@ public class Main {
         Labyrinthe laby3 = new Labyrinthe("labySimple/laby3.txt");
         Labyrinthe laby4 = new Labyrinthe("labySimple/laby4.txt");
         Labyrinthe laby5 = new Labyrinthe("labySimple/laby5.txt");
+        Labyrinthe laby6 = new Labyrinthe("labySimple/laby6.txt");
         labyrinthes = new Labyrinthe[][]{
-                {null, null, null},
-                {null, null, laby5},
-                {laby2, laby3, laby4},
-                {null, null, null},
-                {null, null, null}};
+                {null,null, null, null},
+                {null,null, null, laby5},
+                {laby6,laby2, laby3, laby4},
+                {null,null, null, null},
+                {null,  null, null, null}};
 
         afficherLabyrinthe(labyrinthes[labyActuel[0]][labyActuel[1]]);
     }
