@@ -64,8 +64,10 @@ public class LabyJeu implements Jeu {
             regen = 0;
         }
 
-        laby.gestionEntite();
+
         laby.majLaby();
+        laby.gestionEntite();
+
 
         // Gestion attaque du personnage
         if (clavier.space){
