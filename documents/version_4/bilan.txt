@@ -2,9 +2,9 @@ Répartition du travail :
 
 1 diagramme chacun : Julien (de classe), léo, clément adrien : un diagramme de séquence chacun
 
-Léo Fontaine : gestion de la mort + attaque directionnelle 
+Léo Fontaine : méthode changement labyrinthe
 
-Adrien : méthode changement labyrinthe
+Adrien : gestion de la mort + attaque directionnelle 
 
 Clément : ajout de l'inventaire et des méthodes liées à l'alumette
 
