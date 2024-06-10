@@ -1,0 +1,15 @@
+Répartition du travail : 
+
+1 diagramme chacun : Julien (de classe), léo, clément adrien : un diagramme de séquence chacun
+
+Léo Fontaine : gestion de la mort + attaque directionnelle 
+
+Adrien : méthode changement labyrinthe
+
+Clément : ajout de l'inventaire et des méthodes liées à l'alumette
+
+Julien : Tests sur les nouvelles méthodes
+
+quelques difficultés sur les gestion de tests : Nous avons dû ajouter des getters spécifiques aux méthodes de Test dans le Main
+
+
