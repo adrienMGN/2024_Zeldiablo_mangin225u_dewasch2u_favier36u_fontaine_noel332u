@@ -76,4 +76,8 @@ public class Perso extends Entite {
         return inventaireOuvert;
     }
 
+    public void addPv(int pv){
+        this.setPv(this.getPv()+pv);
+    }
+
 }

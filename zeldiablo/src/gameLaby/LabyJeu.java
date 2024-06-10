@@ -11,6 +11,7 @@ public class LabyJeu implements Jeu {
     public static String DERNIER_MOUVEMENT = "";
 
     private double timer = 0;
+    private double regen = 0;
 
     public LabyJeu (Labyrinthe labyrinthe) {
         laby = labyrinthe;
@@ -57,10 +58,17 @@ public class LabyJeu implements Jeu {
 
         // update le mouvement des monstres toutes les 0.5 secondes
         timer+=secondes;
+        regen+=secondes;
         if (timer >= 0.5){
             laby.mouvementsMonstres();
             timer = 0;
+        }
 
+        if (regen >= 2){
+            if (laby.getPerso().getPv() < 5) {
+                laby.getPerso().addPv(1);
+            }
+            regen = 0;
         }
 
         laby.gestionEntite();
