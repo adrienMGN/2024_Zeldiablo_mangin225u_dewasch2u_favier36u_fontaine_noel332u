@@ -1,10 +1,14 @@
 package gameLaby;
 
 
+import java.util.ArrayList;
+
 /**
  * gere un personnage situe en x,y
  */
 public class Perso extends Entite {
+
+    ArrayList<Item> inventaire = new ArrayList<Item>();
 
     /**
      * constructeur
@@ -36,6 +40,14 @@ public class Perso extends Entite {
        monstre.subirDegats(1);
        System.out.println("Vous attaquez le monstre");
         return -1;
+    }
+
+    public void ajouterInventaire(Item item){
+        this.inventaire.add(item);
+    }
+
+    public ArrayList<Item> getInventaire(){
+        return this.inventaire;
     }
 
 }

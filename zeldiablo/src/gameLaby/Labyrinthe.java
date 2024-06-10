@@ -23,6 +23,7 @@ public class Labyrinthe {
     public static final char FERMETURE = 'F';
     public static final char PSECRET = 'H';
     public static final char MONSTRE= 'M';
+    public static final char AMULETTE = 'A';
 
 
     /**
@@ -46,6 +47,7 @@ public class Labyrinthe {
     public ArrayList<Declenchable> declenchables = new ArrayList<>();
     public ArrayList<PassageSecret> psecrets = new ArrayList<>();
     public ArrayList<Entite> entites = new ArrayList<>();
+    public ArrayList<Item> items = new ArrayList<>();
 
     /**
      * retourne la case suivante selon une actions
@@ -142,6 +144,10 @@ public class Labyrinthe {
                         break;
                     case MONSTRE:
                         entites.add(new Monstre(colonne, numeroLigne, 5, this));
+                        this.murs[colonne][numeroLigne] = false;
+                        break;
+                    case AMULETTE:
+                        items.add(new Amulette(colonne, numeroLigne));
                         this.murs[colonne][numeroLigne] = false;
                         break;
                     default:
@@ -345,6 +351,13 @@ public class Labyrinthe {
         if(estVideCase(e.getX(), e.getY())) {
             this.entites.add(e);}
     }
+
+    public void ajouterItem(Item i) {
+        if(estVideCase(i.getX(), i.getY())) {
+            this.items.add(i);}
+    }
+
+
 
     /**
      * méthode estVideCase indique si la case est vide
