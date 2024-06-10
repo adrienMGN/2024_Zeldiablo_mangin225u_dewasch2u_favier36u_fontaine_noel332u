@@ -16,4 +16,13 @@ Julien : Tests sur les nouvelles méthodes
 
 quelques difficultés sur les gestion de tests : Nous avons dû ajouter des getters spécifiques aux méthodes de Test dans le Main
 
+Voic les fonctionnalités ajoutées : 
 
+Fin du jeu : mort du héros
+
+Attaque du joueur
+Attaque directionnelle
+Fin du jeu : mort du héros
+Mise en place de l'amulette
+Acquisition de l'amulette
+Fin du jeu : victoire du héros
