@@ -81,7 +81,7 @@ public abstract class Entite {
     * */
     public Entite collision(int[] xy){
         for (Entite entite : laby.entites) {
-            if (entite.etrePresent(xy[0], xy[1])) {
+            if (entite.etrePresent(xy[0], xy[1]) && entite.etreVivant()) {
                 return entite;
             }
         }
