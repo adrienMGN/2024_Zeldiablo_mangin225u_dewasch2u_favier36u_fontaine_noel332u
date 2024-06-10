@@ -42,7 +42,8 @@ public class LabyDessin implements DessinJeu {
                         gc.setFill(Color.BLACK);
                         gc.fillRect(x*tailleCase,y*tailleCase, tailleCase, tailleCase);
                     }
-                } else {
+                }
+                else {
                     gc.setFill(Color.WHITE);
                     gc.fillRect(x*tailleCase,y*tailleCase, tailleCase, tailleCase);
                 }
@@ -52,7 +53,10 @@ public class LabyDessin implements DessinJeu {
                 }
             }
 
-
+        if(laby.getSortie()!=null){
+            gc.setFill(Color.GREEN);
+            gc.fillRect(laby.getSortie().getX()*tailleCase,laby.getSortie().getY()*tailleCase, tailleCase, tailleCase);
+        }
         // dessin entites si vivantes
 
         for (int i = 0; i < laby.entites.size(); i++) {

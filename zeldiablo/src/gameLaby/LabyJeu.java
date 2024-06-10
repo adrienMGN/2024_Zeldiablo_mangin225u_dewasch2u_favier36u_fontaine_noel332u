@@ -68,9 +68,16 @@ public class LabyJeu implements Jeu {
             laby.attaqueDirectionnel(DERNIER_MOUVEMENT);
         }
 
-        // Fin du jeu si le personnage est mort ou si le labyrinthe est fini
-        if (laby.etreFini()){
-            System.exit(0);
+        if(laby.getSortie()!=null){
+            if (laby.etreFini()||laby.getSortie().sortiePossible(laby)){
+                System.exit(0);
+            }
+        }
+        else {
+            // Fin du jeu si le personnage est mort ou si le labyrinthe est fini
+            if (laby.etreFini()) {
+                System.exit(0);
+            }
         }
     }
 
