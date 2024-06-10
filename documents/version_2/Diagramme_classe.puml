@@ -1,0 +1,161 @@
+@startuml
+title Diagramme de Classe pour LabyJeu avec Moteur de Jeu
+skinparam class {
+    BackgroundColor<<update>> Pink
+}
+interface Jeu {
+    +update(secondes: double, clavier: Clavier): void
+    +init(): void
+    +etreFini(): boolean
+}
+
+class LabyJeu {
+
+    ' +LabyJeu(labyrinthe: Labyrinthe)
+    ' +update(secondes: double, clavier: Clavier): void
+    ' +init(): void
+    ' +etreFini(): boolean
+    ' +getLaby(): Labyrinthe
+    +LabyJeu(labyrinthe: Labymthe)
+    +update(secondes: double, clavier: Clavier): void
+    +init(): void
+    +etreFini(): boolean
+    +getLaby(): Labyrinthe
+    +LabyJeu(labyrinthe: Labyrnthe)
+    +update(secondes: double, clavier: Clavier): void
+    +init(): void
+    +etreFini(): boolean
+    +gett.aby(): Labyrinthe
+}
+
+interface DessinJeu {
+    +dessinerJeu(jeu: Jeu, canvas: Canvas): void
+}
+
+class LabyDessin {
+    +<static> tailleCase: int
+    +dessinerJeu(jeu: Jeu, canvas: Canvas): void
+}
+
+class Labyrinthe {
+    +murs : boolean[][]
+
+
+    +getSuivant(x: int, y: int, action: String): int[]
+    +Labyrinthe(nom: String)
+    +deplacerPerso(action: String): void
+    +mouvementsMonstres(): void
+
+    +etreFini(): boolean
+    +getLengthY(): int
+    +getLength(): int
+    +getMur(x: int, y: int): boolean
+    +getPsecret(x: int, y: int): int
+    +getMonstre(x: int, y: int): boolean
+    +getPersonnage(): int[]
+    +ajouterEntite(Entite e): void
+    +estVideCase(x: int, y: int): boolean
+}
+
+class Clavier {
+    +haut: boolean
+    +bas: boolean
+    +gauche: boolean
+    +droite: boolean
+    +appuyerTouche(event: KeyEvent): void
+    +relacherTouche(event: KeyEvent): void
+}
+
+class MoteurJeu {
+    -FPS: double
+    -dureeFPS: double
+    -WIDTH: double
+    -HEIGHT: double
+    -frameStats: FrameStats
+    -jeu: Jeu
+    -dessin: DessinJeu
+    -controle: Clavier
+    +launch(jeu: Jeu, dessin: DessinJeu): void
+    +setFPS(FPSSouhaitees: int): void
+    +setTaille(width: double, height: double): void
+    +start(primaryStage: Stage): void
+    -startAnimation(canvas: Canvas): void
+}
+
+class Perso {
+
+    +Perso(dx: int, dy: int)
+}
+
+abstract class Declenchable <<update>>{
+    -x: int
+    -y: int
+    -id: int
+    +Declenchable(id: int, x: int, y: int)
+    +abstract action(laby: Labyrinthe): void
+    +entitePresent(laby: Labyrinthe): void
+    +etrePresent(dx: int, dy:int): boolean
+    +getX(): int
+    +getY(): int
+    +getID(): int
+}
+
+class PassageSecret <<update>>{
+    -x: int
+    -y: int
+    -id: int
+    +PassageSecret(id: int, x: int, y: int)
+    +ouvrir(): void
+    +fermer(): void
+    +isActive(): boolean
+    +getX(): int
+    +getY(): int
+    +getID(): int
+}
+
+class Ouverture <<update>>{
+    +Ouverture(id: int, dx: int, dy: int)
+    +action(laby: Labyrinthe): void
+}
+
+class Fermeture <<update>>{
+    +Fermeture(id: int, x: int, y: int)
+    +action(laby: Labyrinthe): void
+}
+
+
+
+
+
+
+
+
+
+Jeu <|.. LabyJeu
+LabyJeu --> Labyrinthe : -laby
+MoteurJeu --> Jeu : -<static> jeu
+MoteurJeu --> DessinJeu : -<static> dessin
+MoteurJeu --> Clavier : -<static> clavier
+DessinJeu <|.. LabyDessin
+Labyrinthe "*"-->"1" Perso : -pj
+  Labyrinthe "*"-->"*" PassageSecret : -psecrets
+Declenchable "*"<-u-"*" Labyrinthe : -declenchables
+ Declenchable <|-- Ouverture
+ Declenchable <|-- Fermeture
+
+' LabyDessin -[hidden]> Dijkstra
+' Dijkstra -[hidden]-> Valeur
+'Perso -[hidden]> GrapheListe
+' GrapheListe "*"-->"*" Arcs : - adjacence
+' Arcs "*"-->"*" Arc : - arcs
+' Perso -u-|> Entite
+' Monstre -u-|> Entite
+
+' Labyrinthe "*"-> "*" Entite : entites
+
+
+
+
+
+
+@enduml

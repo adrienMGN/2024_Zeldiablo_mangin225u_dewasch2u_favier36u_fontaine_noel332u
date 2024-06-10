@@ -1,6 +1,10 @@
 Répartition du travail : 
 
-1 diagramme chacun : Julien (de classe), léo, clément adrien : un diagramme de séquence chacun
+1 diagramme chacun : 
+- Julien (de classe) Fonctionnement_Diag.puml
+- léo: Changement_labyrinthe.puml
+- clément: Attaque_directionnel.puml
+- adrien: Attaque_directionnel.puml
 
 Léo Fontaine : méthode changement labyrinthe
 
