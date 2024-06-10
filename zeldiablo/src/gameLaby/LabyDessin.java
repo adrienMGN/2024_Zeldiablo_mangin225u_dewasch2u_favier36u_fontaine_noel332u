@@ -1,15 +1,27 @@
 package gameLaby;
 
+import javafx.geometry.Insets;
+import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 import javafx.scene.text.TextAlignment;
 import moteurJeu.DessinJeu;
 import moteurJeu.Jeu;
 
+import java.util.ArrayList;
+
 public class LabyDessin implements DessinJeu {
 
     public static int tailleCase = 50;
+
+    final Color gris = Color.rgb(180,180,180);
+    ArrayList<Rectangle> grille = new ArrayList<>();
+    ArrayList<ImageView> inv = new ArrayList<>();
 
     @Override
     public void dessinerJeu(Jeu jeu, Canvas canvas) {
@@ -88,23 +100,14 @@ public class LabyDessin implements DessinJeu {
         }
 
         if (Perso.inventaireOuvert()){
-            gc.setFill(Color.GRAY);
+            double l = canvas.getWidth()/3;
+            double h = canvas.getHeight()/3;
+            gc.setFill(Color.rgb(130,130,130,0.7));
             gc.fillRect(0,0,canvas.getWidth(),canvas.getHeight());
+            gc.setFill(Color.rgb(130,130,130,0.95));
+            gc.fillRect(l,h,l+40,h+40);
             gc.setFill(Color.WHITE);
-            gc.fillText("Inventaire", canvas.getWidth()/2, 50);
-            gc.setTextAlign(TextAlignment.CENTER);
-            Perso pj = laby.getPerso();
-            for (int i = 0; i < pj.getInventaire().size(); i++){
-                Item item = pj.getInventaire().get(i);
-                double x = i%5;
-                double y = i/5;
-                gc.setFill(Color.WHITE);
-                gc.fillRect(x*tailleCase, y*tailleCase, tailleCase, tailleCase);
-                if (item instanceof Amulette)
-                    gc.setFill(Color.YELLOW);
-                gc.fillOval(x * tailleCase, y * tailleCase, tailleCase, tailleCase);
-            }
         }
     }
-    }
+}
 

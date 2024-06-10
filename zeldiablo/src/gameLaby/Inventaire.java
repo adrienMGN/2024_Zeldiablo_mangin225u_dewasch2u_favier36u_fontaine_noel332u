@@ -38,12 +38,12 @@ public class Inventaire extends Application {
                 Rectangle r = createRectangle();
                 StackPane spane = new StackPane();
 
-                /*Image image =
+                Image image = new Image("file:imgs/colieror.png");
                 ImageView imageView = ajouterItem(image);
 
                 spane.getChildren().addAll(r, imageView);
                 grille.add(r);
-                inv.add(imageView);*/
+                inv.add(imageView);
                 root.add(r, i, j);
                 root.add(spane, 0, 0);
 
