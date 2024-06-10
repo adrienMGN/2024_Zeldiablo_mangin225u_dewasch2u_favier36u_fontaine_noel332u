@@ -94,8 +94,7 @@ public class LabyDessin implements DessinJeu {
                 double x = item.getX();
                 double y = item.getY();
                 if (item instanceof Amulette)
-                    gc.setFill(Color.YELLOW);
-                gc.fillOval(x * tailleCase, y * tailleCase, tailleCase, tailleCase);
+                    gc.drawImage(new Image("file:labySimple/imgs/colieror.png"),x*tailleCase,y*tailleCase);
             }
         }
 
