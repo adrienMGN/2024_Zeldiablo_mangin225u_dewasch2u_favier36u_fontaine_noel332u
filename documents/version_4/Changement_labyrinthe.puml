@@ -1,0 +1,52 @@
+@startuml
+title Changement de labyrinthe
+
+participant "jeuLaby: LabyJeu" as jeuLaby
+participant "laby:Labyrinthe" as laby
+participant "pj:Perso" as pj
+participant "main:Main" as main
+
+
+jeuLaby -> laby : deplacerPerso(String : action)
+activate laby
+laby -> pj: getX()
+activate pj
+pj --> laby: x
+deactivate pj
+
+laby -> pj: getY()
+activate pj
+pj --> laby: y
+deactivate pj
+
+laby -> laby: getSuivant(int: x, int: y,String: action)
+activate laby
+laby --> laby: suivant
+deactivate laby
+
+laby -> pj: setX(int: x)
+activate pj
+pj --> laby
+deactivate pj
+
+laby -> pj: setY(int: y)
+activate pj
+pj --> laby
+deactivate pj
+
+break ArrayIndexOutOfBoundsException
+laby -> main: changerLaby(Labyrinthe : laby, String : action)
+activate main
+main -> main: afficherLaby(Labyrinthe : laby)
+activate main
+main --> main
+deactivate main
+
+main --> laby
+deactivate main
+end
+
+laby --> jeuLaby
+deactivate laby
+
+@enduml

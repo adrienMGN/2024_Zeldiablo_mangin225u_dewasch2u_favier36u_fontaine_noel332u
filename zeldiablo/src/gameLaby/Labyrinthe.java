@@ -321,7 +321,7 @@ public class Labyrinthe {
     public boolean getMonstre(int x, int y) {
         for (Entite entite : entites) {
             if (entite instanceof Monstre) {
-                if (entite.getX() == x && entite.getY() == y) {
+                if (entite.getX() == x && entite.getY() == y && entite.etreVivant()) {
                     return true;
                 }
             }
@@ -386,14 +386,12 @@ public class Labyrinthe {
             else{
                 murs[psecret.getX()][psecret.getY()] = true;
             }
-
-
         }
-        for (Entite entite : entites) {
+        /*for (Entite entite : entites) {
             if (!entite.etreVivant()) {
                 murs[entite.getX()][entite.getY()] = false;
             }
-        }
+        }*/
     }
 
 }

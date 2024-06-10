@@ -96,4 +96,15 @@ public class Main {
 
         afficherLabyrinthe(labyrinthes[labyActuel[0]][labyActuel[1]]);
     }
+
+    // méthodes de test
+    public static Labyrinthe getLaby(){
+        return labyrinthes[labyActuel[0]][labyActuel[1]];
+    }
+    public static void setLabyActuel(int[] labyActuel){
+        Main.labyActuel = labyActuel;
+    }
+    public static void setLabyrinthes(Labyrinthe[][] labyrinthes){
+        Main.labyrinthes = labyrinthes;
+    }
 }
