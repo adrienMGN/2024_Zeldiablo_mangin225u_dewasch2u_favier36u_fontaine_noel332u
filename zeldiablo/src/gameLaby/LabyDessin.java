@@ -25,6 +25,7 @@ public class LabyDessin implements DessinJeu {
 
     @Override
     public void dessinerJeu(Jeu jeu, Canvas canvas) {
+        Image amulette = new Image("file:labySimple/imgs/colieror.png");
 
         LabyJeu jeuLaby = (LabyJeu) jeu;
         Labyrinthe laby = jeuLaby.getLaby();
@@ -94,11 +95,11 @@ public class LabyDessin implements DessinJeu {
                 double x = item.getX();
                 double y = item.getY();
                 if (item instanceof Amulette)
-                    gc.drawImage(new Image("file:labySimple/imgs/colieror.png"),x*tailleCase,y*tailleCase);
+                    gc.drawImage(amulette,x*tailleCase,y*tailleCase);
             }
         }
 
-            Image amulette = new Image("file:labySimple/imgs/colieror.png");
+
 
             gc.setFill(Color.LIGHTGRAY);
             gc.clearRect(5,5,240,40);
