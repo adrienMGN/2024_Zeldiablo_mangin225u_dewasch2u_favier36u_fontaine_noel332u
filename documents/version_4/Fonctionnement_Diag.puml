@@ -46,7 +46,6 @@ class Labyrinthe {
     +getMonstre(x: int, y: int): boolean
     +getPersonnage(): int[]
     +ajouterEntite(Entite e): void
-    +ajouterItem(Item i): void
     +estVideCase(x: int, y: int): boolean
 }
 
@@ -87,9 +86,6 @@ class Perso {
 '    +getPerso(): Perso
 '    +majLaby(): void
      +attaquer(monstre: Monstre): int
-     +ajouterInventaire(item: Item): void
-     +getInventaire(): ArrayList<Item>
-     +setInventaire(inventaire: ArrayList<Item>): void
 }
 
 abstract class Declenchable {
@@ -204,35 +200,6 @@ class Valeur{
 '        + chargerSpriteSheet(url: String) : void
 '        + getSprite(x: int, y: int, width: int, height: int) : BufferedImage
 '    }
-
-
-    skinparam class {
-        BackgroundColor<<update>> Pink
-    }
-    class Amulette <<update>> extends Item  {
-'        -x:int
-'        -y:int
-'        -dansInventaire:boolean
-        +Amulette(dx:int, dy:int)
-    }
-
-    abstract class Item <<update>> {
-        -x:int
-        -y:int
-        +dansInventaire:boolean
-        -laby:Labyrinthe
-        +Item(x:int, y:int)
-        +getY():int
-        +getX():int
-        +setX(x:int):void
-        +setY(y:int):void
-        +etrePresent(dx:int, dy:int):boolean
-'       +ramasseItem():void
-        +persoPresent(laby: Labyrinthe):void
-        +ramasseItem(pj:Perso):void
-        +inInventaire():boolean
-
-    }
 
 
 

@@ -1,6 +1,8 @@
 @startuml
 title Diagramme de Classe pour LabyJeu avec Moteur de Jeu
-
+skinparam class {
+    BackgroundColor<<update>> Pink
+}
 interface Jeu {
     +update(secondes: double, clavier: Clavier): void
     +init(): void
@@ -69,7 +71,7 @@ class MoteurJeu {
     +start(primaryStage: Stage): void
     -startAnimation(canvas: Canvas): void
 }
-class Monstre{
+class Monstre<<update>>{
     + Monstre(x : int, y : int, pv : int, laby : Labyrinthe)
     + attaquer(perso : Perso) : int
              }
@@ -114,7 +116,7 @@ class Fermeture{
     +action(laby: Labyrinthe): void
 }
 
-abstract class Entite{
+abstract class Entite<<update>>{
     -x: int
     -y: int
     -pv: int
@@ -127,7 +129,7 @@ abstract class Entite{
     +collision(int[] xy): Entite
 }
 
-class Arc{
+class Arc<<update>>{
     - dest : String
     - cout : double
 
@@ -136,7 +138,7 @@ class Arc{
     + getCout() : double
     + toString() : String
 }
-class Arcs{
+class Arcs<<update>>{
         - arcs : List<Arc>
 
         + Arcs()
@@ -145,11 +147,11 @@ class Arcs{
     }
 
 
-class Dijkstra{
+class Dijkstra<<update>>{
     +resoudre(g: GrapheListe, depart: String) : Valeur
     +toString() : String
               }
-class GrapheListe{
+class GrapheListe<<update>>{
     - noeuds : ArrayList<String>
     - graphe : String[][]
 
@@ -161,7 +163,7 @@ class GrapheListe{
     + toString() : String
                  }
 
-class Valeur{
+class Valeur<<update>>{
     - valeur : Map<String, Double>
     - parent : Map<String, String>
 
