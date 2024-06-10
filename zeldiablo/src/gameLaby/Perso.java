@@ -9,15 +9,6 @@ import java.util.ArrayList;
 public class Perso extends Entite {
 
     ArrayList<Item> inventaire = new ArrayList<Item>();
-    private static boolean inventaireOuvert = false;
-
-    public static void ouvrirInventaire(){
-        inventaireOuvert = true;
-    }
-
-    public static void fermerInventaire(){
-        inventaireOuvert = false;
-    }
 
     /**
      * constructeur
@@ -70,10 +61,6 @@ public class Perso extends Entite {
 
     public void setInventaire(ArrayList<Item> inventaire){
         this.inventaire = inventaire;
-    }
-
-    public static boolean inventaireOuvert(){
-        return inventaireOuvert;
     }
 
     public void addPv(int pv){

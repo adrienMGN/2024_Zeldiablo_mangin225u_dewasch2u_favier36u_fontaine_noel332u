@@ -99,8 +99,6 @@ public class LabyDessin implements DessinJeu {
             }
         }
 
-        if (Perso.inventaireOuvert()){
-
             Image image1 = new Image("file:labySimple/imgs/colieror.png");
             Image image2 = new Image("file:labySimple/imgs/colieror.png");
             Image image3 = new Image("file:labySimple/imgs/colieror.png");
@@ -124,7 +122,6 @@ public class LabyDessin implements DessinJeu {
             gc.drawImage(image5,160,0,40,40);
             gc.strokeRect(200,0,40,40);
             gc.drawImage(image6,200,0,40,40);
-        }
     }
 }
 
