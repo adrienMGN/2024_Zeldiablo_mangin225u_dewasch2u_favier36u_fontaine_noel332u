@@ -100,13 +100,30 @@ public class LabyDessin implements DessinJeu {
         }
 
         if (Perso.inventaireOuvert()){
-            double l = canvas.getWidth()/3;
-            double h = canvas.getHeight()/3;
-            gc.setFill(Color.rgb(130,130,130,0.7));
-            gc.fillRect(0,0,canvas.getWidth(),canvas.getHeight());
-            gc.setFill(Color.rgb(130,130,130,0.95));
-            gc.fillRect(l,h,l+40,h+40);
-            gc.setFill(Color.WHITE);
+
+            Image image1 = new Image("file:labySimple/imgs/colieror.png");
+            Image image2 = new Image("file:labySimple/imgs/colieror.png");
+            Image image3 = new Image("file:labySimple/imgs/colieror.png");
+            Image image4 = new Image("file:labySimple/imgs/colieror.png");
+            Image image5 = new Image("file:labySimple/imgs/colieror.png");
+            Image image6 = new Image("file:labySimple/imgs/colieror.png");
+
+            gc.setFill(Color.LIGHTGRAY);
+            gc.clearRect(0,0,240,40);
+            gc.setStroke(Color.rgb(140,140,140));
+
+            gc.strokeRect(0,0,40,40);
+            gc.drawImage(image1,0,0,40,40);
+            gc.strokeRect(40,0,40,40);
+            gc.drawImage(image2,40,0,40,40);
+            gc.strokeRect(80,0,40,40);
+            gc.drawImage(image3,80,0,40,40);
+            gc.strokeRect(120,0,40,40);
+            gc.drawImage(image4,120,0,40,40);
+            gc.strokeRect(160,0,40,40);
+            gc.drawImage(image5,160,0,40,40);
+            gc.strokeRect(200,0,40,40);
+            gc.drawImage(image6,200,0,40,40);
         }
     }
 }
