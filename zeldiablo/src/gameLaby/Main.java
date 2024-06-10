@@ -63,7 +63,9 @@ public class Main {
                 break;
         }
         try{
-            afficherLabyrinthe(labyrinthes[labyActuel[0]][labyActuel[1]]);
+            Labyrinthe newLaby = labyrinthes[labyActuel[0]][labyActuel[1]];
+            newLaby.getPerso().setPv(laby.getPerso().getPv());
+            afficherLabyrinthe(newLaby);
         }catch (ArrayIndexOutOfBoundsException e){
             labyActuel = posLaby(laby);
         }

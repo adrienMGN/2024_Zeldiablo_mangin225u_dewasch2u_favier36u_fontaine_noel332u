@@ -47,6 +47,11 @@ public class LabyJeu implements Jeu {
             declenchable.entitePresent(laby);
         }
 
+        for (int i = 0; i < laby.items.size(); i++) {
+            Item item = laby.items.get(i);
+            item.persoPresent(laby);
+        }
+
         // update le mouvement des monstres toutes les 0.5 secondes
         timer+=secondes;
         if (timer >= 0.5){

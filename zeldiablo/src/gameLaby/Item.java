@@ -6,7 +6,13 @@ import java.util.Arrays;
 public abstract class Item {
     private int x;
     private int y;
+    private boolean dansInventaire = false;
     private Labyrinthe laby;
+
+    public Item(int x, int y) {
+        this.x = x;
+        this.y = y;
+    }
 
     public int getY() {
         return y;
@@ -25,10 +31,20 @@ public abstract class Item {
     public boolean etrePresent(int dx, int dy) {
         return (this.x == dx && this.y == dy);
     }
-    public void ramasseItem(){
-        Perso pj = laby.getPerso();
-        if (pj.etrePresent(this.x,this.y)){
-        pj.ajouterInventaire(this);}
+
+    public void persoPresent(Labyrinthe laby) {
+        Perso p = laby.getPerso();
+        if (p.getX() == x && p.getY() == y)
+            ramasseItem(p);
+    }
+
+    public void ramasseItem(Perso pj){
+        pj.ajouterInventaire(this);
+        this.dansInventaire = true;
+    }
+
+    public boolean inInventaire(){
+        return dansInventaire;
     }
 
 }

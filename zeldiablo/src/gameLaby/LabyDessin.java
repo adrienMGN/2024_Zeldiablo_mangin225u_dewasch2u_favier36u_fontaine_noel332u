@@ -3,6 +3,7 @@ package gameLaby;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
+import javafx.scene.text.TextAlignment;
 import moteurJeu.DessinJeu;
 import moteurJeu.Jeu;
 
@@ -60,19 +61,26 @@ public class LabyDessin implements DessinJeu {
             if (entite.etreVivant()) {
                 double px = entite.getX();
                 double py = entite.getY();
-                gc.setFill(Color.RED);
+                if (entite instanceof Monstre)
+                    gc.setFill(Color.RED);
+                else if (entite instanceof Perso)
+                    gc.setFill(Color.BLUE);
+
                 gc.fillOval(px * tailleCase, py * tailleCase, tailleCase, tailleCase);
+                gc.setFill(Color.BLACK);
+                gc.fillText(""+entite.getPv(), px * tailleCase+tailleCase/2, py * tailleCase+tailleCase/2);
+                gc.setTextAlign(TextAlignment.CENTER);
             }
         }
-
-
-        // dessin perso si vivant
-        if (laby.getPerso().etreVivant()) {
-            gc.setFill(Color.BLUE);
-            Perso perso = laby.getPerso();
-            double px = perso.getX();
-            double py = perso.getY();
-            gc.fillOval(px * tailleCase, py * tailleCase, tailleCase, tailleCase);
+        for (int i = 0; i <laby.items.size(); i++) {
+            Item item = laby.items.get(i);
+            if (!item.inInventaire()) {
+                double x = item.getX();
+                double y = item.getY();
+                if (item instanceof Amulette)
+                    gc.setFill(Color.YELLOW);
+                gc.fillOval(x * tailleCase, y * tailleCase, tailleCase, tailleCase);
+            }
         }
     }
     }
