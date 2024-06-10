@@ -9,8 +9,8 @@ P..M...............X
 .............X...X.X
 X..XXX.......XX.XX.X
 X..XX........X....MX
-X..........X.X.X.XXX
-X..........X.X.X.XMX
-X..........X.X.X.XXX
+X..........X.X.X.X.X
+X..........X.X.X.X.X
+X..........X.X.X.X.X
 X..........X.X.X.XOX
 XXXXXXXXXXXXXXXXXXXX
