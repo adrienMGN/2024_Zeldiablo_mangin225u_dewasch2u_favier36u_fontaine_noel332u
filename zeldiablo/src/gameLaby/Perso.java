@@ -59,4 +59,8 @@ public class Perso extends Entite {
         return this.inventaire;
     }
 
+    public void setInventaire(ArrayList<Item> inventaire){
+        this.inventaire = inventaire;
+    }
+
 }

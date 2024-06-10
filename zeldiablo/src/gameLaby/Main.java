@@ -65,6 +65,7 @@ public class Main {
         try{
             Labyrinthe newLaby = labyrinthes[labyActuel[0]][labyActuel[1]];
             newLaby.getPerso().setPv(laby.getPerso().getPv());
+            newLaby.getPerso().setInventaire(laby.getPerso().getInventaire());
             afficherLabyrinthe(newLaby);
         }catch (ArrayIndexOutOfBoundsException e){
             labyActuel = posLaby(laby);

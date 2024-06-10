@@ -30,7 +30,7 @@ public class TestChangementLaby {
 //        laby.deplacerPerso(Labyrinthe.DROITE); // deplace droite dépasse bordure
 //        labyJeu.update(0, clavier); // màj de l'état du jeu'
 //        laby.getLengthY();
-//        laby.getLength();
+//        laby.getLength();i
         //vérif que le labyrinthe a bien changé;
         assertEquals(Main.getLaby(), laby2, "Le labyrinthe n'a pas changé");
     }
