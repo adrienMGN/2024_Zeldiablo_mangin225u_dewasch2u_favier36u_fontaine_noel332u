@@ -96,6 +96,7 @@ public class Labyrinthe {
      * @throws IOException probleme a la lecture / ouverture
      */
     public Labyrinthe(String nom) throws IOException {
+        Labyrinthe laby = this;
         // ouvrir fichier
         FileReader fichier = new FileReader(nom);
         BufferedReader bfRead = new BufferedReader(fichier);
@@ -137,11 +138,11 @@ public class Labyrinthe {
                         this.entites.add(pj);
                         break;
                     case OUVERTURE:
-                        declenchables.add(new Ouverture(Ouverture.nbOuvertures, colonne, numeroLigne));
+                        declenchables.add(new Ouverture(Ouverture.nbOuvertures, colonne, numeroLigne, laby));
                         this.murs[colonne][numeroLigne] = false;
                         break;
                     case FERMETURE:
-                        declenchables.add(new Fermeture(Fermeture.nbFermetures, colonne, numeroLigne));
+                        declenchables.add(new Fermeture(Fermeture.nbFermetures, colonne, numeroLigne, laby));
                         this.murs[colonne][numeroLigne] = false;
                         break;
                     case PSECRET:
@@ -149,15 +150,15 @@ public class Labyrinthe {
                         this.murs[colonne][numeroLigne] = true;
                         break;
                     case MONSTRE:
-                        entites.add(new Monstre(colonne, numeroLigne, 5, this));
+                        entites.add(new Monstre(colonne, numeroLigne, 2, laby));
                         this.murs[colonne][numeroLigne] = false;
                         break;
                     case AMULETTE:
-                        items.add(new Amulette(colonne, numeroLigne));
+                        items.add(new Amulette(colonne, numeroLigne, laby));
                         this.murs[colonne][numeroLigne] = false;
                         break;
                     case SORTIE:
-                        sortie = new Sortie(colonne, numeroLigne);
+                        sortie = new Sortie(colonne, numeroLigne, laby);
                         this.murs[colonne][numeroLigne] = false;
                         break;
                     case COFFRE:
@@ -165,7 +166,7 @@ public class Labyrinthe {
                         this.murs[colonne][numeroLigne] = false;
                         break;
                     case CLE:
-                        items.add(new Cle(colonne, numeroLigne));
+                        items.add(new Cle(colonne, numeroLigne,laby));
                         this.murs[colonne][numeroLigne] = false;
                         break;
                     default:
@@ -224,7 +225,7 @@ public class Labyrinthe {
                 pj.attaquer(m);
             }
         }
-        }
+    }
 
 
 
@@ -429,8 +430,4 @@ public class Labyrinthe {
     public Sortie getSortie() {
         return sortie;
     }
-    public Coffre getCoffre(){
-        return coffre;
-    }
-
 }
