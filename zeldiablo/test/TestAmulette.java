@@ -1,6 +1,7 @@
 import gameLaby.Amulette;
 import gameLaby.Labyrinthe;
 import gameLaby.LabyJeu;
+import gameLaby.Monstre;
 import moteurJeu.Clavier;
 import org.junit.jupiter.api.Test;
 
@@ -34,6 +35,25 @@ public class TestAmulette {
         //boolean fini = labyrinthe.getPerso().etrePresent(1,3);
         assertTrue(fini, "le jeu devrait être fini");
 
+
+
+    }
+
+    @Test
+    /*
+    * test verifie que le monstre ne peut pas ramasser l'amulette*/
+    public void test_monstre_ramasser_Amulette() throws Exception{
+        Labyrinthe labyrinthe = new Labyrinthe("labySimple/labyTest/labyAmuletteMonstre.txt");
+        Clavier clavier = new Clavier();
+        LabyJeu labyJeu = new LabyJeu(labyrinthe);
+        Monstre m = new Monstre(1,1, 2, labyrinthe);
+        Amulette a = new Amulette(1,1);
+        boolean presence = a.etrePresent(1,1);
+        assertTrue(presence, "l'amulette doit  être présente dans le labyrinthe");
+        labyrinthe.ajouterItem(a);
+        labyrinthe.ajouterEntite(m);
+        labyJeu.update(0,clavier);
+        assertTrue(presence, "l'amulette doit toujours être présente dans le labyrinthe");
 
 
     }
