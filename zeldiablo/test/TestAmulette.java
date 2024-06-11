@@ -28,11 +28,11 @@ public class TestAmulette {
 
         // le test ne passe pas car exit 0
 
-        //labyrinthe.deplacerPerso(Labyrinthe.BAS);
+        labyrinthe.deplacerPerso(Labyrinthe.BAS);
         labyJeu.update(0,clavier);
-        //boolean fini = labyJeu.etreFini();
+        boolean fini = labyJeu.etreFini();
         //boolean fini = labyrinthe.getPerso().etrePresent(1,3);
-        //assertTrue(fini, "le jeu devrait être fini");
+        assertTrue(fini, "le jeu devrait être fini");
 
 
 
