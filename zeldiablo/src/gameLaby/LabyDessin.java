@@ -86,10 +86,21 @@ public class LabyDessin implements DessinJeu {
             if (entite.etreVivant()) {
                 double px = entite.getX();
                 double py = entite.getY();
-                if (entite instanceof Monstre)
+                if (entite instanceof Monstre){
                     gc.setFill(Color.RED);
+                    Monstre monstre = (Monstre) entite;
+                    if (monstre instanceof Fantome) {
+
+                        gc.setFill(Color.rgb(0,0,0,0.125));
+                        gc.setStroke(Color.BLACK);
+                    }
+                }
                 else if (entite instanceof Perso)
                     gc.setFill(Color.BLUE);
+
+
+
+
 
                 gc.fillOval(px * tailleCase, py * tailleCase, tailleCase, tailleCase);
                 gc.setFill(Color.BLACK);

@@ -23,6 +23,7 @@ public class Labyrinthe {
     public static final char FERMETURE = 'F';
     public static final char PSECRET = 'H';
     public static final char MONSTRE= 'M';
+    public static final char FANTOME = 'G';
     public static final char AMULETTE = 'A';
 
     public static final char SORTIE = 'S';
@@ -153,6 +154,10 @@ public class Labyrinthe {
                         entites.add(new Monstre(colonne, numeroLigne, 2, laby));
                         this.murs[colonne][numeroLigne] = false;
                         break;
+                    case FANTOME:
+                        entites.add(new Fantome(colonne, numeroLigne, 2,laby));
+                        this.murs[colonne][numeroLigne] = false;
+                        break;
                     case AMULETTE:
                         items.add(new Amulette(colonne, numeroLigne, laby));
                         this.murs[colonne][numeroLigne] = false;
@@ -247,13 +252,20 @@ public class Labyrinthe {
 
 
     public void mouvementsMonstres(){
-        GrapheListe g = new GrapheListe(this);
+        GrapheListe g1 = new GrapheListe(this, false);
+        GrapheListe g2 = new GrapheListe(this, true);
         Dijkstra d = new Dijkstra();
 
         for (Entite entite : entites) {
             if (entite instanceof Monstre && entite.etreVivant()) {
+                GrapheListe g = g1;
+                if (entite instanceof Fantome){
+                    g = g2;
+
+                }
                 Monstre m = (Monstre) entite;
                 String monstre = m.getX()+","+m.getY();
+
                 Valeur v = d.resoudre(g, monstre);
                 List<String> l = v.calculerChemin(pj.getX()+","+pj.getY());
 
@@ -272,7 +284,7 @@ public class Labyrinthe {
                     }
                 }
                 else{
-                    if (g.suivants(monstre).size()>0)
+                    if (!g.suivants(monstre).isEmpty())
                         mouvementAleatoireMonstres(m, g.suivants(monstre));
                 }
             }

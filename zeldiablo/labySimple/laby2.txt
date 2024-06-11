@@ -7,10 +7,10 @@ X........X...X......
 X..X....OX...O....XX
 X......XXX.........X
 X...X....X.........X
-X..XF....H....X....X
+X..XF...GH....X....X
 X.....X..X.........X
 XX.....M.XX.......CX
-.....M...X........KX
-.........X........SX
-XX.......H.......PXX
+.....M...X...XXX..KX
+.........X...XGX..SX
+XX.......H...XXX.PXX
 XXXXXXXXXXXXXXXXXXXX

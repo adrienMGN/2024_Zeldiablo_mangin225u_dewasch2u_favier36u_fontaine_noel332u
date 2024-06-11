@@ -19,7 +19,8 @@ public class GrapheListe{
      * Charge un graphe à partir d'un fichier.
      * @param laby Le nom du fichier à charger.
      */
-    public GrapheListe(Labyrinthe laby) {
+
+    public GrapheListe(Labyrinthe laby, boolean ghost) {
         graphe = new String[laby.getLength()][laby.getLengthY()];
         for (int y = 0; y < laby.getLengthY(); y++) {
             for (int x = 0; x < laby.getLength(); x++) {
@@ -27,25 +28,55 @@ public class GrapheListe{
             }
         }
 
+
+        if (ghost) {
+
         for (int y = 0; y < laby.getLengthY(); y++) {
             for (int x = 0; x < laby.getLength(); x++) {
-                if (!laby.getMur(x, y)) {
-                    if (x > 0 && !laby.getMur(x - 1, y) && !laby.getMonstre(x - 1, y)) {
+
+                    if (x>0 && !laby.getMonstre(x - 1, y)) {
                         ajouterArc(graphe[x][y], graphe[x - 1][y], 1);
                     }
-                    if (x < laby.getLength() - 1 && !laby.getMur(x + 1, y) && !laby.getMonstre(x + 1, y)) {
+                    if (x < laby.getLength() - 1 && !laby.getMonstre(x + 1, y)) {
                         ajouterArc(graphe[x][y], graphe[x + 1][y], 1);
                     }
-                    if (y > 0 && !laby.getMur(x, y - 1) && !laby.getMonstre(x, y - 1)) {
+                    if (y > 0 && !laby.getMonstre(x, y - 1)) {
                         ajouterArc(graphe[x][y], graphe[x][y - 1], 1);
                     }
-                    if (y < laby.getLengthY() - 1 && !laby.getMur(x, y + 1)&& !laby.getMonstre(x, y + 1)) {
+                    if (y < laby.getLengthY() - 1 && !laby.getMonstre(x, y + 1)) {
                         ajouterArc(graphe[x][y], graphe[x][y + 1], 1);
+                    }
+
+            }
+        }
+    } else {
+            for (int y = 0; y < laby.getLengthY(); y++) {
+                for (int x = 0; x < laby.getLength(); x++) {
+                    if (!laby.getMur(x, y)) {
+                        if (x > 0 && !laby.getMur(x - 1, y) && !laby.getMonstre(x - 1, y)) {
+                            ajouterArc(graphe[x][y], graphe[x - 1][y], 1);
+                        }
+                        if (x < laby.getLength() - 1 && !laby.getMur(x + 1, y) && !laby.getMonstre(x + 1, y)) {
+                            ajouterArc(graphe[x][y], graphe[x + 1][y], 1);
+                        }
+                        if (y > 0 && !laby.getMur(x, y - 1) && !laby.getMonstre(x, y - 1)) {
+                            ajouterArc(graphe[x][y], graphe[x][y - 1], 1);
+                        }
+                        if (y < laby.getLengthY() - 1 && !laby.getMur(x, y + 1)&& !laby.getMonstre(x, y + 1)) {
+                            ajouterArc(graphe[x][y], graphe[x][y + 1], 1);
+                        }
                     }
                 }
             }
+
+
         }
+
+
+
     }
+
+
 
     /**
      * Récupère l'indice d'un noeud dans la liste des noeuds.
