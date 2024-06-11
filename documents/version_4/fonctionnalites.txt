@@ -10,7 +10,7 @@ Léo Fontaine : méthode changement labyrinthe
 
 Adrien : gestion de la mort + attaque directionnelle 
 
-Clément : ajout de l'inventaire et des méthodes liées à l'alumette
+Clément : avancement conception version 5
 
 Julien : Tests sur les nouvelles méthodes
 
@@ -23,6 +23,4 @@ Fin du jeu : mort du héros
 Attaque du joueur
 Attaque directionnelle
 Fin du jeu : mort du héros
-Mise en place de l'amulette
-Acquisition de l'amulette
-Fin du jeu : victoire du héros
+
