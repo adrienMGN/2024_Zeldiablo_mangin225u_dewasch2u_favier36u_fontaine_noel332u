@@ -29,6 +29,8 @@ public class LabyDessin implements DessinJeu {
         Image amulette = new Image("file:imgs/colieror.png");
         Image cle = new Image("file:imgs/cle.png");
         Image fantome = new Image("file:imgs/fantome.png");
+        Image monstre = new Image("file:imgs/monstre.png");
+        Image perso = new Image("file:imgs/perso.png");
 
         LabyJeu jeuLaby = (LabyJeu) jeu;
         Labyrinthe laby = jeuLaby.getLaby();
@@ -92,12 +94,11 @@ public class LabyDessin implements DessinJeu {
                     gc.drawImage(fantome,px*tailleCase, py*tailleCase, tailleCase, tailleCase);
                 }
                 else if (entite instanceof Monstre) {
-                    gc.setFill(Color.RED);
-                    gc.fillOval(px*tailleCase, py*tailleCase, tailleCase, tailleCase);
+                    gc.drawImage(monstre,px*tailleCase, py*tailleCase, tailleCase, tailleCase);
                 }
                 else if (entite instanceof Perso) {
-                    gc.setFill(Color.BLUE);
-                    gc.fillOval(px * tailleCase, py * tailleCase, tailleCase, tailleCase);
+                    gc.drawImage(perso, px*tailleCase, py*tailleCase, tailleCase, tailleCase);
+
                 }
 
                 gc.setFill(Color.BLACK);
