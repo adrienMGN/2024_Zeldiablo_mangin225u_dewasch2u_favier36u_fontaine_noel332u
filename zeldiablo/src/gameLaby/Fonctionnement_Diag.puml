@@ -187,6 +187,7 @@ class GrapheListe{
     + listeNoeuds() : List<String>
     + suivants(n : String) : List<Arc>
     + toString() : String
+    `n
                  }
 
 class Valeur{
