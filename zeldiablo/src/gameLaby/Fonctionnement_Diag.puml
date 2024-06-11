@@ -13,6 +13,9 @@ interface Jeu {
 class LabyJeu {
     +<static> DERNIER_MOUVEMENT: String
     -timer: double
+    +regen: double
+    +rechargeFleche: double
+    -updateFleche: double
 
     +LabyJeu(labyrinthe: Labyrinthe)
     +update(secondes: double, clavier: Clavier): void
@@ -28,6 +31,7 @@ interface DessinJeu {
 class LabyDessin {
     +<static> tailleCase: int
     +dessinerJeu(jeu: Jeu, canvas: Canvas): void
+
 }
 
 class Labyrinthe {
@@ -40,7 +44,7 @@ class Labyrinthe {
     +attaqueDirectionnel(String derniere_direction): void
     +mouvementsMonstres(): void
     +actoinnerItems(derniere_direction String): void
-    +mouvementAleatoireMonstres(m: Monstre, v: List<Arc>): void
+    +mouvementAleatoireMonstres(m: Monstre, v: List<Couple>): void
     +gestionEntite(): void
     +etreFini(): boolean
     +getLengthY(): int
@@ -62,6 +66,7 @@ class Clavier {
     +droite: boolean
     +space: boolean
     +e: boolean
+    +f: boolean
 '    +i: boolean
     +appuyerTouche(event: KeyEvent): void
     +relacherTouche(event: KeyEvent): void
@@ -91,13 +96,14 @@ class Monstre{
 class Perso {
     -Perso(dx: int, dy: int)
     +mourir(): void
-     +attaquer(monstre: Monstre): int
-     +possedeAmulette(): boolean
-     +utiliserCle(): void
-     +ajouterInventaire(item: Item): void
-     +getInventaire(): ArrayList<Item>
-     +setInventaire(inventaire: ArrayList<Item>): void
-     +setPv(): int
+    +attaquer(monstre: Monstre): void
+    +possedeAmulette(): boolean
+    +utiliserCle(): void
+    +selectionnerMeilleurArc(): Arc
+    +ajouterInventaire(item: Item): void
+    +getInventaire(): ArrayList<Item>
+    +setInventaire(inventaire: ArrayList<Item>): void
+    +setPv(): int
 }
 
 abstract class Declenchable {
@@ -141,21 +147,51 @@ abstract class Entite{
     +collision(int[] xy): Entite
 }
 
-class Arc{
-    - dest : String
-    - cout : double
+class Couple <<update>>{
+    -fleches: ArrayList<Fleche>
+    -nbFleches: int
 
-    + Arc(dest : String, cout : double)
-    + getDest() : String
-    + getCout() : double
-    + toString() : String
+    +Couple(x: int, y: int,degats:int, laby: Labyrinthe)
+    +tirerFleche(direction: String): void
+    +avancerFleches(): void
+    +getFleches(): ArrayList<Fleche>
+    +getNbFleches(): int
+    +setNbFleches(nbFleches: int): void
 }
+
+class Arc extends Arme{
+    -fleches: ArrayList<Fleche>
+    -nbFleches: int
+
+    +Arc(x: int, y: int,degats:int, laby: Labyrinthe)
+    +tirerFleche(direction: String): void
+    +avancerFleches(): void
+    +getFleches(): ArrayList<Fleche>
+    +getNbFleches(): int
+    +setNbFleches(nbFleches: int): void
+}
+
+class Fleche extends Case{
+    -direction: String
+
+    +Fleche(direction: String, x: int, y: int, degats: int, laby: Labyrinthe)
+    +avancer(): boolean
+    +collision(): Entite
+}
+'    - dest : String
+'    - cout : double
+'
+'    + Arc(dest : String, cout : double)
+'    + getDest() : String
+'    + getCout() : double
+'    + toString() : String
+
 class Arcs{
-        - arcs : List<Arc>
+        - arcs : List<Couple>
 
         + Arcs()
-        + ajouterArc(a : Arc) : void
-        + getArcs() : List<Arc>
+        + ajouterArc(a : Couple) : void
+        + getArcs() : List<Couple>
     }
 
 
@@ -171,9 +207,8 @@ class GrapheListe{
     + getIndice(n : String) : int
     + ajouterArc(depart : String, destination : String, cout : double) : void
     + listeNoeuds() : List<String>
-    + suivants(n : String) : List<Arc>
+    + suivants(n : String) : List<Couple>
     + toString() : String
-    `n
                  }
 
 class Valeur{
@@ -211,11 +246,12 @@ class Sortie {
     +sortiePossible():boolean
 }
 
-abstract class Case <<update>>{
+abstract class Case {
     -x:int
     -y:int
     -laby:Labyrinthe
     +Case(x:int, y:int)
+    +Case(x:int, y:int, laby:Labyrinthe)
     +getX():int
     +getY():int
     +getLaby():Labyrinthe
@@ -224,19 +260,24 @@ abstract class Case <<update>>{
     +etrePresent(dx:int, dy:int):boolean
 }
 
-class Coffre <<update>> extends Case{
+class Coffre extends Case{
     +static nbCoffres: int
     +Coffre(x:int, y:int, laby:Labyrinthe)
     +isActive():boolean
 }
-class Fantome <<update>> extends Monstre{
+class Fantome extends Monstre{
     +Fantome(x:int, y:int, pv:int, laby:Labyrinthe)
 }
-class Cle <<update>> {
+class Cle {
     +Cle(dx:int, dy:int, laby:Labyrinthe)
 }
 
+abstract class Arme <<update>> {
+    -degats:int
+    +Arme(x:int, y:int, degats:int)
+}
 
+Item <|- Arme
 
 Jeu <|.. LabyJeu
 LabyJeu --> Labyrinthe : -laby
@@ -284,5 +325,7 @@ Labyrinthe -[hidden]> Case
 Amulette -l-|> Item
 GrapheListe -[hidden]r-> Dijkstra
 Cle -|> Item
+
+
 
 @enduml
