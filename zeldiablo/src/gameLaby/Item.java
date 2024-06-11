@@ -29,12 +29,10 @@ public abstract class Item extends Case{
     }
 
     public boolean persoPresent() {
-        if (!this.dansInventaire) {
-            Perso p = getLaby().getPerso();
-            if (p.getX() == getX() && p.getY() == getY()){
-                return true;
-            }
-        }
+
+        Perso p = getLaby().getPerso();
+        if (p.getX() == getX() && p.getY() == getY()){return true;}
+
         return false;
     }
 

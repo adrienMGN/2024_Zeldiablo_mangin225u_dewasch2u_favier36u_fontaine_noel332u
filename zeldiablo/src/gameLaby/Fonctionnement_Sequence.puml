@@ -1,27 +1,26 @@
 @startuml
-title Sortie du labyrinthe
+title Recuperation amulette
 
 participant "jeuLaby: LabyJeu" as jeuLaby
 participant "laby:Labyrinthe" as laby
-participant "sortie:Sortie" as sortie
+participant "amulette:Amulette" as amulette
 participant "pj:Perso" as pj
 
 
-jeuLaby -> jeuLaby : etreFini()
-activate jeuLaby
-jeuLaby -> sortie: sortiePossible()
-activate sortie
-sortie -> sortie: persoPresent(x,y)
-activate sortie
-sortie --> sortie :true
-deactivate sortie
-sortie -> pj: possedeAmulette()
-activate pj
-pj --> sortie: true
-deactivate pj
-sortie --> jeuLaby: true
-deactivate sortie
-jeuLaby --> jeuLaby : true
-deactivate jeuLaby
+jeuLaby -> amulette : persoPresent()
+activate amulette
+amulette --> jeuLaby : present
+deactivate amulette
+alt true
+    jeuLaby -> amulette : rammasseItem(pj)
+    activate amulette
+    amulette -> pj : ajouterInventaire(amulette)
+    activate pj
+    pj --> amulette
+    deactivate pj
+    amulette --> jeuLaby
+    deactivate amulette
+end
+
 
 @enduml

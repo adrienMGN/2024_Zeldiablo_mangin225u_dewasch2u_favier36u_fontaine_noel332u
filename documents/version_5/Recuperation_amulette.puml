@@ -9,19 +9,18 @@ participant "pj:Perso" as pj
 
 jeuLaby -> amulette : persoPresent()
 activate amulette
+amulette --> jeuLaby : present
+deactivate amulette
 alt true
-    amulette -> amulette : rammasseItem(pj)
+    jeuLaby -> amulette : rammasseItem(pj)
     activate amulette
     amulette -> pj : ajouterInventaire(amulette)
     activate pj
     pj --> amulette
     deactivate pj
-    amulette --> amulette
+    amulette --> jeuLaby
     deactivate amulette
 end
-
-amulette --> jeuLaby
-deactivate amulette
 
 
 @enduml

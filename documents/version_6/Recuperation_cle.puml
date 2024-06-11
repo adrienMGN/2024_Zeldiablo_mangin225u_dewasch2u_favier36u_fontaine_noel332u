@@ -1,0 +1,25 @@
+@startuml
+title Recuperation cle
+
+participant "jeuLaby: LabyJeu" as jeuLaby
+participant "cle:Cle" as cle
+participant "pj:Perso" as pj
+
+
+jeuLaby -> cle : persoPresent()
+activate cle
+cle --> jeuLaby : present
+deactivate cle
+alt true
+    jeuLaby -> cle : rammasseItem(pj)
+    activate cle
+    cle -> pj : ajouterInventaire(amulette)
+    activate pj
+    pj --> cle
+    deactivate pj
+    cle --> jeuLaby
+    deactivate cle
+end
+
+
+@enduml
