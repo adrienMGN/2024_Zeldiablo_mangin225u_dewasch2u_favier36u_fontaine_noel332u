@@ -1,4 +1,6 @@
-package gameLaby;
+package gameLaby.interactif;
+
+import gameLaby.laby.Labyrinthe;
 
 public class Ouverture extends Declenchable {
 

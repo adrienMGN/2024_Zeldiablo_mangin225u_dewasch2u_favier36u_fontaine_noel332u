@@ -1,5 +1,10 @@
-package gameLaby;
+package gameLaby.entites;
 
+
+import gameLaby.laby.Labyrinthe;
+import gameLaby.objets.Amulette;
+import gameLaby.objets.Cle;
+import gameLaby.objets.Item;
 
 import java.util.ArrayList;
 

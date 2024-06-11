@@ -1,4 +1,8 @@
-import gameLaby.*;
+import gameLaby.entites.Fantome;
+import gameLaby.entites.Monstre;
+import gameLaby.entites.Perso;
+import gameLaby.laby.LabyJeu;
+import gameLaby.laby.Labyrinthe;
 import moteurJeu.Clavier;
 import org.junit.jupiter.api.Test;
 

@@ -1,13 +1,10 @@
-import gameLaby.LabyJeu;
-import gameLaby.Labyrinthe;
-import gameLaby.Monstre;
-import gameLaby.Perso;
-import javafx.scene.input.KeyEvent;
+import gameLaby.laby.LabyJeu;
+import gameLaby.laby.Labyrinthe;
+import gameLaby.entites.Monstre;
+import gameLaby.entites.Perso;
 import moteurJeu.Clavier;
 import org.junit.jupiter.api.Test;
 
-import static java.awt.event.KeyEvent.VK_SPACE;
-import static javafx.scene.input.KeyCode.SPACE;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class TestLaby {

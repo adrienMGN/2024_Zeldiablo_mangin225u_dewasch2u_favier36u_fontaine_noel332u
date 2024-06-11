@@ -1,10 +1,7 @@
-import gameLaby.LabyJeu;
-import gameLaby.Labyrinthe;
-import gameLaby.Ouverture;
+import gameLaby.laby.LabyJeu;
+import gameLaby.laby.Labyrinthe;
 import moteurJeu.Clavier;
 import org.junit.jupiter.api.Test;
-
-import java.io.IOException;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 

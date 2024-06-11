@@ -1,4 +1,4 @@
-package gameLaby;
+package gameLaby.laby;
 
 public abstract class Case {
     private int x;

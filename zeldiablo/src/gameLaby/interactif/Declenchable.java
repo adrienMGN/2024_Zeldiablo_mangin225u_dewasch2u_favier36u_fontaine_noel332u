@@ -1,4 +1,8 @@
-package gameLaby;
+package gameLaby.interactif;
+
+import gameLaby.laby.Case;
+import gameLaby.entites.Entite;
+import gameLaby.laby.Labyrinthe;
 
 public abstract class Declenchable extends Case {
     private int id;

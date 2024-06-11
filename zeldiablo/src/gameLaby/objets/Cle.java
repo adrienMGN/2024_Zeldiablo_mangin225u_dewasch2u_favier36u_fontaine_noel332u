@@ -1,6 +1,6 @@
-package gameLaby;
+package gameLaby.objets;
 
-import javafx.scene.image.Image;
+import gameLaby.laby.Labyrinthe;
 
 public class Cle extends Item {
 

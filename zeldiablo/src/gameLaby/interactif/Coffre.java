@@ -1,6 +1,9 @@
-package gameLaby;
+package gameLaby.interactif;
 
-public class Coffre extends Case{
+import gameLaby.laby.Case;
+import gameLaby.laby.Labyrinthe;
+
+public class Coffre extends Case {
 
     static int nbCoffres = 0;
     boolean actif;

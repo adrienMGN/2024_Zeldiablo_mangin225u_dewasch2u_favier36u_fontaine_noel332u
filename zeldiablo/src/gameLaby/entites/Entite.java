@@ -1,6 +1,9 @@
-package gameLaby;
+package gameLaby.entites;
 
-public abstract class Entite extends Case{
+import gameLaby.laby.Case;
+import gameLaby.laby.Labyrinthe;
+
+public abstract class Entite extends Case {
     private int pv ;
 
     public Entite(int x, int y, int pv, Labyrinthe laby) {

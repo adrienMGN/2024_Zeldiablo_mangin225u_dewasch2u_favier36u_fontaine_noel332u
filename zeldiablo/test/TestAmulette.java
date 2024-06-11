@@ -1,7 +1,7 @@
-import gameLaby.Amulette;
-import gameLaby.Labyrinthe;
-import gameLaby.LabyJeu;
-import gameLaby.Monstre;
+import gameLaby.objets.Amulette;
+import gameLaby.laby.Labyrinthe;
+import gameLaby.laby.LabyJeu;
+import gameLaby.entites.Monstre;
 import moteurJeu.Clavier;
 import org.junit.jupiter.api.Test;
 

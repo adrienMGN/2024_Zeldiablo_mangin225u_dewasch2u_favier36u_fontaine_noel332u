@@ -1,4 +1,6 @@
-package gameLaby;
+package gameLaby.entites;
+
+import gameLaby.laby.Labyrinthe;
 
 public class Monstre extends Entite {
 
