@@ -62,9 +62,4 @@ public class Perso extends Entite {
     public void setInventaire(ArrayList<Item> inventaire){
         this.inventaire = inventaire;
     }
-
-    public void addPv(int pv){
-        this.setPv(this.getPv()+pv);
-    }
-
 }
