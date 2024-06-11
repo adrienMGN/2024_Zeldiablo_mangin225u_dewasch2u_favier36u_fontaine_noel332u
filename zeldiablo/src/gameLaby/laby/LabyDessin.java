@@ -23,20 +23,21 @@ import java.util.ArrayList;
 public class LabyDessin implements DessinJeu {
 
     public static int tailleCase = 50;
-    static Image amulette = new Image("file:imgs/colieror.png");
-    static Image cle = new Image("file:imgs/cle.png");
-    static Image fantome = new Image("file:imgs/fantome.png");
-    static Image monstre = new Image("file:imgs/monstre.png");
-    static Image perso = new Image("file:imgs/perso.png");
-    static Image coffre = new Image("file:imgs/coffre.png");
-    static Image porte = new Image("file:imgs/porte.png");
-    static Image mur = new Image("file:imgs/murs.png");
-    static Image fleche = new Image("file:img/fleche.png");
-    static Image epee = new Image("file:img/epee.png");
-    static Image arc = new Image("file:imgs/arc.png");
 
     @Override
     public void dessinerJeu(Jeu jeu, Canvas canvas) {
+
+        Image amulette = new Image("file:imgs/colieror.png");
+        Image cle = new Image("file:imgs/cle.png");
+        Image fantome = new Image("file:imgs/fantome.png");
+        Image monstre = new Image("file:imgs/monstre.png");
+        Image porte = new Image("file:imgs/porte.png");
+        Image perso = new Image("file:imgs/perso.png");
+        Image coffre = new Image("file:imgs/coffre.png");
+        Image mur = new Image("file:imgs/murs.png");
+        Image fleche = new Image("file:img/fleche.png");
+        Image epee = new Image("file:img/epee.png");
+        Image arc = new Image("file:imgs/arc.png");
 
         LabyJeu jeuLaby = (LabyJeu) jeu;
         Labyrinthe laby = jeuLaby.getLaby();
