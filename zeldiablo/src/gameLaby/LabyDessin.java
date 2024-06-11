@@ -9,6 +9,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Font;
 import javafx.scene.text.TextAlignment;
 import moteurJeu.DessinJeu;
 import moteurJeu.Jeu;
@@ -100,7 +101,8 @@ public class LabyDessin implements DessinJeu {
                 }
 
                 gc.setFill(Color.BLACK);
-                gc.fillText(""+entite.getPv(), px * tailleCase+tailleCase/2, py * tailleCase+tailleCase/2);
+                gc.setFont(Font.font("Comic Sans MS", 20));
+                gc.fillText(""+entite.getPv(), px * tailleCase+tailleCase/2, py * tailleCase-5);
                 gc.setTextAlign(TextAlignment.CENTER);
             }
         }
