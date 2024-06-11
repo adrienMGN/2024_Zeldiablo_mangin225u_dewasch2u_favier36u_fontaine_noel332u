@@ -1,0 +1,10 @@
+Léo : diagramme de séquence récupéraation d'une clef
+Adrien :  diagramme de classe 
+Clément : diagramme de séquence utilisaton clef pour ouvrir coffre
+Julien : diagramme de séquence fantome
+
+adrien : implémentation de la classe Fantome + changement dans la classe GrapheListe qui prend un booléen en constructeur qui permet de ne pas prendre en compte les murs
+léo : tests clef et coffre
+clément : tests de fantome
+julien : conception des sprites 
+
