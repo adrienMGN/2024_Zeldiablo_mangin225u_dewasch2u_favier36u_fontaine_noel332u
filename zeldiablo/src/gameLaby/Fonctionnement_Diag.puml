@@ -1,6 +1,9 @@
 @startuml
 title Diagramme de Classe pour LabyJeu avec Moteur de Jeu
 
+top to bottom direction
+skinparam linetype ortho
+
 interface Jeu {
     +update(secondes: double, clavier: Clavier): void
     +init(): void
@@ -36,6 +39,7 @@ class Labyrinthe {
     +deplacerPerso(action: String): void
     +attaqueDirectionnel(String derniere_direction): void
     +mouvementsMonstres(): void
+    +actoinnerItems(derniere_direction String): void
     +mouvementAleatoireMonstres(m: Monstre, v: List<Arc>): void
     +gestionEntite(): void
     +etreFini(): boolean
@@ -48,6 +52,7 @@ class Labyrinthe {
     +ajouterEntite(Entite e): void
     +ajouterItem(Item i): void
     +estVideCase(x: int, y: int): boolean
+    +getCoffre(x: int, y: int): int
 }
 
 class Clavier {
@@ -55,7 +60,9 @@ class Clavier {
     +bas: boolean
     +gauche: boolean
     +droite: boolean
-    +i: boolean
+    +space: boolean
+    +e: boolean
+'    +i: boolean
     +appuyerTouche(event: KeyEvent): void
     +relacherTouche(event: KeyEvent): void
 }
@@ -86,6 +93,7 @@ class Perso {
     +mourir(): void
      +attaquer(monstre: Monstre): int
      +possedeAmulette(): boolean
+     +utiliserCle(): void
      +ajouterInventaire(item: Item): void
      +getInventaire(): ArrayList<Item>
      +setInventaire(inventaire: ArrayList<Item>): void
@@ -173,7 +181,7 @@ class GrapheListe{
     - noeuds : ArrayList<String>
     - graphe : String[][]
 
-    + GrapheListe(laby: Labyrinthe)
+    + GrapheListe(laby: Labyrinthe, ghost: boolean)
     + getIndice(n : String) : int
     + ajouterArc(depart : String, destination : String, cout : double) : void
     + listeNoeuds() : List<String>
@@ -198,7 +206,7 @@ class Valeur{
     skinparam class {
         BackgroundColor<<update>> Pink
     }
-    class Amulette extends Item  {
+    class Amulette  {
         +Amulette(dx:int, dy:int)
     }
 
@@ -231,30 +239,39 @@ abstract class Case <<update>>{
     +etrePresent(dx:int, dy:int):boolean
 }
 
+class Coffre <<update>> extends Case{
+    +static nbCoffres: int
+    +Coffre(x:int, y:int, laby:Labyrinthe)
+    +isActive():boolean
+}
+class Fantome <<update>> extends Monstre{
+    +Fantome(x:int, y:int, pv:int, laby:Labyrinthe)
+}
 
 
 
 Jeu <|.. LabyJeu
 LabyJeu --> Labyrinthe : -laby
-MoteurJeu --> Jeu : -<static> jeu
-MoteurJeu --> DessinJeu : -<static> dessin
+MoteurJeu -l-> Jeu : -<static> jeu
+MoteurJeu -r-> DessinJeu : -<static> dessin
 MoteurJeu --> Clavier : -<static> clavier
 DessinJeu <|.. LabyDessin
 Labyrinthe "*"-->"1" Perso : -pj
   Labyrinthe "*"-->"*" PassageSecret : -psecrets
-Declenchable "*"<-u-"*" Labyrinthe : -declenchables
+Declenchable "*"<-u--"*" Labyrinthe : -declenchables
  Declenchable <|-- Ouverture
  Declenchable <|-- Fermeture
 
-LabyDessin -[hidden]> Dijkstra
-Monstre -r[hidden]-> Valeur
+PassageSecret ---[hidden]r> Dijkstra
+'Perso -r[hidden]-> Valeur
 'Perso -[hidden]> GrapheListe
 GrapheListe "*"-->"*" Arcs : - adjacence
 Arcs "*"-->"*" Arc : - arcs
-Perso -u-|> Entite
+Perso -d-|> Entite
 Monstre -u-|> Entite
 
-Labyrinthe "*"-> "*" Entite : +entites
+'Labyrinthe "*"-> "*" Entite : +entites
+Labyrinthe "*"--d> "*" Entite : +entites
 
 'Ajout du SpriteManager
 'Entite ..> SpriteManager : <<use>>
@@ -264,13 +281,20 @@ Labyrinthe "*"-> "*" Entite : +entites
 'Entite -> SpriteManager : -spriteManager
 'SpriteManager -[hidden]-> LabyDessin
 
-Labyrinthe -u-> Sortie : -sortie
-Labyrinthe "*"-L> "*" Item : +items
+Labyrinthe -l> Sortie : -sortie
+Labyrinthe "*"-down> "*" Item : +items
 
 Entite -|> Case
 Item -|> Case
-Declenchable -|> Case
-PassageSecret -|> Case
+Declenchable -u|> Case
+PassageSecret --|> Case
 Sortie -|> Case
+'Sortie -[hidden]> PassageSecret
+Labyrinthe -[hidden]> Case
+
+'Case -[hidden]> Ouverture
+Amulette -l-|> Item
+GrapheListe -[hidden]r-> Dijkstra
+
 
 @enduml
