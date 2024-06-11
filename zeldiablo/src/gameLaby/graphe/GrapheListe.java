@@ -1,4 +1,6 @@
-package gameLaby;
+package gameLaby.graphe;
+import gameLaby.laby.Labyrinthe;
+
 import java.util.ArrayList;
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package gameLaby;
+package gameLaby.graphe;
 /**
  * La classe Arc représente un arc dans un graphe.
  * Chaque arc a une destination et un coût associé.

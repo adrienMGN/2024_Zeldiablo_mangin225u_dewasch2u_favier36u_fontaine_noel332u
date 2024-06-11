@@ -1,12 +1,16 @@
-package gameLaby;
+package gameLaby.laby;
 
-import javafx.geometry.Insets;
-import javafx.scene.Scene;
+import gameLaby.entites.Entite;
+import gameLaby.entites.Fantome;
+import gameLaby.entites.Monstre;
+import gameLaby.entites.Perso;
+import gameLaby.objets.Amulette;
+import gameLaby.objets.Cle;
+import gameLaby.objets.Item;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
@@ -127,8 +131,8 @@ public class LabyDessin implements DessinJeu {
             for(int i = 0; i < 6; i++) {
                 gc.strokeRect(i*40+5,5,40,40);
 
-                if (laby.getPerso().inventaire.size() > i) {
-                    Item item = laby.getPerso().inventaire.get(i);
+                if (laby.getPerso().getInventaire().size() > i) {
+                    Item item = laby.getPerso().getInventaire().get(i);
                     if (item != null) {
                         if (item instanceof Amulette) {
                             gc.drawImage(amulette, i * 40 + 5, 5, 40, 40);

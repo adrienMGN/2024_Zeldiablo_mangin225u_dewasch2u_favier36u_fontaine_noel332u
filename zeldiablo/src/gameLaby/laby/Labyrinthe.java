@@ -1,4 +1,18 @@
-package gameLaby;
+package gameLaby.laby;
+
+import gameLaby.*;
+import gameLaby.entites.Entite;
+import gameLaby.entites.Fantome;
+import gameLaby.entites.Monstre;
+import gameLaby.entites.Perso;
+import gameLaby.graphe.Arc;
+import gameLaby.graphe.Dijkstra;
+import gameLaby.graphe.GrapheListe;
+import gameLaby.graphe.Valeur;
+import gameLaby.interactif.*;
+import gameLaby.objets.Amulette;
+import gameLaby.objets.Cle;
+import gameLaby.objets.Item;
 
 import java.io.BufferedReader;
 import java.io.FileReader;

@@ -1,8 +1,9 @@
-package gameLaby;
+package gameLaby.laby;
+import gameLaby.interactif.Declenchable;
+import gameLaby.objets.Item;
 import javafx.application.Platform;
 import moteurJeu.Clavier;
 import moteurJeu.Jeu;
-import moteurJeu.MoteurJeu;
 
 
 public class LabyJeu implements Jeu {

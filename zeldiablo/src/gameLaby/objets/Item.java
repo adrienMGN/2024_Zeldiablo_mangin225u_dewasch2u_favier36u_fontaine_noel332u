@@ -1,9 +1,10 @@
-package gameLaby;
+package gameLaby.objets;
 
-import java.util.ArrayList;
-import java.util.Arrays;
+import gameLaby.laby.Case;
+import gameLaby.laby.Labyrinthe;
+import gameLaby.entites.Perso;
 
-public abstract class Item extends Case{
+public abstract class Item extends Case {
     private boolean dansInventaire = false;
 
     public Item(int x, int y, Labyrinthe laby) {

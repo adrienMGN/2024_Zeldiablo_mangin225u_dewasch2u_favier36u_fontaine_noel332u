@@ -1,6 +1,9 @@
-package gameLaby;
+package gameLaby.interactif;
 
-public class PassageSecret extends Case{
+import gameLaby.laby.Case;
+import gameLaby.laby.Labyrinthe;
+
+public class PassageSecret extends Case {
     private int id;
     private boolean active;
 

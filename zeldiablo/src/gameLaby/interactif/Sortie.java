@@ -1,6 +1,10 @@
-package gameLaby;
+package gameLaby.interactif;
 
-public class Sortie extends Case{
+import gameLaby.laby.Case;
+import gameLaby.entites.Perso;
+import gameLaby.laby.Labyrinthe;
+
+public class Sortie extends Case {
 
     public Sortie(int x, int y, Labyrinthe laby) {
         super(x, y, laby);

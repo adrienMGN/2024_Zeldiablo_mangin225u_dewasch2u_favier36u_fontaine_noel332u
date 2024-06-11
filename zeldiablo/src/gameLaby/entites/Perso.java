@@ -1,5 +1,10 @@
-package gameLaby;
+package gameLaby.entites;
 
+
+import gameLaby.laby.Labyrinthe;
+import gameLaby.objets.Amulette;
+import gameLaby.objets.Cle;
+import gameLaby.objets.Item;
 
 import java.util.ArrayList;
 
@@ -28,10 +33,9 @@ public class Perso extends Entite {
      * @return -1
      **/
 
-   public int attaquer(Monstre monstre) {
+   public void attaquer(Monstre monstre) {
        monstre.subirDegats(1);
        System.out.println("Vous attaquez le monstre");
-        return -1;
     }
 
     public boolean possedeAmulette() {

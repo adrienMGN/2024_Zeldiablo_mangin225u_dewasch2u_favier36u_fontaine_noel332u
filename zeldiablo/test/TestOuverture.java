@@ -1,8 +1,5 @@
-import gameLaby.LabyJeu;
-import gameLaby.Labyrinthe;
-import gameLaby.Ouverture;
-import gameLaby.PassageSecret;
-import org.junit.jupiter.api.BeforeAll;
+import gameLaby.laby.LabyJeu;
+import gameLaby.laby.Labyrinthe;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;

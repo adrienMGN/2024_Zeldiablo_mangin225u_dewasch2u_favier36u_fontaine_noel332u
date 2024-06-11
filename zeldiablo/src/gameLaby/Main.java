@@ -1,11 +1,10 @@
 package gameLaby;
 
 import java.io.IOException;
-import java.util.Scanner;
-import java.util.Timer;
-import java.util.TimerTask;
 
-import javafx.scene.chart.ScatterChart;
+import gameLaby.laby.LabyDessin;
+import gameLaby.laby.LabyJeu;
+import gameLaby.laby.Labyrinthe;
 import moteurJeu.MoteurJeu;
 
 /**

@@ -1,6 +1,5 @@
-import gameLaby.Cle;
-import gameLaby.LabyJeu;
-import gameLaby.Labyrinthe;
+import gameLaby.laby.LabyJeu;
+import gameLaby.laby.Labyrinthe;
 import moteurJeu.Clavier;
 import org.junit.jupiter.api.Test;
 
