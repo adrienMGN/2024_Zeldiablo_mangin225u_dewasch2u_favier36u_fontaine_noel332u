@@ -1,4 +1,5 @@
 package gameLaby;
+import javafx.application.Platform;
 import moteurJeu.Clavier;
 import moteurJeu.Jeu;
 import moteurJeu.MoteurJeu;
@@ -76,13 +77,13 @@ public class LabyJeu implements Jeu {
 
         if(laby.getSortie()!=null){
             if (laby.etreFini()||laby.getSortie().sortiePossible(laby)){
-                System.exit(0);
+                Platform.exit();
             }
         }
         else {
             // Fin du jeu si le personnage est mort ou si le labyrinthe est fini
             if (laby.etreFini()) {
-                System.exit(0);
+                Platform.exit();
             }
         }
     }
