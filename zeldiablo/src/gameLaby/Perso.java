@@ -51,6 +51,15 @@ public class Perso extends Entite {
         return false;
     }
 
+    public boolean possedeCle() {
+        for (Item item : inventaire) {
+            if (item instanceof Cle) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public void ajouterInventaire(Item item){
         this.inventaire.add(item);
     }
@@ -62,9 +71,4 @@ public class Perso extends Entite {
     public void setInventaire(ArrayList<Item> inventaire){
         this.inventaire = inventaire;
     }
-
-    public void addPv(int pv){
-        this.setPv(this.getPv()+pv);
-    }
-
 }

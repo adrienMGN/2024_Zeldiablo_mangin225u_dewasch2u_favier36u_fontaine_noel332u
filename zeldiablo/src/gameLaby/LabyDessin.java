@@ -96,6 +96,8 @@ public class LabyDessin implements DessinJeu {
                 double y = item.getY();
                 if (item instanceof Amulette)
                     gc.drawImage(amulette,x*tailleCase,y*tailleCase);
+                if (item instanceof Cle)
+                    gc.drawImage(amulette,x*tailleCase,y*tailleCase);
             }
         }
 

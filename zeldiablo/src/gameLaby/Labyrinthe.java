@@ -26,6 +26,8 @@ public class Labyrinthe {
     public static final char AMULETTE = 'A';
 
     public static final char SORTIE = 'S';
+    public static final char COFFRE = 'C';
+    public static final char CLE = 'K';
 
     /**
      * constantes actions possibles
@@ -51,6 +53,7 @@ public class Labyrinthe {
     public ArrayList<PassageSecret> psecrets = new ArrayList<>();
     public ArrayList<Entite> entites = new ArrayList<>();
     public ArrayList<Item> items = new ArrayList<>();
+    public ArrayList<Coffre> coffres = new ArrayList<>();
 
     /**
      * retourne la case suivante selon une actions
@@ -155,6 +158,14 @@ public class Labyrinthe {
                         break;
                     case SORTIE:
                         sortie = new Sortie(colonne, numeroLigne);
+                        this.murs[colonne][numeroLigne] = false;
+                        break;
+                    case COFFRE:
+                        declenchables.add(new Coffre(0,colonne, numeroLigne));
+                        this.murs[colonne][numeroLigne] = false;
+                        break;
+                    case CLE:
+                        items.add(new Cle(colonne, numeroLigne));
                         this.murs[colonne][numeroLigne] = false;
                         break;
                     default:
@@ -417,6 +428,9 @@ public class Labyrinthe {
 
     public Sortie getSortie() {
         return sortie;
+    }
+    public Coffre getCoffre(){
+        return coffre;
     }
 
 }
