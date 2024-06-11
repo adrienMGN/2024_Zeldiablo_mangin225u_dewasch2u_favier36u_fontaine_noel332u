@@ -27,7 +27,7 @@ public class Coffre extends Case {
                 int dmg = (int) Math.floor(Math.random()*3+1);
                 Epee epee = new Epee(this.getX(), this.getY(), dmg+1, laby);
                 laby.ajouterItem(epee); //Epee
-            } else if(random == 2 || random == 1){
+            } else if(random == 2||random == 1){
                 System.out.println("Vous venez d'obtenir un Arc");
                 int dmg = (int) Math.floor(Math.random()*3+1);
                 Arc arc = new Arc(this.getX(), this.getY(), dmg+1, laby);

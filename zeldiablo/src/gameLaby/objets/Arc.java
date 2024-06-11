@@ -24,8 +24,7 @@ public class Arc extends Arme{
     }
 
     public void avancerFleches(){
-        int taille = fleches.size();
-        for(int i = 0; i<taille; i++){
+        for(int i = 0; i<fleches.size(); i++){
             Fleche f = fleches.get(i);
             if(!f.avancer()){
                 Entite e = f.collision();
