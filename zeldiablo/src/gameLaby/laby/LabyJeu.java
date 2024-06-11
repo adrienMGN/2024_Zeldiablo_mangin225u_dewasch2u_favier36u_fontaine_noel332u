@@ -16,6 +16,7 @@ public class LabyJeu implements Jeu {
     private double timer = 0;
     private double regen = 0;
     private double rechargeFleche = 0;
+    private double updateFleche = 0;
 
     public LabyJeu (Labyrinthe labyrinthe) {
         laby = labyrinthe;
@@ -76,10 +77,19 @@ public class LabyJeu implements Jeu {
         // update le mouvement des monstres toutes les 0.5 secondes
         timer+=secondes;
         regen+=secondes;
+        updateFleche+=secondes;
 
         if (timer >= 0.5){
             laby.mouvementsMonstres();
             timer = 0;
+        }
+
+        if (updateFleche >= 0.25){
+            Arc a = laby.getPerso().selectionnerMeilleurArc();
+            if (a != null){
+                a.avancerFleches();
+            }
+            updateFleche = 0;
         }
 
         if (regen >= 5){
@@ -96,17 +106,6 @@ public class LabyJeu implements Jeu {
                 a.setNbFleches(5);
                 rechargeFleche = 0;
             }
-        }
-
-        if (rechargeFleche >= 10){
-            for (int i = 0; i < laby.getPerso().getInventaire().size(); i++) {
-                Item item = laby.getPerso().getInventaire().get(i);
-                if(item instanceof Arc){
-                    Arc arc = (Arc) item;
-                    arc.setNbFleches(5);
-                }
-            }
-            rechargeFleche = 0;
         }
 
 

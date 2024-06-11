@@ -25,12 +25,12 @@ public class Coffre extends Case {
             if(random == 1){
                 System.out.println("Vous venez d'obtenir une épée");
                 int dmg = (int) Math.floor(Math.random()*3+1);
-                Epee epee = new Epee(this.getX(), this.getY(), dmg+1, laby);
+                Epee epee = new Epee(this.getX(), this.getY(), dmg+1);
                 laby.ajouterItem(epee); //Epee
             } else if(random == 2){
                 System.out.println("Vous venez d'obtenir un Arc");
                 int dmg = (int) Math.floor(Math.random()*3+1);
-                Arc arc = new Arc(this.getX(), this.getY(), dmg+1, laby);
+                Arc arc = new Arc(this.getX(), this.getY(), dmg+1);
                 laby.ajouterItem(arc); //Arc
             }
         }

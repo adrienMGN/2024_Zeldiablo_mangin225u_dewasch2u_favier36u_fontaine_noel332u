@@ -191,12 +191,12 @@ public class Labyrinthe {
                     case EPEE:
                         // degats aléatoire entre 2 et 4
                         int degatsEpee = (int)Math.ceil(Math.random()*3) +1;
-                        items.add(new Epee(colonne, numeroLigne,degatsEpee, laby));
+                        items.add(new Epee(colonne, numeroLigne,degatsEpee));
                         this.murs[colonne][numeroLigne] = false;
                         break;
                     case ARC:
                         int degatsArc = (int)Math.ceil(Math.random()*3) +1;
-                        items.add(new Arc(colonne, numeroLigne,degatsArc, laby));
+                        items.add(new Arc(colonne, numeroLigne,degatsArc));
                         this.murs[colonne][numeroLigne] = false;
                         break;
 
@@ -268,7 +268,7 @@ public class Labyrinthe {
 
         // si c'est pas un mur, on effectue le deplacement
         for (Coffre c : coffres) {
-            if (c.etrePresent(suivante[0], suivante[1])) {
+            if (c.etrePresent(suivante[0], suivante[1])&& c.isActif()) {
                 c.action();
             }
         }

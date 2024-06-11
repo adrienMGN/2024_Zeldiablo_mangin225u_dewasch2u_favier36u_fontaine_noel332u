@@ -1,5 +1,6 @@
 package gameLaby.objets;
 
+import gameLaby.Main;
 import gameLaby.entites.Entite;
 import gameLaby.laby.Labyrinthe;
 
@@ -10,12 +11,12 @@ public class Arc extends Arme{
     private ArrayList<Fleche> fleches = new ArrayList<>();
     private int nbFleches = 5;
 
-    public Arc(int x, int y, int degats, Labyrinthe laby) {
-        super(x, y, degats, laby);
+    public Arc(int x, int y, int degats) {
+        super(x, y, degats);
     }
 
     public void tirerFleche(String direction){
-        Labyrinthe laby = getLaby();
+        Labyrinthe laby = Main.getLaby();
         if(nbFleches > 0){
             Fleche f = new Fleche(direction, laby.getPerso().getX(), laby.getPerso().getY(), laby);
             fleches.add(f);

@@ -5,8 +5,8 @@ import gameLaby.laby.Labyrinthe;
 public abstract class Arme extends Item{
     private int degats;
 
-    public Arme(int x, int y, int degats, Labyrinthe laby) {
-        super(x, y, laby);
+    public Arme(int x, int y, int degats) {
+        super(x, y);
         this.degats = degats;
     }
 

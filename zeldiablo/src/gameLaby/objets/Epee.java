@@ -5,8 +5,8 @@ import gameLaby.laby.Labyrinthe;
 public class Epee extends Arme{
 
 
-    public Epee(int x, int y, int degats, Labyrinthe laby) {
-        super(x, y, degats, laby);
+    public Epee(int x, int y, int degats) {
+        super(x, y, degats);
     }
 
 
