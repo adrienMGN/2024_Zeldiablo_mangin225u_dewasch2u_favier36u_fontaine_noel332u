@@ -32,6 +32,8 @@ public class LabyDessin implements DessinJeu {
     static Image porte = new Image("file:imgs/porte.png");
     static Image mur = new Image("file:imgs/murs.png");
     static Image fleche = new Image("file:img/fleche.png");
+    static Image epee = new Image("file:img/epee.png");
+    static Image arc = new Image("file:imgs/arc.png");
 
     @Override
     public void dessinerJeu(Jeu jeu, Canvas canvas) {
