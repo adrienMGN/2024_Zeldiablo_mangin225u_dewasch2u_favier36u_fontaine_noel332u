@@ -23,20 +23,18 @@ import java.util.ArrayList;
 public class LabyDessin implements DessinJeu {
 
     public static int tailleCase = 50;
-
-    final Color gris = Color.rgb(180,180,180);
-    ArrayList<Rectangle> grille = new ArrayList<>();
-    ArrayList<ImageView> inv = new ArrayList<>();
+    static Image amulette = new Image("file:imgs/colieror.png");
+    static Image cle = new Image("file:imgs/cle.png");
+    static Image fantome = new Image("file:imgs/fantome.png");
+    static Image monstre = new Image("file:imgs/monstre.png");
+    static Image perso = new Image("file:imgs/perso.png");
+    static Image coffre = new Image("file:imgs/coffre.png");
+    static Image porte = new Image("file:imgs/porte.png");
+    static Image mur = new Image("file:imgs/murs.png");
+    static Image fleche = new Image("file:img/fleche.png");
 
     @Override
     public void dessinerJeu(Jeu jeu, Canvas canvas) {
-        Image amulette = new Image("file:imgs/colieror.png");
-        Image cle = new Image("file:imgs/cle.png");
-        Image fantome = new Image("file:imgs/fantome.png");
-        Image monstre = new Image("file:imgs/monstre.png");
-        Image perso = new Image("file:imgs/perso.png");
-        Image coffre = new Image("file:imgs/coffre.png");
-        Image porte = new Image("file:imgs/porte.png");
 
         LabyJeu jeuLaby = (LabyJeu) jeu;
         Labyrinthe laby = jeuLaby.getLaby();
@@ -55,8 +53,7 @@ public class LabyDessin implements DessinJeu {
             // affiche la ligne
             for (int x = 0; x < laby.getLength(); x++) {
                 if (laby.getMur(x, y)){
-                    gc.setFill(Color.BLACK);
-                    gc.fillRect(x*tailleCase, y*tailleCase, tailleCase, tailleCase);
+                    gc.drawImage(mur,x*tailleCase, y*tailleCase, tailleCase, tailleCase);
                 }
                 else if (laby.getPsecret(x,y)!=-1) {
                     if(laby.psecrets.get(laby.getPsecret(x,y)).isActive()){
