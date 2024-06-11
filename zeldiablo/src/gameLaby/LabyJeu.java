@@ -40,9 +40,7 @@ public class LabyJeu implements Jeu {
         }
 
         if (clavier.e){
-            for(Coffre c: laby.coffres){
-                laby.actionnerItem(LabyJeu.DERNIER_MOUVEMENT);
-            }
+            laby.actionnerItem(LabyJeu.DERNIER_MOUVEMENT);
         }
 
         // Gestion des cases declenchables

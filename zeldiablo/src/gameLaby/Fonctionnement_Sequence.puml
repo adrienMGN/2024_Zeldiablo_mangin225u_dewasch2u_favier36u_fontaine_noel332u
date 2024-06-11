@@ -1,26 +1,13 @@
 @startuml
-title Recuperation amulette
+title Utilisation cle pour ouvrir coffre
 
 participant "jeuLaby: LabyJeu" as jeuLaby
 participant "laby:Labyrinthe" as laby
-participant "amulette:Amulette" as amulette
-participant "pj:Perso" as pj
 
+alt clavier.e
+jeuLaby -> laby: actionnerItem(String: derniereDirection)
+activate laby
 
-jeuLaby -> amulette : persoPresent()
-activate amulette
-amulette --> jeuLaby : present
-deactivate amulette
-alt true
-    jeuLaby -> amulette : rammasseItem(pj)
-    activate amulette
-    amulette -> pj : ajouterInventaire(amulette)
-    activate pj
-    pj --> amulette
-    deactivate pj
-    amulette --> jeuLaby
-    deactivate amulette
 end
-
 
 @enduml
