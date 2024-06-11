@@ -1,0 +1,34 @@
+@startuml
+title Recuperation arme (Epee / Arc)
+
+participant "jeuLaby: LabyJeu" as jeuLaby
+participant "arme:Arme" as arme
+participant "pj:Perso" as pj
+
+
+jeuLaby -> arme : persoPresent()
+activate arme
+arme -> pj : getX()
+activate pj
+pj --> arme : x
+deactivate pj
+arme -> pj : getY()
+activate pj
+pj --> arme : y
+deactivate pj
+
+arme --> jeuLaby : present
+deactivate arme
+alt present
+    jeuLaby -> arme : rammasseItem(pj)
+    activate arme
+    arme -> pj : ajouterInventaire(arme)
+    activate pj
+    pj --> arme
+    deactivate pj
+    arme --> jeuLaby
+    deactivate arme
+end
+
+
+@enduml

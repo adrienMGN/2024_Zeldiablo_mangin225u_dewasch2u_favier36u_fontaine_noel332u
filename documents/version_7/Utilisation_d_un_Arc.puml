@@ -1,0 +1,26 @@
+@startuml
+title Utilisation d'un Arc
+
+participant "jeuLaby: LabyJeu" as jeuLaby
+participant "pj:Perso" as pj
+participant "arc:Arc" as arc
+
+
+jeuLaby -> pj: attaquerDirstance(derniereDirection: String)
+activate pj
+pj -> pj: selectionnerMeilleurArc()
+activate pj
+pj --> pj:arc
+deactivate pj
+
+alt meilleur!=null
+pj -> arc: tirerFleche(String: direction)
+activate arc
+arc --> pj
+deactivate arc
+end
+
+pj --> jeuLaby
+deactivate pj
+
+@enduml

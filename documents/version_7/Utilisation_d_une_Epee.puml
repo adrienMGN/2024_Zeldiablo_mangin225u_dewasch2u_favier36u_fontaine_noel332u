@@ -1,0 +1,52 @@
+@startuml
+title Utilisation d'une Epee
+
+participant "jeuLaby: LabyJeu" as jeuLaby
+participant "laby:Labyrinthe" as laby
+participant "pj:Perso" as pj
+participant "monstre:Monstre" as monstre
+participant "epee:Epee" as epee
+
+
+jeuLaby -> laby: attaqueDirectionnel(derniereDirection: String)
+activate laby
+laby -> laby: getSuivant(x:int, y: int, direction: String)
+activate laby
+laby --> laby: suivant
+deactivate laby
+laby -> monstre:etrePresent(suivant)
+activate monstre
+monstre --> laby: present
+deactivate monstre
+
+alt present
+laby -> pj : attaque(monstre)
+activate pj
+pj -> pj: selectionnerMeilleurEpee()
+activate pj
+pj --> pj:meilleur
+deactivate pj
+
+alt meilleur!=null
+pj -> epee: getDegats()
+activate epee
+epee --> pj: degats
+deactivate epee
+pj -> monstre: subirDegats(degats)
+activate monstre
+monstre --> pj
+deactivate monstre
+
+else
+pj -> monstre: subirDegats(1)
+activate monstre
+monstre --> pj
+deactivate monstre
+end
+pj --> laby
+deactivate pj
+end
+laby --> jeuLaby
+deactivate laby
+
+@enduml

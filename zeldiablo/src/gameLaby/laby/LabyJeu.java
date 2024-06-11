@@ -66,13 +66,6 @@ public class LabyJeu implements Jeu {
             }
         }
 
-        for (int i = 0; i < laby.getPerso().getInventaire().size(); i++) {
-            Item item = laby.getPerso().getInventaire().get(i);
-            if(item instanceof Arc){
-                Arc arc = (Arc) item;
-                arc.avancerFleches();
-            }
-        }
 
         // update le mouvement des monstres toutes les 0.5 secondes
         timer+=secondes;
