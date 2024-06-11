@@ -31,6 +31,8 @@ public class LabyDessin implements DessinJeu {
         Image fantome = new Image("file:imgs/fantome.png");
         Image monstre = new Image("file:imgs/monstre.png");
         Image perso = new Image("file:imgs/perso.png");
+        Image coffre = new Image("file:imgs/coffre.png");
+        Image porte = new Image("file:imgs/porte.png");
 
         LabyJeu jeuLaby = (LabyJeu) jeu;
         Labyrinthe laby = jeuLaby.getLaby();
@@ -60,8 +62,7 @@ public class LabyDessin implements DessinJeu {
                 }
                 else if (laby.getCoffre(x,y)!=-1){
                     if(laby.coffres.get(laby.getCoffre(x,y)).isActif()){
-                        gc.setFill(Color.BROWN);
-                        gc.fillRect(x*tailleCase, y*tailleCase, tailleCase, tailleCase);
+                        gc.drawImage(coffre, x*tailleCase, y*tailleCase, tailleCase, tailleCase);
                     }
                     else {
                         gc.setFill(Color.WHITE);
@@ -79,8 +80,7 @@ public class LabyDessin implements DessinJeu {
             }
 
         if(laby.getSortie()!=null){
-            gc.setFill(Color.GREEN);
-            gc.fillRect(laby.getSortie().getX()*tailleCase,laby.getSortie().getY()*tailleCase, tailleCase, tailleCase);
+            gc.drawImage(porte,laby.getSortie().getX()*tailleCase,laby.getSortie().getY()*tailleCase, tailleCase, tailleCase);
         }
         // dessin entites si vivantes
 
