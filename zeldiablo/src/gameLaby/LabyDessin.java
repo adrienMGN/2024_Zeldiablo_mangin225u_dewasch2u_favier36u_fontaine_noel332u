@@ -94,10 +94,10 @@ public class LabyDessin implements DessinJeu {
                     gc.drawImage(fantome,px*tailleCase, py*tailleCase, tailleCase, tailleCase);
                 }
                 else if (entite instanceof Monstre) {
-                    gc.drawImage(monstre,px*tailleCase, py*tailleCase, tailleCase, tailleCase);
+                    gc.drawImage(monstre,px*tailleCase-tailleCase/9, py*tailleCase, tailleCase+tailleCase/9, tailleCase);
                 }
                 else if (entite instanceof Perso) {
-                    gc.drawImage(perso, px*tailleCase, py*tailleCase, tailleCase, tailleCase);
+                    gc.drawImage(perso, px*tailleCase+tailleCase/8, py*tailleCase, tailleCase-tailleCase/4, tailleCase);
 
                 }
 
@@ -115,7 +115,7 @@ public class LabyDessin implements DessinJeu {
                 if (item instanceof Amulette)
                     gc.drawImage(amulette,x*tailleCase,y*tailleCase);
                 if (item instanceof Cle)
-                    gc.drawImage(cle,x*tailleCase+tailleCase/7,y*tailleCase, tailleCase-15, tailleCase);
+                    gc.drawImage(cle,x*tailleCase+tailleCase/7,y*tailleCase, tailleCase-tailleCase/3, tailleCase);
             }
         }
 
