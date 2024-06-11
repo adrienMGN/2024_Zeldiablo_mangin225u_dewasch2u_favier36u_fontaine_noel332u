@@ -24,7 +24,7 @@ public class Main {
     public static void afficherLabyrinthe(Labyrinthe laby) {
 
         int width = 1000;
-        int height = 700;
+         int height = 700;
         LabyDessin.tailleCase = Math.min(width/laby.getLength(), height/laby.getLengthY());
         int pFPS = 10;
 

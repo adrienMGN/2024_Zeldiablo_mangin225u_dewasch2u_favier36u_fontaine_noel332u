@@ -34,6 +34,9 @@ public abstract class Entite extends Case {
      */
     public void subirDegats(int degats) {
         this.pv -= degats;
+        if (this.pv < 0) {
+            this.pv = 0;
+        }
     }
 
 

@@ -11,6 +11,6 @@ X..XF...GH....X....X
 X.....X..X.........X
 XX.....M.XX........X
 .....M...X...XXX...X
-.........X...XGX..SX
+.........X...XGX.KSX
 XX.......H...XXX.PXX
 XXXXXXXXXXXXXXXXXXXX

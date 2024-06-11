@@ -26,13 +26,13 @@ public class Perso extends Entite {
     public Epee selectionnerMeilleurEpee() {
         Epee meilleur = null;
         for (int i = 0; i < inventaire.size(); i++) {
-            if (inventaire.get(i) instanceof Arme) {
-                Arme arme = (Arme) inventaire.get(i);
-                if (arme instanceof Epee) {
-                    Epee cour = (Epee) arme;
-                    if (cour.getDegats() > meilleur.getDegats()) {
-                        meilleur = cour;
-                    }
+            if (inventaire.get(i) instanceof Epee) {
+                Epee epee = (Epee) inventaire.get(i);
+                if(meilleur == null) {
+                    meilleur = epee;
+                }
+                else if (epee.getDegats() > meilleur.getDegats()) {
+                    meilleur = epee;
                 }
             }
         }
@@ -54,8 +54,8 @@ public class Perso extends Entite {
            monstre.subirDegats(e.getDegats());
        } else {
            monstre.subirDegats(1);
-           System.out.println("Vous attaquez le monstre");
        }
+       System.out.println("Vous attaquez le monstre");
     }
 
     public boolean possedeAmulette() {
@@ -82,6 +82,29 @@ public class Perso extends Entite {
                 inventaire.remove(item);
                 return;
             }
+        }
+    }
+
+    public Arc selectionnerMeilleurArc(){
+        Arc meilleur = null;
+        for (int i = 0; i < inventaire.size(); i++) {
+            if (inventaire.get(i) instanceof Arc) {
+                Arc arc = (Arc) inventaire.get(i);
+                if (meilleur == null) {
+                    meilleur = arc;
+                }
+                else if (arc.getDegats() > meilleur.getDegats()) {
+                    meilleur = arc;
+                }
+            }
+        }
+        return meilleur;
+    }
+
+    public void attaquerDistance(String direction){
+        Arc arc = selectionnerMeilleurArc();
+        if (arc != null) {
+            arc.tirerFleche(direction);
         }
     }
 

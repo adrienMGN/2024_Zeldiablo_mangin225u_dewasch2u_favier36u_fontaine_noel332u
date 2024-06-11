@@ -2,6 +2,8 @@ package gameLaby.interactif;
 
 import gameLaby.laby.Case;
 import gameLaby.laby.Labyrinthe;
+import gameLaby.objets.Arc;
+import gameLaby.objets.Epee;
 
 public class Coffre extends Case {
 
@@ -19,12 +21,17 @@ public class Coffre extends Case {
         if(laby.getPerso().possedeCle()){
             laby.getPerso().utiliserCle();
             actif = false;
-            if(Math.floor(Math.random()*2+1) == 1){
+            int random = (int) Math.floor(Math.random()*2+1);
+            if(random == 0){
                 System.out.println("Vous venez d'obtenir une épée");
-                //laby.getPerso().ajouterItem(); //Epee
-            } else if(Math.floor(Math.random()*2+1) == 2){
+                int dmg = (int) Math.floor(Math.random()*3+1);
+                Epee epee = new Epee(this.getX(), this.getY(), dmg+1, laby);
+                laby.ajouterItem(epee); //Epee
+            } else if(random == 2 || random == 1){
                 System.out.println("Vous venez d'obtenir un Arc");
-                //laby.getPerso().ajouterItem(); //Arc
+                int dmg = (int) Math.floor(Math.random()*3+1);
+                Arc arc = new Arc(this.getX(), this.getY(), dmg+1, laby);
+                laby.ajouterItem(arc); //Arc
             }
         }
     }

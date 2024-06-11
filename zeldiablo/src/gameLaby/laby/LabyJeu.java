@@ -1,5 +1,6 @@
 package gameLaby.laby;
 import gameLaby.interactif.Declenchable;
+import gameLaby.objets.Arc;
 import gameLaby.objets.Item;
 import javafx.application.Platform;
 import moteurJeu.Clavier;
@@ -44,6 +45,10 @@ public class LabyJeu implements Jeu {
             laby.actionnerItem(LabyJeu.DERNIER_MOUVEMENT);
         }
 
+        if (clavier.f){
+            laby.getPerso().attaquerDistance(LabyJeu.DERNIER_MOUVEMENT);
+        }
+
         // Gestion des cases declenchables
         for (int i = 0; i < laby.declenchables.size(); i++) {
             Declenchable declenchable = laby.declenchables.get(i);
@@ -56,6 +61,14 @@ public class LabyJeu implements Jeu {
             Item item = laby.items.get(i);
             if(item.persoPresent()){
                 item.ramasserItem();
+            }
+        }
+
+        for (int i = 0; i < laby.getPerso().getInventaire().size(); i++) {
+            Item item = laby.getPerso().getInventaire().get(i);
+            if(item instanceof Arc){
+                Arc arc = (Arc) item;
+                arc.avancerFleches();
             }
         }
 

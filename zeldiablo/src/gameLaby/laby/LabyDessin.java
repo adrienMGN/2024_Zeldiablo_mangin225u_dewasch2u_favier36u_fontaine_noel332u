@@ -4,9 +4,7 @@ import gameLaby.entites.Entite;
 import gameLaby.entites.Fantome;
 import gameLaby.entites.Monstre;
 import gameLaby.entites.Perso;
-import gameLaby.objets.Amulette;
-import gameLaby.objets.Cle;
-import gameLaby.objets.Item;
+import gameLaby.objets.*;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
@@ -35,8 +33,8 @@ public class LabyDessin implements DessinJeu {
         Image perso = new Image("file:imgs/perso.png");
         Image coffre = new Image("file:imgs/coffre.png");
         Image mur = new Image("file:imgs/murs.png");
-        Image fleche = new Image("file:img/fleche.png");
-        Image epee = new Image("file:img/epee.png");
+        Image fleche = new Image("file:imgs/fleche.png");
+        Image epee = new Image("file:imgs/epee.png");
         Image arc = new Image("file:imgs/arc.png");
 
         LabyJeu jeuLaby = (LabyJeu) jeu;
@@ -61,7 +59,8 @@ public class LabyDessin implements DessinJeu {
                 else if (laby.getPsecret(x,y)!=-1) {
                     if(laby.psecrets.get(laby.getPsecret(x,y)).isActive()){
                         gc.setStroke(Color.BLACK);
-                        gc.strokeRect(x*tailleCase, y*tailleCase, tailleCase, tailleCase);
+                        gc.setFill(Color.WHITE);
+                        gc.fillRect(x*tailleCase, y*tailleCase, tailleCase, tailleCase);
                     }
                 }
                 else if (laby.getCoffre(x,y)!=-1){
@@ -120,9 +119,22 @@ public class LabyDessin implements DessinJeu {
                     gc.drawImage(amulette,x*tailleCase,y*tailleCase);
                 if (item instanceof Cle)
                     gc.drawImage(cle,x*tailleCase+tailleCase/7,y*tailleCase, tailleCase-tailleCase/3, tailleCase);
+                if (item instanceof Epee)
+                    gc.drawImage(epee,x*tailleCase+tailleCase/7,y*tailleCase, tailleCase-tailleCase/3, tailleCase);
+                if (item instanceof Arc)
+                    gc.drawImage(arc,x*tailleCase+tailleCase/7,y*tailleCase, tailleCase-tailleCase/3, tailleCase);
             }
         }
 
+        for (int i = 0; i < laby.getPerso().getInventaire().size(); i++) {
+            Item item = laby.getPerso().getInventaire().get(i);
+            if(item instanceof Arc){
+                ArrayList<Fleche> fleches = ((Arc) item).getFleches();
+                for(Fleche f : fleches){
+                    gc.drawImage(fleche,f.getX()*tailleCase,f.getY()*tailleCase, tailleCase-tailleCase/3, tailleCase);
+                }
+            }
+        }
 
 
             gc.setFill(Color.LIGHTGRAY);
@@ -139,6 +151,16 @@ public class LabyDessin implements DessinJeu {
                         }
                         if (item instanceof Cle){
                             gc.drawImage(cle,i * 40 + 11,5,28,40);
+                        }
+                        if (item instanceof Epee){
+                            gc.drawImage(epee,i * 40 + 11,5,28,40);
+                        }
+                        if (item instanceof Arc){
+                            gc.drawImage(arc,i * 40 + 11,5,28,40);
+                            gc.setFill(Color.BLACK);
+                            gc.setFont(Font.font("Comic Sans MS", 20));
+                            gc.fillText(""+((Arc) item).getNbFleches(), i*40+37, 43);
+                            gc.setTextAlign(TextAlignment.CENTER);
                         }
                     }
                 }
