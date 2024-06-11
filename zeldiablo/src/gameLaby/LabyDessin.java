@@ -25,8 +25,9 @@ public class LabyDessin implements DessinJeu {
 
     @Override
     public void dessinerJeu(Jeu jeu, Canvas canvas) {
-        Image amulette = new Image("file:labySimple/imgs/colieror.png");
-        Image cle = new Image("file:labySimple/imgs/cle.png");
+        Image amulette = new Image("file:imgs/colieror.png");
+        Image cle = new Image("file:imgs/cle.png");
+        Image fantome = new Image("file:imgs/fantome.png");
 
         LabyJeu jeuLaby = (LabyJeu) jeu;
         Labyrinthe laby = jeuLaby.getLaby();
@@ -86,23 +87,18 @@ public class LabyDessin implements DessinJeu {
             if (entite.etreVivant()) {
                 double px = entite.getX();
                 double py = entite.getY();
-                if (entite instanceof Monstre){
-                    gc.setFill(Color.RED);
-                    Monstre monstre = (Monstre) entite;
-                    if (monstre instanceof Fantome) {
-
-                        gc.setFill(Color.rgb(0,0,0,0.125));
-                        gc.setStroke(Color.BLACK);
-                    }
+                if (entite instanceof Fantome) {
+                    gc.drawImage(fantome,px*tailleCase, py*tailleCase, tailleCase, tailleCase);
                 }
-                else if (entite instanceof Perso)
+                else if (entite instanceof Monstre) {
+                    gc.setFill(Color.RED);
+                    gc.fillOval(px*tailleCase, py*tailleCase, tailleCase, tailleCase);
+                }
+                else if (entite instanceof Perso) {
                     gc.setFill(Color.BLUE);
+                    gc.fillOval(px * tailleCase, py * tailleCase, tailleCase, tailleCase);
+                }
 
-
-
-
-
-                gc.fillOval(px * tailleCase, py * tailleCase, tailleCase, tailleCase);
                 gc.setFill(Color.BLACK);
                 gc.fillText(""+entite.getPv(), px * tailleCase+tailleCase/2, py * tailleCase+tailleCase/2);
                 gc.setTextAlign(TextAlignment.CENTER);
