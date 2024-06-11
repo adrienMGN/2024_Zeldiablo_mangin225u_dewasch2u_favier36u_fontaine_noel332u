@@ -2,9 +2,7 @@ package gameLaby.entites;
 
 
 import gameLaby.laby.Labyrinthe;
-import gameLaby.objets.Amulette;
-import gameLaby.objets.Cle;
-import gameLaby.objets.Item;
+import gameLaby.objets.*;
 
 import java.util.ArrayList;
 
@@ -25,6 +23,21 @@ public class Perso extends Entite {
         super(dx, dy, pv, laby);
     }
 
+    public Epee selectionnerMeilleurEpee() {
+        Epee meilleur = null;
+        for (int i = 0; i < inventaire.size(); i++) {
+            if (inventaire.get(i) instanceof Arme) {
+                Arme arme = (Arme) inventaire.get(i);
+                if (arme instanceof Epee) {
+                    Epee cour = (Epee) arme;
+                    if (cour.getDegats() > meilleur.getDegats()) {
+                        meilleur = cour;
+                    }
+                }
+            }
+        }
+        return meilleur;
+    }
 
     /**
      * attaque un monstre
@@ -33,9 +46,16 @@ public class Perso extends Entite {
      * @return -1
      **/
 
+
+
    public void attaquer(Monstre monstre) {
-       monstre.subirDegats(1);
-       System.out.println("Vous attaquez le monstre");
+       Epee e = selectionnerMeilleurEpee();
+       if (e!= null) {
+           monstre.subirDegats(e.getDegats());
+       } else {
+           monstre.subirDegats(1);
+           System.out.println("Vous attaquez le monstre");
+       }
     }
 
     public boolean possedeAmulette() {

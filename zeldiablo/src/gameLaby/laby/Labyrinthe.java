@@ -12,6 +12,7 @@ import gameLaby.graphe.Valeur;
 import gameLaby.interactif.*;
 import gameLaby.objets.Amulette;
 import gameLaby.objets.Cle;
+import gameLaby.objets.Epee;
 import gameLaby.objets.Item;
 
 import java.io.BufferedReader;
@@ -39,6 +40,7 @@ public class Labyrinthe {
     public static final char MONSTRE= 'M';
     public static final char FANTOME = 'G';
     public static final char AMULETTE = 'A';
+    public static final char EPEE = 'E';
 
     public static final char SORTIE = 'S';
     public static final char COFFRE = 'C';
@@ -188,6 +190,13 @@ public class Labyrinthe {
                         items.add(new Cle(colonne, numeroLigne,laby));
                         this.murs[colonne][numeroLigne] = false;
                         break;
+                    case EPEE:
+                        // degats aléatoire entre 2 et 5
+                        int degats = (int)(Math.random()*5) +1;
+                        items.add(new Epee(colonne, numeroLigne,degats, laby));
+                        this.murs[colonne][numeroLigne] = false;
+                        break;
+
                     default:
                         throw new Error("caractere inconnu " + c);
 

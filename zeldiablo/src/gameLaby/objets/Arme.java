@@ -9,4 +9,9 @@ public abstract class Arme extends Item{
         super(x, y, laby);
         this.degats = degats;
     }
+
+
+    public int getDegats() {
+        return degats;
+    }
 }
