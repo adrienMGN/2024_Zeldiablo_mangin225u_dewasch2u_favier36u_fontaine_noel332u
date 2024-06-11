@@ -54,7 +54,8 @@ public class LabyDessin implements DessinJeu {
             // affiche la ligne
             for (int x = 0; x < laby.getLength(); x++) {
                 if (laby.getMur(x, y)){
-                    gc.drawImage(mur,x*tailleCase, y*tailleCase, tailleCase, tailleCase);
+                    gc.setFill(Color.BROWN);
+                    gc.fillRect(x*tailleCase, y*tailleCase, tailleCase, tailleCase);
                 }
                 else if (laby.getPsecret(x,y)!=-1) {
                     if(laby.psecrets.get(laby.getPsecret(x,y)).isActive()){
