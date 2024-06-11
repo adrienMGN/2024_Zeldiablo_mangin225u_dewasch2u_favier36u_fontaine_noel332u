@@ -4,7 +4,6 @@ public class Monstre extends Entite {
 
     public Monstre(int x, int y, int pv, Labyrinthe laby) {
         super(x, y, pv, laby);
-        this.setPv(2);
     }
 
     /**

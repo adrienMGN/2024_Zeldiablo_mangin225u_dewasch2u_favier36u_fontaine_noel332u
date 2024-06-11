@@ -1,28 +1,19 @@
 package gameLaby;
 
-public class Sortie {
-    private int x;
-    private int y;
+public class Sortie extends Case{
 
-    public Sortie(int x, int y) {
-        this.x = x;
-        this.y = y;
+    public Sortie(int x, int y, Labyrinthe laby) {
+        super(x, y, laby);
     }
 
-    public int getY() {
-        return y;
-    }
-    public int getX() {
-        return x;
+    public boolean persoPresent() {
+        Perso p = getLaby().getPerso();
+        return (p.getX() == getX() && p.getY() == getY());
     }
 
-    public boolean persoPresent(int dx, int dy) {
-        return (this.x == dx && this.y == dy);
-    }
-
-    public boolean sortiePossible(Labyrinthe laby){
-        Perso p = laby.getPerso();
-        return (persoPresent(p.getX(), p.getY()) && p.possedeAmulette());
+    public boolean sortiePossible(){
+        Perso p = getLaby().getPerso();
+        return (persoPresent() && p.possedeAmulette());
     }
 
 }

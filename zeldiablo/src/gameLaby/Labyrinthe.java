@@ -134,7 +134,7 @@ public class Labyrinthe {
                         // pas de mur
                         this.murs[colonne][numeroLigne] = false;
                         // ajoute PJ
-                        this.pj = new Perso(colonne, numeroLigne);
+                        this.pj = new Perso(colonne, numeroLigne, 5, laby);
                         this.entites.add(pj);
                         break;
                     case OUVERTURE:
@@ -146,7 +146,7 @@ public class Labyrinthe {
                         this.murs[colonne][numeroLigne] = false;
                         break;
                     case PSECRET:
-                        psecrets.add(new PassageSecret(PassageSecret.nbPassages,colonne, numeroLigne));
+                        psecrets.add(new PassageSecret(PassageSecret.nbPassages,colonne, numeroLigne, laby));
                         this.murs[colonne][numeroLigne] = true;
                         break;
                     case MONSTRE:
@@ -162,7 +162,7 @@ public class Labyrinthe {
                         this.murs[colonne][numeroLigne] = false;
                         break;
                     case COFFRE:
-                        declenchables.add(new Coffre(0,colonne, numeroLigne));
+                        declenchables.add(new Coffre(0,colonne, numeroLigne, laby));
                         this.murs[colonne][numeroLigne] = false;
                         break;
                     case CLE:
@@ -276,13 +276,7 @@ public class Labyrinthe {
         }
     }
 
-    public void gestionEntite(){
-        for (Entite entite : entites) {
-            if (entite.getPv() <= 0) {
-                entite.mourir();
-            }
-        }
-    }
+
 
 
 
@@ -292,7 +286,11 @@ public class Labyrinthe {
      * @return fin du jeu
      */
     public boolean etreFini() {
-        return (!this.pj.etreVivant());
+        if (!this.pj.etreVivant()) {
+            System.out.println("Vous êtes mort");
+            return true;
+        }
+        return false;
     }
 
     // ##################################

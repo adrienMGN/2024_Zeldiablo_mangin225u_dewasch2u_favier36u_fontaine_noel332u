@@ -42,12 +42,16 @@ public class LabyJeu implements Jeu {
         // Gestion des cases declenchables
         for (int i = 0; i < laby.declenchables.size(); i++) {
             Declenchable declenchable = laby.declenchables.get(i);
-            declenchable.entitePresent(laby);
+            if(declenchable.persoPresent()){
+                declenchable.action();
+            }
         }
 
         for (int i = 0; i < laby.items.size(); i++) {
             Item item = laby.items.get(i);
-            item.persoPresent(laby);
+            if(item.persoPresent()){
+                item.ramasserItem();
+            }
         }
 
         // update le mouvement des monstres toutes les 0.5 secondes
@@ -67,7 +71,6 @@ public class LabyJeu implements Jeu {
 
 
         laby.majLaby();
-        laby.gestionEntite();
 
 
         // Gestion attaque du personnage
@@ -86,7 +89,7 @@ public class LabyJeu implements Jeu {
     public boolean etreFini(){
         boolean fini = false;
         if(laby.getSortie()!=null){
-            if (laby.etreFini()||laby.getSortie().sortiePossible(laby)){
+            if (laby.etreFini()||laby.getSortie().sortiePossible()){
                 fini = true;
             }
         }

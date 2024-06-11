@@ -81,7 +81,7 @@ class Monstre{
              }
 
 
-class Perso <<update>>{
+class Perso {
     -Perso(dx: int, dy: int)
     +mourir(): void
      +attaquer(monstre: Monstre): int
@@ -129,8 +129,6 @@ class Fermeture{
 }
 
 abstract class Entite{
-    -x: int
-    -y: int
     -pv: int
     -estVivant: boolean
     -laby: Labyrinthe
@@ -200,29 +198,38 @@ class Valeur{
     skinparam class {
         BackgroundColor<<update>> Pink
     }
-    class Amulette <<update>> extends Item  {
+    class Amulette extends Item  {
         +Amulette(dx:int, dy:int)
     }
 
-    abstract class Item <<update>> {
-        -x:int
-        -y:int
+abstract class Item {
         +dansInventaire:boolean
-        -laby:Labyrinthe
-        +Item(x:int, y:int)
-        +getY():int
-        +getX():int
-        +setX(x:int):void
-        +setY(y:int):void
-        +etrePresent(dx:int, dy:int):boolean
-'       +ramasseItem():void
-        +persoPresent(laby: Labyrinthe):void
-        +ramasseItem(pj:Perso):void
-        +inInventaire():boolean
+        +Item(x:int, y:int, laby:Labyrinthe)
 
+        +etrePresent(dx:int, dy:int):boolean
+        +persoPresent():void
+        +ramasserItem():void
+        +inInventaire():boolean
     }
 
+class Sortie {
+    +Sortie(x:int, y:int, laby:Labyrinthe)
+    +persoPresent():boolean
+    +sortiePossible():boolean
+}
 
+abstract class Case <<update>>{
+    -x:int
+    -y:int
+    -laby:Labyrinthe
+    +Case(x:int, y:int)
+    +getX():int
+    +getY():int
+    +getLaby():Labyrinthe
+    +setX(x:int):void
+    +setY(y:int):void
+    +etrePresent(dx:int, dy:int):boolean
+}
 
 
 
@@ -247,7 +254,7 @@ Arcs "*"-->"*" Arc : - arcs
 Perso -u-|> Entite
 Monstre -u-|> Entite
 
-Labyrinthe "*"-> "*" Entite : entites
+Labyrinthe "*"-> "*" Entite : +entites
 
 'Ajout du SpriteManager
 'Entite ..> SpriteManager : <<use>>
@@ -257,6 +264,13 @@ Labyrinthe "*"-> "*" Entite : entites
 'Entite -> SpriteManager : -spriteManager
 'SpriteManager -[hidden]-> LabyDessin
 
+Labyrinthe -u-> Sortie : -sortie
+Labyrinthe "*"-L> "*" Item : +items
 
+Entite -|> Case
+Item -|> Case
+Declenchable -|> Case
+PassageSecret -|> Case
+Sortie -|> Case
 
 @enduml

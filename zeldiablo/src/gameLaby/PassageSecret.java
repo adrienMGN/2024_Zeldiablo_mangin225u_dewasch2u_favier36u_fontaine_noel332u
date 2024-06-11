@@ -1,17 +1,14 @@
 package gameLaby;
 
-public class PassageSecret{
-    private int x;
-    private int y;
+public class PassageSecret extends Case{
     private int id;
     private boolean active;
 
     // gestion du nombre de passages secrets pour id
     public static int nbPassages = 0;
 
-    public PassageSecret( int id, int x, int y) {
-        this.x = x;
-        this.y = y;
+    public PassageSecret( int id, int x, int y, Labyrinthe laby) {
+        super(x, y, laby);
         this.id = id;
         this.active = false;
         nbPassages++;
@@ -24,24 +21,12 @@ public class PassageSecret{
         this.active = true;
     }
 
-    public boolean etrePresent(int dx, int dy) {
-        return (this.x == dx && this.y == dy);
-    }
-
     public void fermer() {
         this.active = false;
     }
 
     public boolean isActive() {
         return active;
-    }
-
-    public int getX() {
-        return x;
-    }
-
-    public int getY() {
-        return y;
     }
 
     public int getId() {

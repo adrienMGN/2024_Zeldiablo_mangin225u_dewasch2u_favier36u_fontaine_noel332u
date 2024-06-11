@@ -1,34 +1,30 @@
 package gameLaby;
 
-public abstract class Declenchable {
-    private int x,y,id;
+public abstract class Declenchable extends Case {
+    private int id;
 
-    public Declenchable(int id, int x, int y) {
-        this.x = x;
-        this.y = y;
+    public Declenchable(int id, int x, int y, Labyrinthe laby) {
+        super(x, y, laby);
         this.id = id;
     }
 
-    public abstract void action(Labyrinthe laby);
+    public abstract void action();
 
-    public void entitePresent(Labyrinthe laby) {
-        for (Entite e : laby.entites) {
-            if (e.getX() == x && e.getY() == y)
-                action(laby);
+    public boolean persoPresent() {
+        for (Entite e : getLaby().entites) {
+            if (e.getX() == getX() && e.getY() == getY()){
+                return true;
+            }
         }
-    }
-
-    public boolean etrePresent(int dx, int dy) {
-
-        return (this.x == dx && this.y == dy);
+        return false;
     }
 
     public int getX() {
-        return x;
+        return super.getX();
     }
 
     public int getY() {
-        return y;
+        return super.getY();
     }
 
     public int getId() {

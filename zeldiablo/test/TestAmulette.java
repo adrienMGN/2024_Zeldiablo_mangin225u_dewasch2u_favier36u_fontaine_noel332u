@@ -15,7 +15,7 @@ public class TestAmulette {
         Labyrinthe labyrinthe = new Labyrinthe("labySimple/labyTest/labyAmulette.txt");
         Clavier clavier = new Clavier();
         LabyJeu labyJeu = new LabyJeu(labyrinthe);
-        Amulette a = new Amulette(1,2);
+        Amulette a = new Amulette(1,2, labyrinthe);
         boolean presence = a.etrePresent(1,2);
         assertTrue(presence, "l'amulette n'est pas présente dans le labyrinthe");
         labyrinthe.ajouterItem(a);
@@ -47,7 +47,7 @@ public class TestAmulette {
         Clavier clavier = new Clavier();
         LabyJeu labyJeu = new LabyJeu(labyrinthe);
         Monstre m = new Monstre(1,1, 2, labyrinthe);
-        Amulette a = new Amulette(1,1);
+        Amulette a = new Amulette(1,1, labyrinthe);
         boolean presence = a.etrePresent(1,1);
         assertTrue(presence, "l'amulette doit  être présente dans le labyrinthe");
         labyrinthe.ajouterItem(a);

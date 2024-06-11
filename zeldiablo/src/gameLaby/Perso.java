@@ -16,18 +16,10 @@ public class Perso extends Entite {
      * @param dx position selon x
      * @param dy position selon y
      */
-    public Perso(int dx, int dy) {
-        super(dx, dy);
-        this.setPv(5);
+    public Perso(int dx, int dy, int pv, Labyrinthe laby) {
+        super(dx, dy, pv, laby);
     }
 
-    /**
-     * tue le personnage et affiche un message
-     */
-    public void mourir() {
-        super.mourir();
-        System.out.println("Vous avez perdu");
-    }
 
     /**
      * attaque un monstre

@@ -3,45 +3,43 @@ package gameLaby;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public abstract class Item {
-    private int x;
-    private int y;
+public abstract class Item extends Case{
     private boolean dansInventaire = false;
-    private Labyrinthe laby;
 
-    public Item(int x, int y) {
-        this.x = x;
-        this.y = y;
+    public Item(int x, int y, Labyrinthe laby) {
+        super(x, y, laby);
     }
 
     public int getY() {
-        return y;
+        return super.getY();
     }
     public int getX() {
-        return x;
+        return super.getX();
     }
 
     public void setX(int x) {
-        this.x = x;
+        super.setX(x);
     }
     public void setY(int y) {
-        this.y = y;
+        super.setY(y);
     }
 
     public boolean etrePresent(int dx, int dy) {
-        return (this.x == dx && this.y == dy);
+        return super.etrePresent(dx, dy);
     }
 
-    public void persoPresent(Labyrinthe laby) {
+    public boolean persoPresent() {
         if (!this.dansInventaire) {
-            Perso p = laby.getPerso();
-            if (p.getX() == x && p.getY() == y)
-                ramasseItem(p);
+            Perso p = getLaby().getPerso();
+            if (p.getX() == getX() && p.getY() == getY()){
+                return true;
+            }
         }
+        return false;
     }
 
-    public void ramasseItem(Perso pj){
-        pj.ajouterInventaire(this);
+    public void ramasserItem(){
+        getLaby().getPerso().ajouterInventaire(this);
         this.dansInventaire = true;
     }
 
