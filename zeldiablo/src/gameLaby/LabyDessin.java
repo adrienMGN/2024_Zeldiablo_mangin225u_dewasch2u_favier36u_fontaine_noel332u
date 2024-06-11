@@ -116,7 +116,7 @@ public class LabyDessin implements DessinJeu {
                 if (item instanceof Amulette)
                     gc.drawImage(amulette,x*tailleCase,y*tailleCase);
                 if (item instanceof Cle)
-                    gc.drawImage(amulette,x*tailleCase,y*tailleCase);
+                    gc.drawImage(cle,x*tailleCase+tailleCase/7,y*tailleCase, tailleCase-15, tailleCase);
             }
         }
 
@@ -135,7 +135,7 @@ public class LabyDessin implements DessinJeu {
                             gc.drawImage(amulette, i * 40 + 5, 5, 40, 40);
                         }
                         if (item instanceof Cle){
-                            gc.drawImage(cle,i * 40 + 5,5,40,40);
+                            gc.drawImage(cle,i * 40 + 11,5,28,40);
                         }
                     }
                 }

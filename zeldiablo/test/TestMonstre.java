@@ -1,9 +1,8 @@
-import gameLaby.LabyJeu;
-import gameLaby.Labyrinthe;
-import gameLaby.Monstre;
-import gameLaby.Perso;
+import gameLaby.*;
 import moteurJeu.Clavier;
 import org.junit.jupiter.api.Test;
+
+import java.io.IOException;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -85,6 +84,18 @@ public class TestMonstre {
 
         assertTrue(m.etrePresent(2,1),"le monstre devrait être en 2,1");
 
+    }
+
+    @Test
+    /*test fantome passe à travers mur*/
+    public void test_monstre() throws IOException {
+        Labyrinthe labyrinthe = new Labyrinthe("labySimple/labyTest/labyFantome.txt");
+        Clavier clavier = new Clavier();
+        Fantome m = (Fantome) labyrinthe.entites.get(0);
+        LabyJeu labyJeu = new LabyJeu(labyrinthe);
+        labyrinthe.mouvementsMonstres();
+        labyJeu.update(0,clavier);
+        assertTrue(m.etrePresent(2,1),"le monstre devrait être présent en 1,2");
     }
 
 
