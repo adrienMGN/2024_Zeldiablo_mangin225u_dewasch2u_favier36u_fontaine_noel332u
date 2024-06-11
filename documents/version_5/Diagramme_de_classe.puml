@@ -222,7 +222,16 @@ class Valeur{
 
     }
 
+class Sortie <<update>> {
+    -x :int
+    -y :int
 
+    +Sortie(x:int, y:int)
+    +getX():int
+    +getY():int
+    +persoPresent(dx:int, dy:int):boolean
+    +sortiePossible():boolean
+}
 
 
 
@@ -247,7 +256,7 @@ Arcs "*"-->"*" Arc : - arcs
 Perso -u-|> Entite
 Monstre -u-|> Entite
 
-Labyrinthe "*"-> "*" Entite : entites
+Labyrinthe "*"-> "*" Entite : +entites
 
 'Ajout du SpriteManager
 'Entite ..> SpriteManager : <<use>>
@@ -257,6 +266,8 @@ Labyrinthe "*"-> "*" Entite : entites
 'Entite -> SpriteManager : -spriteManager
 'SpriteManager -[hidden]-> LabyDessin
 
+Labyrinthe -u-> Sortie : -sortie
+Labyrinthe "*"-L> "*" Item : +items
 
 
 @enduml

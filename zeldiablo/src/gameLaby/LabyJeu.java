@@ -60,7 +60,7 @@ public class LabyJeu implements Jeu {
 
         if (regen >= 5){
             if (laby.getPerso().getPv() < 5) {
-                laby.getPerso().addPv(1);
+                laby.getPerso().setPv(laby.getPerso().getPv() + 1);
             }
             regen = 0;
         }
@@ -75,16 +75,8 @@ public class LabyJeu implements Jeu {
             laby.attaqueDirectionnel(DERNIER_MOUVEMENT);
         }
 
-        if(laby.getSortie()!=null){
-            if (laby.etreFini()||laby.getSortie().sortiePossible(laby)){
-                Platform.exit();
-            }
-        }
-        else {
-            // Fin du jeu si le personnage est mort ou si le labyrinthe est fini
-            if (laby.etreFini()) {
-                Platform.exit();
-            }
+        if(etreFini()){
+            Platform.exit();
         }
     }
 
@@ -92,7 +84,19 @@ public class LabyJeu implements Jeu {
     }
 
     public boolean etreFini(){
-        return laby.etreFini();
+        boolean fini = false;
+        if(laby.getSortie()!=null){
+            if (laby.etreFini()||laby.getSortie().sortiePossible(laby)){
+                fini = true;
+            }
+        }
+        else {
+            // Fin du jeu si le personnage est mort ou si le labyrinthe est fini
+            if (laby.etreFini()) {
+                fini = true;
+            }
+        }
+        return fini;
     }
 
     public Labyrinthe getLaby() {

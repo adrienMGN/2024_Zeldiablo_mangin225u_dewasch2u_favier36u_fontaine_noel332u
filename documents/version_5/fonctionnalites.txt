@@ -1,0 +1,48 @@
+Mise en place de l'amulette
+u lancement du jeu, une amulette est placée sur une case vide du labyrinthe. Le
+placement de l'amulette est toujours le même et dépend du niveau.
+Critères de validation
+• L'amulette ne peut être placée que sur une case vide. : Ok
+• Les monstres et le héros peuvent se situer sur la case de l'amulette. :Ok
+• L'amulette est achée dans le jeu sous la forme d'un cercle jaune sur la case vide
+où elle se trouve. : Ok
+
+Acquisition de l'amulette
+Dés que le joueur demande à déplacer le héros sur l'amulette, le héros se déplace et
+prend l'amulette. : Ok
+Critères de validation
+• L'amulette n'est plus sur le plateau (et n'est plus affichée). : Ok
+• Le Héros possède l'amulette. : Ok
+• Un monstre ne récupère pas l'amulette. : Ok
+
+
+Fin du jeu : victoire du héros
+Une fois que le héros a pris l'amulette, il peut retourner à l'entrée du labyrinthe et
+remporter le jeu. : Ok
+
+
+Inventaire
+Des objets (sans utilité pour le moment) sont disposés dans des cases vides du laby-
+rinthe, lorsque le héros appuie sur la touche d'utilisation ("E" par défaut), il récupère
+les objets de la case où il se trouve et les ajoute dans son inventaire. : Ramssage automatique amulette 
+Critères de validation
+• L'inventaire est de taille inffinie. : Ok
+• Lorsque le joueur cherche à prendre un objet alors qu'il n'y a rien sur la case où
+il se trouve, rien ne se passe. : ramassage auto
+• Lorsqu'un joueur prend un objet, l'objet disparait du labyrinthe (et n'est plus
+aché) mais apparait dans son inventaire.
+• A chaque évolution du jeu, le jeu affiche dans la console l'inventaire du héros.
+• Les objets sont affichés dans le labyrinthe tant qu'ils sont présents (sous la forme
+d'un cercle noir) : Utilisation de sprite
+
+Affichage de l'inventaire
+L'inventaire est affiché dans la fenêtre de jeu.
+Critères de validation
+• L'inventaire est représenté par 6 cases carrées en bas de la fenêtre de jeu : Ok
+• A chaque fois qu'un joueur prend un objet, en plus de disparaitre dans le laby-
+rinthe, celui-ci s'ache dans l'inventaire : à voir
+• Les objets sélectionnés (meilleure arme et meilleur bouclier) sont d'une couleur
+diérente.
+• Les objets affichés dans l'inventaire ont des formes spéciques (rond pour un
+bouclier et un trait vertical pour une arme). Modification : utilisation d'image
+• Lorsqu'un bouclier est détruit, il disparait de l'inventaire. : Pas de bouclier implémenter
