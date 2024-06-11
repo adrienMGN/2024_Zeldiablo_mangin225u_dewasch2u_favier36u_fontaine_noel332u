@@ -114,7 +114,7 @@ public class GrapheListe{
             adjacence.add(new Arcs());
         }
         indice = getIndice(depart);
-        Arc a = new Arc(destination,cout);
+        Couple a = new Couple(destination,cout);
         adjacence.get(indice).ajouterArc(a);
     }
 
@@ -131,10 +131,10 @@ public class GrapheListe{
      * @param n Le noeud à partir duquel récupérer les arcs.
      * @return La liste des arcs partant du noeud spécifié.
      */
-    public List<Arc> suivants(String n){
+    public List<Couple> suivants(String n){
         int indice = getIndice(n);
         if (indice == -1){
-            return new ArrayList<Arc>();
+            return new ArrayList<Couple>();
         }
         return adjacence.get(indice).getArcs();
     }
@@ -148,8 +148,8 @@ public class GrapheListe{
         for(int i = 0; i < noeuds.size(); i++){
             s.append(noeuds.get(i));
             s.append(" -> ");
-            List<Arc> l = adjacence.get(i).getArcs();
-            for (Arc a : l){
+            List<Couple> l = adjacence.get(i).getArcs();
+            for (Couple a : l){
                 s.append(a.toString());
             }
             s.append("\n");

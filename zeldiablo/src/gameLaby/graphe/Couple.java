@@ -3,7 +3,7 @@ package gameLaby.graphe;
  * La classe Arc représente un arc dans un graphe.
  * Chaque arc a une destination et un coût associé.
  */
-public class Arc {
+public class Couple {
     private String dest;
     private double cout;
 
@@ -12,7 +12,7 @@ public class Arc {
      * @param dest La destination de cet arc.
      * @param cout Le coût de cet arc.
      */
-    public Arc(String dest, double cout) {
+    public Couple(String dest, double cout) {
         this.dest = dest;
         this.cout = cout;
     }

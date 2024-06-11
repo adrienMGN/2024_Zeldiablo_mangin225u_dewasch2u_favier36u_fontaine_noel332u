@@ -69,7 +69,7 @@ public class Dijkstra {
             // On le retire car il a un chemin
             q.remove(u);
             // On parcourt tous les noeuds suivants du chemin le plus court
-            for (Arc a : g.suivants(u)){
+            for (Couple a : g.suivants(u)){
                 String v =  a.getDest();
                 double d = valeur.getValeur(u)+a.getCout();
 

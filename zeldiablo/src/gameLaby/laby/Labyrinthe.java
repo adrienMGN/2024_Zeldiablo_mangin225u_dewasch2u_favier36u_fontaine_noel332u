@@ -5,15 +5,12 @@ import gameLaby.entites.Entite;
 import gameLaby.entites.Fantome;
 import gameLaby.entites.Monstre;
 import gameLaby.entites.Perso;
-import gameLaby.graphe.Arc;
+import gameLaby.graphe.Couple;
 import gameLaby.graphe.Dijkstra;
 import gameLaby.graphe.GrapheListe;
 import gameLaby.graphe.Valeur;
 import gameLaby.interactif.*;
-import gameLaby.objets.Amulette;
-import gameLaby.objets.Cle;
-import gameLaby.objets.Epee;
-import gameLaby.objets.Item;
+import gameLaby.objets.*;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -41,6 +38,7 @@ public class Labyrinthe {
     public static final char FANTOME = 'G';
     public static final char AMULETTE = 'A';
     public static final char EPEE = 'E';
+    public static final char ARC = 'B';
 
     public static final char SORTIE = 'S';
     public static final char COFFRE = 'C';
@@ -191,9 +189,14 @@ public class Labyrinthe {
                         this.murs[colonne][numeroLigne] = false;
                         break;
                     case EPEE:
-                        // degats aléatoire entre 2 et 5
-                        int degats = (int)(Math.random()*5) +1;
-                        items.add(new Epee(colonne, numeroLigne,degats, laby));
+                        // degats aléatoire entre 2 et 4
+                        int degatsEpee = (int)Math.ceil(Math.random()*3) +1;
+                        items.add(new Epee(colonne, numeroLigne,degatsEpee, laby));
+                        this.murs[colonne][numeroLigne] = false;
+                        break;
+                    case ARC:
+                        int degatsArc = (int)Math.ceil(Math.random()*3) +1;
+                        items.add(new Arc(colonne, numeroLigne,degatsArc, laby));
                         this.murs[colonne][numeroLigne] = false;
                         break;
 
@@ -314,7 +317,7 @@ public class Labyrinthe {
         }
     }
 
-    public void mouvementAleatoireMonstres(Monstre m, List<Arc> v) {
+    public void mouvementAleatoireMonstres(Monstre m, List<Couple> v) {
         int random = (int) (Math.random() * v.size());
         String dest = v.get(random).getDest();
         String[] prochain = dest.split(",");

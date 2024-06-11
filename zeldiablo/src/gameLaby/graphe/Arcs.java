@@ -7,7 +7,7 @@ import java.util.List;
  * Elle permet d'ajouter des arcs à la liste et de récupérer la liste des arcs.
  */
 public class Arcs {
-    private List<Arc> arcs;
+    private List<Couple> arcs;
 
     /**
      * Constructeur de la classe Arcs.
@@ -21,7 +21,7 @@ public class Arcs {
      * Ajoute un arc à la liste des arcs.
      * @param a L'arc à ajouter.
      */
-    public void ajouterArc(Arc a){
+    public void ajouterArc(Couple a){
         arcs.add(a);
     }
 
@@ -29,7 +29,7 @@ public class Arcs {
      * Récupère la liste des arcs.
      * @return La liste des arcs.
      */
-    public List<Arc> getArcs(){
+    public List<Couple> getArcs(){
         return arcs;
     }
 }
