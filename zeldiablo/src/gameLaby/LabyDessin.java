@@ -51,8 +51,14 @@ public class LabyDessin implements DessinJeu {
                     if(laby.psecrets.get(laby.getPsecret(x,y)).isActive()){
                         gc.setStroke(Color.BLACK);
                         gc.strokeRect(x*tailleCase, y*tailleCase, tailleCase, tailleCase);
+                    }
+                }
+                else if (laby.getCoffre(x,y)!=-1) {
+                    if(laby.coffres.get(laby.getCoffre(x,y)).isActif()){
+                        gc.setFill(Color.BROWN);
+                        gc.fillRect(x*tailleCase, y*tailleCase, tailleCase, tailleCase);
                     } else {
-                        gc.setFill(Color.BLACK);
+                        gc.setFill(Color.WHITE);
                         gc.fillRect(x*tailleCase,y*tailleCase, tailleCase, tailleCase);
                     }
                 }
@@ -91,14 +97,12 @@ public class LabyDessin implements DessinJeu {
         }
         for (int i = 0; i <laby.items.size(); i++) {
             Item item = laby.items.get(i);
-            if (!item.inInventaire()) {
-                double x = item.getX();
-                double y = item.getY();
-                if (item instanceof Amulette)
-                    gc.drawImage(amulette,x*tailleCase,y*tailleCase);
-                if (item instanceof Cle)
-                    gc.drawImage(amulette,x*tailleCase,y*tailleCase);
-            }
+            double x = item.getX();
+            double y = item.getY();
+            if (item instanceof Amulette)
+                gc.drawImage(amulette,x*tailleCase,y*tailleCase);
+            if (item instanceof Cle)
+                gc.drawImage(amulette,x*tailleCase,y*tailleCase);
         }
 
 

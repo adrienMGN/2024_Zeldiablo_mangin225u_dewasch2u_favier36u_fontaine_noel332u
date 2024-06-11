@@ -7,7 +7,7 @@ public class Clavier {
     /**
      * controle appuyes
      */
-    public boolean haut, bas, gauche, droite, space;
+    public boolean haut, bas, gauche, droite, space, e;
 
     /**
      * stocke les commandes
@@ -44,6 +44,9 @@ public class Clavier {
             // gestion attaque avec SPACE
             case SPACE:
                 this.space = true;
+                break;
+            case E:
+                this.e = true;
                 break;
         }
 
@@ -84,7 +87,9 @@ public class Clavier {
             case SPACE:
                 this.space = false;
                 break;
-
+            case E:
+                this.e = false;
+                break;
         }
     }
 }

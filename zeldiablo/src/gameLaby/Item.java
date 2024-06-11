@@ -41,6 +41,7 @@ public abstract class Item extends Case{
     public void ramasserItem(){
         getLaby().getPerso().ajouterInventaire(this);
         this.dansInventaire = true;
+        getLaby().items.remove(this);
     }
 
     public boolean inInventaire(){

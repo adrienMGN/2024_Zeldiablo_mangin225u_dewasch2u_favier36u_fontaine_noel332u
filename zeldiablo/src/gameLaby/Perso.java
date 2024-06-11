@@ -52,6 +52,15 @@ public class Perso extends Entite {
         return false;
     }
 
+    public void utiliserCle() {
+        for (Item item : inventaire) {
+            if (item instanceof Cle) {
+                inventaire.remove(item);
+                return;
+            }
+        }
+    }
+
     public void ajouterInventaire(Item item){
         this.inventaire.add(item);
     }

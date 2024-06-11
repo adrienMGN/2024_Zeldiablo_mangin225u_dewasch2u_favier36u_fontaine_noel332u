@@ -162,7 +162,7 @@ public class Labyrinthe {
                         this.murs[colonne][numeroLigne] = false;
                         break;
                     case COFFRE:
-                        declenchables.add(new Coffre(0,colonne, numeroLigne, laby));
+                        coffres.add(new Coffre(colonne, numeroLigne, laby));
                         this.murs[colonne][numeroLigne] = false;
                         break;
                     case CLE:
@@ -223,6 +223,22 @@ public class Labyrinthe {
             if (entite instanceof Monstre && entite.etreVivant() && entite.etrePresent(suivante[0], suivante[1])) {
                 Monstre m = (Monstre) entite;
                 pj.attaquer(m);
+            }
+        }
+    }
+
+
+    public void actionnerItem(String derniere_direction){
+// case courante
+        int[] courante = {this.pj.getX(), this.pj.getY()};
+
+        // case suivante = case courante + direction
+        int[] suivante = getSuivant(courante[0], courante[1], derniere_direction);
+
+        // si c'est pas un mur, on effectue le deplacement
+        for (Coffre c : coffres) {
+            if (c.etrePresent(suivante[0], suivante[1])) {
+                c.action();
             }
         }
     }
@@ -391,12 +407,13 @@ public class Labyrinthe {
                 vide = false;
             }
         }
-        // si passage secret est present dans la case + non active
-        for (PassageSecret passageSecret : this.psecrets) {
-            if (passageSecret.etrePresent(x, y) && !passageSecret.isActive()) {
+
+        for (Coffre c: coffres){
+            if (c.getX() == x && c.getY() == y && c.isActif()){
                 vide = false;
             }
         }
+
         // si mur est present dans la case
         if (this.murs[x][y]) {
             vide = false;
@@ -427,5 +444,15 @@ public class Labyrinthe {
 
     public Sortie getSortie() {
         return sortie;
+    }
+
+    public int getCoffre(int x, int y) {
+        for (int i = 0; i < coffres.size(); i++) {
+            Coffre coffre = coffres.get(i);
+            if (coffre.getX() == x && coffre.getY() == y) {
+                return i;
+            }
+        }
+        return -1;
     }
 }

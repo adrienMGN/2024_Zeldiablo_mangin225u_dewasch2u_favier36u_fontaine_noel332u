@@ -1,37 +1,21 @@
 package gameLaby;
 
-public class Coffre extends Declenchable {
+public class Coffre extends Case{
 
-    int nbCoffres = 0;
-    private int id;
+    static int nbCoffres = 0;
     boolean actif;
 
-    public Coffre(int id, int x, int y, Labyrinthe laby) {
-        super(id, x, y, laby);
+    public Coffre(int x, int y, Labyrinthe laby) {
+        super(x, y, laby);
         actif = true;
         nbCoffres++;
     }
 
-    public void ouvrir(Labyrinthe laby){
-        Perso p = laby.getPerso();
-        if (p.getX() == getX() && p.getY() == getY()) {
-            ouvrirCoffre(laby);
-        }
-    }
-
     public void action(){
         Labyrinthe laby = getLaby();
-        Coffre coffre = laby.coffres.get(0);
-            if (coffre.getId() == getId()){
-                if(coffre.actif) {
-                    coffre.ouvrir(laby);
-                }
-            }
-    }
-
-    public void ouvrirCoffre(Labyrinthe laby){
-        actif = false;
         if(laby.getPerso().possedeCle()){
+            laby.getPerso().utiliserCle();
+            actif = false;
             if(Math.floor(Math.random()*2+1) == 1){
                 System.out.println("Vous venez d'obtenir une épée");
                 //laby.getPerso().ajouterItem(); //Epee
@@ -40,6 +24,11 @@ public class Coffre extends Declenchable {
                 //laby.getPerso().ajouterItem(); //Arc
             }
         }
+    }
+
+
+    public boolean isActif(){
+        return actif;
     }
 
 
