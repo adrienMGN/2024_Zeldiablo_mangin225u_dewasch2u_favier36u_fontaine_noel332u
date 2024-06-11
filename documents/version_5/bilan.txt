@@ -1,0 +1,10 @@
+Répartition du travail :
+
+Julien : diagramme de classe
+Léo : diagramme de séquence récupération amulette
+Adrien : diagramme de séquence sortie du labyrinthe 
+Clément :  implémentation inventaire plus affichage inventaire
+
+julien : classe amulette
+léo : classe abstraite item
+adrien : tests amulette + inventaire
