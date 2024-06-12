@@ -9,6 +9,7 @@ public class Epee extends Arme{
 
 
     /**
+     * Constructeur pour les epees
      * @param x
      * @param y
      * @param degats

@@ -13,6 +13,7 @@ public class Fleche extends Case {
     private String direction;
 
     /**
+     * Constructeur pour les fleches
      * @param direction
      * @param x
      * @param y
@@ -24,6 +25,7 @@ public class Fleche extends Case {
     }
 
     /**
+     * fait avancer la fleche
      * return true si la fleche a pu avancer et false sinon
      * @return boolean
      */
@@ -50,6 +52,11 @@ public class Fleche extends Case {
         }
     }
 
+    /**
+     * gere les collisions de la fleche
+     * retourne l'entite sur laquelle la fleche est tombee si elle existe
+     * @return Entite
+     */
     public Entite collision(){
         Labyrinthe laby = this.getLaby();
         // on recupere la case suivante

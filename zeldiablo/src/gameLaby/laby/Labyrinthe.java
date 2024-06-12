@@ -524,6 +524,10 @@ public class Labyrinthe {
         return -1;
     }
 
+    /**
+     * ouvre le passage secret en parametre
+     * @param p
+     */
     public void ouvrirPassageSecret(PassageSecret p){
         for (int i = 0; i < psecrets.size(); i++) {
             PassageSecret psecret = psecrets.get(i);

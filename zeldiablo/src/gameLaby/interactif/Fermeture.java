@@ -11,6 +11,7 @@ public class Fermeture extends Declenchable {
     public static int nbFermetures = 0;
 
     /**
+     * Constructeur de la classe Fermeture
      * @param id
      * @param x
      * @param y

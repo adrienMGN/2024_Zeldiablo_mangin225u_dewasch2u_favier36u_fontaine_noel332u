@@ -9,6 +9,7 @@ public abstract class Case {
     private Labyrinthe laby;
 
     /**
+     * Constructeur de Case avec labyrinthe fixe
      * @param x
      * @param y
      * @param laby
@@ -20,6 +21,7 @@ public abstract class Case {
     }
 
     /**
+     * Constructeur de Case avec labyrinthe non fixe
      * @param x
      * @param y
      */
@@ -29,6 +31,7 @@ public abstract class Case {
     }
 
     /**
+     * recupere y
      * @return int y
      */
     public int getY() {
@@ -36,6 +39,7 @@ public abstract class Case {
     }
 
     /**
+     * recupere x
      * @return int x
      */
     public int getX() {
@@ -43,6 +47,7 @@ public abstract class Case {
     }
 
     /**
+     * recupere le labyrinthe
      * @return Labyrinthe laby
      */
     public Labyrinthe getLaby() {
@@ -50,6 +55,7 @@ public abstract class Case {
     }
 
     /**
+     * modifie le parametre x
      * @param x
      */
     public void setX(int x) {
@@ -57,6 +63,7 @@ public abstract class Case {
     }
 
     /**
+     * modifie le parametre y
      * @param y
      */
     public void setY(int y) {
@@ -64,6 +71,7 @@ public abstract class Case {
     }
 
     /**
+     * Renseigne si le personnage est présent
      * @param dx
      * @param dy
      * @return boolean si la case est au coordonnees dx, dy

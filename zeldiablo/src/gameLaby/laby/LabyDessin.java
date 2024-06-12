@@ -26,6 +26,7 @@ public class LabyDessin implements DessinJeu {
     public static int tailleCase = 50;
 
     /**
+     * Methode pour dessiner l'etat du jeu
      * @param jeu    jeu a afficher
      * @param canvas canvas dans lequel dessiner l'etat du jeu
      */

@@ -14,7 +14,7 @@ public class Perso extends Entite {
     ArrayList<Item> inventaire = new ArrayList<Item>();
 
     /**
-     * constructeur
+     * constructeur de la classe Perso
      *
      * @param dx position selon x
      * @param dy position selon y
@@ -50,8 +50,7 @@ public class Perso extends Entite {
      * attaque un monstre
      *
      * @param monstre monstre a attaquer
-     * @return -1
-     **/
+     */
    public void attaquer(Monstre monstre) {
        // on selectionne l'epee la plus puissante
        Epee e = selectionnerMeilleurEpee();
@@ -66,6 +65,7 @@ public class Perso extends Entite {
 
 
     /**
+     * returne si le personnage possede une amulette ou non
      * @return boolean si le personnage possede une amulette
      */
     public boolean possedeAmulette() {
@@ -79,6 +79,7 @@ public class Perso extends Entite {
     }
 
     /**
+     * return si le personnage possede une cle ou non
      * @return boolean si le personnage possede une cle
      */
     public boolean possedeCle() {
@@ -148,6 +149,7 @@ public class Perso extends Entite {
     }
 
     /**
+     * retourne l'inventaire
      * @return inventaire
      */
     public ArrayList<Item> getInventaire(){
@@ -155,6 +157,7 @@ public class Perso extends Entite {
     }
 
     /**
+     * modifie l'inventaire
      * @param inventaire
      */
     public void setInventaire(ArrayList<Item> inventaire){

@@ -14,6 +14,7 @@ public class Coffre extends Case {
     boolean actif;
 
     /**
+     * Constructeur de la classe Coffre
      * @param x
      * @param y
      * @param laby
@@ -56,6 +57,7 @@ public class Coffre extends Case {
 
 
     /**
+     * retourne si le coffre a ete ouvert ou non
      * @return actif
      */
     public boolean isActif(){

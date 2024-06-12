@@ -7,6 +7,7 @@ import gameLaby.laby.Labyrinthe;
  */
 public class Fantome extends Monstre{
     /**
+     * constructeur de la classe Fantome
      * @param x
      * @param y
      * @param pv

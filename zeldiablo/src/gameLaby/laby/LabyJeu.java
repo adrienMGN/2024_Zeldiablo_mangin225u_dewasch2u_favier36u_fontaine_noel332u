@@ -22,6 +22,7 @@ public class LabyJeu implements Jeu {
     private double updateFleche = 0;
 
     /**
+     * Constructeur de la classe LabyJeu
      * @param labyrinthe
      */
     public LabyJeu (Labyrinthe labyrinthe) {
@@ -29,6 +30,7 @@ public class LabyJeu implements Jeu {
     }
 
     /**
+     * Methode de mise a jour
      * @param secondes temps ecoule depuis la derniere mise a jour
      * @param clavier  objet contenant l'état du clavier'
      */
@@ -169,6 +171,7 @@ public class LabyJeu implements Jeu {
     }
 
     /**
+     * Methode de recuperation du labyrinthe
      * @return le labyrinthe
      */
     public Labyrinthe getLaby() {

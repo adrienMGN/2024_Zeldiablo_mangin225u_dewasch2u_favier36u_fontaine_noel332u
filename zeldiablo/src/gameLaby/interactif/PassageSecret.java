@@ -14,6 +14,7 @@ public class PassageSecret extends Case {
     public static int nbPassages = 0;
 
     /**
+     * Constructeur de la classe PassageSecret
      * @param id
      * @param x
      * @param y
@@ -41,6 +42,7 @@ public class PassageSecret extends Case {
     }
 
     /**
+     * retourne si le passage est ouvert ou non
      * @return active
      */
     public boolean isActive() {
@@ -48,6 +50,7 @@ public class PassageSecret extends Case {
     }
 
     /**
+     * retourne l'id du passage
      * @return id
      */
     public int getId() {
