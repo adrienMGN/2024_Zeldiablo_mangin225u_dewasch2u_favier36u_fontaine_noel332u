@@ -18,11 +18,13 @@ public class GrapheListe{
 
     /**
      * Constructeur de la classe GrapheListe.
-     * Charge un graphe à partir d'un fichier.
+     * Charge un graphe à partir d'un labyrinthe.
      * @param laby Le nom du fichier à charger.
+     * @param ghost Si true, les murs ne sont pas considérés comme des obstacles.
      */
-
     public GrapheListe(Labyrinthe laby, boolean ghost) {
+
+        // Creation des sommets du graphe
         graphe = new String[laby.getLength()][laby.getLengthY()];
         for (int y = 0; y < laby.getLengthY(); y++) {
             for (int x = 0; x < laby.getLength(); x++) {
@@ -30,12 +32,12 @@ public class GrapheListe{
             }
         }
 
-
+        // si on ne veut pas prendre en compte les murs
         if (ghost) {
 
         for (int y = 0; y < laby.getLengthY(); y++) {
             for (int x = 0; x < laby.getLength(); x++) {
-
+                    // on ajoute un arc quand la case est accessible par un fantome
                     if (x>0 && !laby.getMonstre(x - 1, y)) {
                         ajouterArc(graphe[x][y], graphe[x - 1][y], 1);
                     }
@@ -54,6 +56,7 @@ public class GrapheListe{
     } else {
             for (int y = 0; y < laby.getLengthY(); y++) {
                 for (int x = 0; x < laby.getLength(); x++) {
+                    // on ajoute un arc quand la case est accessible par un monstre normal
                     if (!laby.getMur(x, y)) {
                         if (x > 0 && !laby.getMur(x - 1, y) && !laby.getMonstre(x - 1, y)) {
                             ajouterArc(graphe[x][y], graphe[x - 1][y], 1);

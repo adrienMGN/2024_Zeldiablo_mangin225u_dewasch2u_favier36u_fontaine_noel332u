@@ -3,18 +3,33 @@ package gameLaby.entites;
 import gameLaby.laby.Case;
 import gameLaby.laby.Labyrinthe;
 
+/**
+ * Gere une entite
+ */
 public abstract class Entite extends Case {
     private int pv ;
 
+    /**
+     * @param x
+     * @param y
+     * @param pv
+     * @param laby
+     */
     public Entite(int x, int y, int pv, Labyrinthe laby) {
         super(x, y, laby);
         this.pv = pv;
     }
 
+    /**
+     * @return pv
+     */
     public int getPv(){
         return pv;
     }
 
+    /**
+     * @param pv
+     */
     public void setPv(int pv) {
         this.pv = pv;
     }
@@ -48,10 +63,12 @@ public abstract class Entite extends Case {
     public Entite collision(int[] xy){
         Labyrinthe laby = this.getLaby();
         for (Entite entite : laby.entites) {
+            // si l'entite est presente dans la case et qu'elle est vivante on la retourne
             if (entite.etrePresent(xy[0], xy[1]) && entite.etreVivant()) {
                 return entite;
             }
         }
+        // si il n'y a aucune entite dans la case on retourne null
         return null;
     }
 }

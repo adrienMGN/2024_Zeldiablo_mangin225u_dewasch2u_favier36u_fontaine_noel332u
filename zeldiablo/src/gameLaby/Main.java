@@ -12,13 +12,12 @@ import moteurJeu.MoteurJeu;
  */
 public class Main {
 
-    // charge les labyrinthes
     private static int[] labyActuel = {2,1};
     private static Labyrinthe[][] labyrinthes;
 
 
     /**
-     * charge les labyrinthes
+     * affiche le labyrinth actuel
      * @param laby
      */
     public static void afficherLabyrinthe(Labyrinthe laby) {
@@ -46,6 +45,11 @@ public class Main {
         }
     }
 
+    /**
+     * change le labyrinthe actif
+     * @param laby
+     * @param direction
+     */
     public static void changerLaby(Labyrinthe laby, String direction){
         switch(direction){
             case Labyrinthe.DROITE:
@@ -67,10 +71,16 @@ public class Main {
             newLaby.getPerso().setInventaire(laby.getPerso().getInventaire());
             afficherLabyrinthe(newLaby);
         }catch (ArrayIndexOutOfBoundsException e){
+            // si on sort du tableau on reste sur le même labyrinthe
             labyActuel = posLaby(laby);
         }
     }
 
+    /**
+     * retourne la position du labyrinthe actif actuellement
+     * @param laby
+     * @return
+     */
     public static int[] posLaby(Labyrinthe laby){
         for (int i = 0; i < labyrinthes.length; i++){
             Labyrinthe[] ligne = labyrinthes[i];

@@ -56,7 +56,6 @@ public class Labyrinthe {
      * attribut du personnage
      */
     private Perso pj;
-
     private Sortie sortie = null;
 
     /**
@@ -146,9 +145,7 @@ public class Labyrinthe {
                         this.murs[colonne][numeroLigne] = false;
                         break;
                     case PJ:
-                        // pas de mur
                         this.murs[colonne][numeroLigne] = false;
-                        // ajoute PJ
                         this.pj = new Perso(colonne, numeroLigne, 5, laby);
                         this.entites.add(pj);
                         break;
@@ -162,7 +159,7 @@ public class Labyrinthe {
                         break;
                     case PSECRET:
                         psecrets.add(new PassageSecret(PassageSecret.nbPassages,colonne, numeroLigne, laby));
-                        this.murs[colonne][numeroLigne] = true;
+                        this.murs[colonne][numeroLigne] = false;
                         break;
                     case MONSTRE:
                         entites.add(new Monstre(colonne, numeroLigne, 2, laby));
@@ -237,11 +234,16 @@ public class Labyrinthe {
                 this.pj.setY(suivante[1]);
             }
         }catch (ArrayIndexOutOfBoundsException e){
+            // si on essaye de sortir d'un labyrinthe, alors on change de labyrinthe
             Main.changerLaby(this, LabyJeu.DERNIER_MOUVEMENT);
         }
 
     }
 
+    /**
+     * attaque les monstres dans la direction du personnage
+     * @param derniere_direction direction de l'attaque
+     */
     public void attaqueDirectionnel(String derniere_direction) {
         // case courante
         int[] courante = {this.pj.getX(), this.pj.getY()};
@@ -249,7 +251,7 @@ public class Labyrinthe {
         // case suivante = case courante + direction
         int[] suivante = getSuivant(courante[0], courante[1], derniere_direction);
 
-        // si c'est pas un mur, on effectue le deplacement
+        // si une entite vivante est presente dans la case, on l'attaque
         for (Entite entite : entites) {
             if (entite instanceof Monstre && entite.etreVivant() && entite.etrePresent(suivante[0], suivante[1])) {
                 Monstre m = (Monstre) entite;
@@ -259,57 +261,74 @@ public class Labyrinthe {
     }
 
 
+    /**
+     * actionne un item dans la direction du personnage
+     * @param derniere_direction direction de l'action
+     */
     public void actionnerItem(String derniere_direction){
-// case courante
+        // case courante
         int[] courante = {this.pj.getX(), this.pj.getY()};
 
         // case suivante = case courante + direction
         int[] suivante = getSuivant(courante[0], courante[1], derniere_direction);
 
-        // si c'est pas un mur, on effectue le deplacement
+        // pour chaque coffres
         for (Coffre c : coffres) {
+            // si le coffre est present dans la case et n'est pas deja ouvert
             if (c.etrePresent(suivante[0], suivante[1])&& c.isActif()) {
-                c.action();
+                // on essaye de l'ouvrir
+                c.tenterOuverture();
             }
         }
     }
 
 
-
-
+    /**
+     * fait bouger tous les monstres du labyrinthe
+     */
     public void mouvementsMonstres(){
+        // on creer les chemins pour les monstres affectes par les murs et non affectes
         GrapheListe g1 = new GrapheListe(this, false);
         GrapheListe g2 = new GrapheListe(this, true);
         Dijkstra d = new Dijkstra();
 
         for (Entite entite : entites) {
+            // on parcourt les entites
             if (entite instanceof Monstre && entite.etreVivant()) {
+                // si c'est un monstre et qu'il est vivant
+                // on recupere le graphe correspondant
                 GrapheListe g = g1;
                 if (entite instanceof Fantome){
+                    // si c'est un fantome, on prend le graphe sans les murs
                     g = g2;
-
                 }
                 Monstre m = (Monstre) entite;
                 String monstre = m.getX()+","+m.getY();
 
+                // on recupere le chemin le plus court
                 Valeur v = d.resoudre(g, monstre);
                 List<String> l = v.calculerChemin(pj.getX()+","+pj.getY());
 
+                // si il a un chemin jusqu'au personnage
                 if (l.size()>=2) {
+                    // on recupere la case suivante
                     String[] prochain = l.get(l.size() - 2).split(",");
                     int[] coords = {Integer.parseInt(prochain[0]), Integer.parseInt(prochain[1])};
 
+                    // si la case est vide, on deplace le monstre
                     Entite collision = m.collision(coords);
                     if (collision==null) {
                         m.setX(coords[0]);
                         m.setY(coords[1]);
                     }
                     else{
+                        // si c'est un personnage, on l'attaque
                         if(collision instanceof Perso)
                             m.attaquer(this.pj);
                     }
                 }
                 else{
+                    // si le monstre n'a pas de chemin jusqu'au personnage, il bouge aleatoirement
                     if (!g.suivants(monstre).isEmpty())
                         mouvementAleatoireMonstres(m, g.suivants(monstre));
                 }
@@ -317,12 +336,19 @@ public class Labyrinthe {
         }
     }
 
+    /**
+     * fait bouger un monstre aleatoirement quand il ne trouve pas le personnage
+     * @param m monstre
+     * @param v liste des cases suivantes possibles
+     */
     public void mouvementAleatoireMonstres(Monstre m, List<Couple> v) {
+        // on recupere une case aleatoire dans celles disponibles
         int random = (int) (Math.random() * v.size());
         String dest = v.get(random).getDest();
         String[] prochain = dest.split(",");
         int[] coords = {Integer.parseInt(prochain[0]), Integer.parseInt(prochain[1])};
 
+        // si la case est vide, on deplace le monstre
         Entite collision = m.collision(coords);
         if (collision==null) {
             m.setX(coords[0]);
@@ -331,12 +357,8 @@ public class Labyrinthe {
     }
 
 
-
-
-
     /**
-     * jamais fini
-     *
+     * fin du jeu si le personnage est mort
      * @return fin du jeu
      */
     public boolean etreFini() {
@@ -396,6 +418,12 @@ public class Labyrinthe {
         return -1;
     }
 
+    /**
+     * return si il y a un monstre en (x,y)
+     * @param x
+     * @param y
+     * @return
+     */
     public boolean getMonstre(int x, int y) {
         for (Entite entite : entites) {
             if (entite instanceof Monstre) {
@@ -409,21 +437,33 @@ public class Labyrinthe {
 
     /**
      * return la position du personnage
-     * @return
+     * @return int[] position
      */
     public int[] getPersonnage() {
         return new int[]{this.pj.getY(), this.pj.getX()};
     }
 
+    /**
+     * return le personnage du labyrinthe
+     * @return perso
+     */
     public Perso getPerso() {
         return this.pj;
     }
 
+    /**
+     * ajoute une entite au labyrinthe
+     * @param e
+     */
     public void ajouterEntite(Entite e) {
         if(estVideCase(e.getX(), e.getY())) {
             this.entites.add(e);}
     }
 
+    /**
+     * ajoute un item au labyrinthe
+     * @param i
+     */
     public void ajouterItem(Item i) {
         if(estVideCase(i.getX(), i.getY())) {
             this.items.add(i);}
@@ -447,6 +487,7 @@ public class Labyrinthe {
         }
 
         for (Coffre c: coffres){
+            // si coffre est present dans la case et actif
             if (c.getX() == x && c.getY() == y && c.isActif()){
                 vide = false;
             }
@@ -460,30 +501,19 @@ public class Labyrinthe {
     }
 
     /**
-     * méthode majLaby permet de mettre a jour le labyrinthe (état des murs, des passages secrets, des monstres)
+     * retourne la sortie du labyrinthe
+     * @return sortie
      */
-    public void majLaby(){
-        // maj passage secret
-        for (PassageSecret psecret : psecrets) {
-            // si le passage secret est active alors il n'est pas un mur
-            if (psecret.isActive()) {
-                murs[psecret.getX()][psecret.getY()] = false;
-            }
-            else{
-                murs[psecret.getX()][psecret.getY()] = true;
-            }
-        }
-        /*for (Entite entite : entites) {
-            if (!entite.etreVivant()) {
-                murs[entite.getX()][entite.getY()] = false;
-            }
-        }*/
-    }
-
     public Sortie getSortie() {
         return sortie;
     }
 
+    /**
+     * retourne l'indice du coffre en (x,y) si il y en a un
+     * @param x
+     * @param y
+     * @return
+     */
     public int getCoffre(int x, int y) {
         for (int i = 0; i < coffres.size(); i++) {
             Coffre coffre = coffres.get(i);

@@ -5,17 +5,33 @@ import gameLaby.laby.Case;
 import gameLaby.laby.Labyrinthe;
 import gameLaby.entites.Perso;
 
+/**
+ * Classe abstraite Item qui hérite de la classe Case
+ */
 public abstract class Item extends Case {
-    private boolean dansInventaire = false;
 
+    /**
+     * Constructeur pour les items etant fixes dans un labyrinthe
+     * @param x
+     * @param y
+     * @param laby
+     */
     public Item(int x, int y, Labyrinthe laby) {
         super(x, y, laby);
     }
 
+    /**
+     * Constructeur pour les items changant de labyrinthe
+     * @param x
+     * @param y
+     */
     public Item(int x, int y){
         super(x, y);
     }
 
+    /**
+     * @return true si le personnage est sur la case de l'item
+     */
     public boolean persoPresent() {
         Perso p = Main.getLaby().getPerso();
         if(getLaby()!=null) {
@@ -26,18 +42,17 @@ public abstract class Item extends Case {
         return false;
     }
 
+    /**
+     * Methode pour ramasser un item
+     */
     public void ramasserItem(){
         Labyrinthe laby = Main.getLaby();
         if(getLaby()!=null) {
             laby = getLaby();
         }
+        // ajout de l'item dans l'inventaire
         laby.getPerso().ajouterInventaire(this);
-        this.dansInventaire = true;
         laby.items.remove(this);
-    }
-
-    public boolean inInventaire(){
-        return dansInventaire;
     }
 
 }
