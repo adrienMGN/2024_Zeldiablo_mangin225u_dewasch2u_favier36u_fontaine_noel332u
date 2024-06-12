@@ -1,5 +1,5 @@
 Mise en place de l'amulette
-u lancement du jeu, une amulette est placée sur une case vide du labyrinthe. Le
+Au lancement du jeu, une amulette est placée sur une case vide du labyrinthe. Le
 placement de l'amulette est toujours le même et dépend du niveau.
 Critères de validation
 • L'amulette ne peut être placée que sur une case vide. : Ok
