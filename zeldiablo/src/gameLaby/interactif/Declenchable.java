@@ -23,13 +23,6 @@ public abstract class Declenchable extends Case {
         return false;
     }
 
-    public int getX() {
-        return super.getX();
-    }
-
-    public int getY() {
-        return super.getY();
-    }
 
     public int getId() {
         return id;
