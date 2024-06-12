@@ -10,6 +10,10 @@ import static org.junit.jupiter.api.Assertions.*;
 public class TestLaby {
 
 
+    /**
+     * Test de déplacement du perso avec les touches clavier et s'il ne traverse pas les murs
+     * @throws Exception
+     */
     @Test
     public void test_deplacerPerso() throws Exception{
         Labyrinthe labyrinthe = new Labyrinthe("labySimple/laby0.txt");
@@ -49,6 +53,10 @@ public class TestLaby {
         assertArrayEquals(labyrinthe.getPersonnage(),new int[]{1,1},"le personnage traverse le mur");
     }
 
+    /**
+     * test de l'attaque en fonction de la direction du personnage
+     * @throws Exception
+     */
     @Test
     public void test_attaque_directionnelle_perso_ok() throws Exception{
         Labyrinthe labyrinthe = new Labyrinthe("labySimple/labyTest/labyMouvementMonstre.txt");
@@ -69,6 +77,10 @@ public class TestLaby {
 
     }
 
+    /**
+     * Test de l'attaque directionnelle dans la mauvaise direction
+     * @throws Exception
+     */
     @Test
     public void test_attaque_directionnelle_perso_mauvaise_direction() throws Exception{
         Labyrinthe labyrinthe = new Labyrinthe("labySimple/labyTest/labyMouvementMonstre.txt");
@@ -87,6 +99,10 @@ public class TestLaby {
 
     }
 
+    /**
+     * Test de mort du personnage attaqué par un monstre, fermeture du jeu causée par la mort du personnage
+     * @throws Exception
+     */
     @Test
     public void test_game_over() throws Exception{
         Labyrinthe labyrinthe = new Labyrinthe("labySimple/labyTest/labyMouvementMonstre.txt");

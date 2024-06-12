@@ -9,10 +9,11 @@ import moteurJeu.Clavier;
 public class TestOuverture {
 
 
-
+    /**
+     * Test d'ouverture d'un passage secret avec son ouverture
+     * @throws Exception
+     */
     @Test
-    /*
-    * Test un passage secrat avec son ouverture*/
     public void test_ouverture_simple() throws Exception{
         Labyrinthe labyrinthe = new Labyrinthe("labySimple/labyTest/labyTestOuvertureSimple.txt");
         LabyJeu labyJeu = new LabyJeu(labyrinthe);
@@ -29,11 +30,12 @@ public class TestOuverture {
 
     }
 
-    // test avec un passage secret double ouverture
+    /** test avec un passage secret double ouverture
     // une des ouverture est donc inutile et n'ouvre pas le passage secret
     /*
     * en effet, avec la gestion des passage et des ouverture, un passage et associer à une unique ouverture
     * l'ouverture lu en premier dans le labyrinthe est donc associer au passage secret lu à la suite
+     * @throws Exception
     * */
     @Test
     public void test_ouverture_double() throws Exception{
@@ -54,8 +56,10 @@ public class TestOuverture {
 
     }
 
-    /*
-    * Test double ouverture et double passage secrets*/
+    /**
+    * Test double ouverture et double passage secrets
+     * @throws Exception
+     */
     @Test
     public void test_ouverture_double_ok() throws Exception{
         Clavier clavier = new Clavier();

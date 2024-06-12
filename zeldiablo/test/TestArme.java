@@ -12,6 +12,10 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class TestArme {
+    /**
+     * Test de présence de l'épée dans l'inventaire quand rammassée et si l'épée tue en un seul coup les monstres
+     * @throws Exception
+     */
     @Test
     public void test_arme_epee() throws Exception {
         Labyrinthe labyrinthe = new Labyrinthe("labySimple/labyTest/labyEpee.txt");
@@ -26,6 +30,10 @@ public class TestArme {
         assertFalse(m.etreVivant(), "le monstre aurait du être tué en un coup");
     }
 
+    /**
+     * Test de présence de l'arc dans l'inventaire quand rammassé et s'il tue les monstres en un seul coup
+     * @throws Exception
+     */
     @Test
     public void test_arme_arc() throws Exception {
         Labyrinthe labyrinthe = new Labyrinthe("labySimple/labyTest/labyTestArc.txt");

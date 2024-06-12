@@ -8,6 +8,10 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class TestCoffre {
 
+    /**
+     * Test de ramassage de la clé, ajout dans l'inventaire
+     * @throws Exception
+     */
     @Test
     public void test_ramasser_cle() throws Exception {
 
@@ -23,6 +27,10 @@ public class TestCoffre {
         assertTrue(possede, "la cle doit être dans l'inventaire du personnage");
     }
 
+    /**
+     * Test ouverture d'un coffre et de disparition de la clé une fois le coffre ouvert
+     * @throws Exception
+     */
     @Test
     public void test_ouvrir_coffre() throws Exception {
         Labyrinthe labyrinthe = new Labyrinthe("labySimple/labyTest/labyCleCoffre.txt");

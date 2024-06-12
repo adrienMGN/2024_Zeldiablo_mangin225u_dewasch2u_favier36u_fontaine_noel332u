@@ -9,6 +9,10 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class TestAmulette {
 
+    /**
+     * test de ramassage de l'amulette et placement dans l'inventaire
+     * @throws Exception
+     */
     @Test
     public void test_ramasser_Amulette_et_placement() throws Exception{
         Labyrinthe labyrinthe = new Labyrinthe("labySimple/labyTest/labyAmulette.txt");
@@ -35,9 +39,11 @@ public class TestAmulette {
 
     }
 
+    /**
+     * Test de vérification qu'uncun monstre ne peut prendre l'amulette
+     * @throws Exception
+     */
     @Test
-    /*
-    * test verifie que le monstre ne peut pas ramasser l'amulette*/
     public void test_monstre_ramasser_Amulette() throws Exception{
         Labyrinthe labyrinthe = new Labyrinthe("labySimple/labyTest/labyAmuletteMonstre.txt");
         Clavier clavier = new Clavier();

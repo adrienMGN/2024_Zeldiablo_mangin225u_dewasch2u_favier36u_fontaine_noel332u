@@ -7,6 +7,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class TestFermeture {
 
+    /**
+     * Test de fermeture d'un passage secret après ouverture
+     * @throws Exception
+     */
     @Test
     public void test_fermeture1passage() throws Exception {
 
@@ -29,8 +33,11 @@ public class TestFermeture {
     }
 
 
-
-
+    /**
+     * test avec un passage secret double fermeture
+     * une des fermeture est donc inutile et n'ouvre pas le passage secret
+     * @throws Exception
+     */
 // test avec un passage secret double fermeture
 // une des fermeture est donc inutile et n'ouvre pas le passage secret
 /*
@@ -68,8 +75,10 @@ public void test_fermeture_double() throws Exception{
 
 }
 
-/*
- * Test double fermeture et double passage secrets*/
+/**
+ * Test double fermeture et double passage secrets
+ * @throws Exception
+ * */
 @Test
 public void test_fermeture_double_ok() throws Exception {
     Labyrinthe labyrinthe = new Labyrinthe("labySimple/labyTest/labyTestFermetureDoubleOk.txt");

@@ -12,10 +12,11 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class TestMonstre {
 
+    /**
+     * Test d'ajout d'un monstre qui se fait attaquer
+     * @throws Exception
+     */
     @Test
-
-    /*
-     * test ajout d'un monstre par une méthode*/
     public void test_ajout_monstre_attaque() throws Exception{
         Labyrinthe labyrinthe = new Labyrinthe("labySimple/labyTest/labyMonstre.txt");
         Clavier clavier = new Clavier();
@@ -34,8 +35,11 @@ public class TestMonstre {
         assertEquals(9, m.getPv() , "le monstre devrait avoir 9 pv");
     }
 
+    /**
+     * Test déplacement du monstre en direction du personnage
+     * @throws Exception
+     */
     @Test
-    /*test mouvement d'un monstre vers perso*/
     public void test_mouvement_monstre() throws Exception{
 
         Labyrinthe labyrinthe = new Labyrinthe("labySimple/labyTest/labyMonstre.txt");
@@ -57,9 +61,11 @@ public class TestMonstre {
 
     }
 
+    /**
+     * Test de déplacement intelligent des monstre(s'ils ne foncent pas dans les murs et les esquivent).
+     * @throws Exception
+     */
     @Test
-    /*test mouvemnt du monstre intelligent evite obstacle*/
-
     public void test_mouvement_monstre_intelligent() throws Exception{
 
         Labyrinthe labyrinthe = new Labyrinthe("labySimple/labyTest/labyMouvementMonstreIntelligent.txt");
@@ -87,8 +93,11 @@ public class TestMonstre {
 
     }
 
+    /**
+     * Test des fantomes s'ils passent au travers des murs
+     * @throws IOException
+     */
     @Test
-    /*test fantome passe à travers mur*/
     public void test_monstre() throws IOException {
         Labyrinthe labyrinthe = new Labyrinthe("labySimple/labyTest/labyFantome.txt");
         Clavier clavier = new Clavier();
