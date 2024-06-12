@@ -31,7 +31,7 @@ public class Ouverture extends Declenchable {
             if (passage.getId() == getId()){
                 // si le passage n'est pas deja ouvert
                 if(!passage.isActive()) {
-                    passage.ouvrir();
+                    laby.ouvrirPassageSecret(passage);
                 }
             }
         }

@@ -105,8 +105,8 @@ public class LabyJeu implements Jeu {
             timer = 0;
         }
 
-        // mise a jour des fleches toutes les 0.24 secondes
-        if (updateFleche >= 0.24){
+        // mise a jour des fleches toutes les 0.25 secondes
+        if (updateFleche >= 0.25){
             Arc a = laby.getPerso().selectionnerMeilleurArc();
             if (a != null){
                 a.avancerFleches();

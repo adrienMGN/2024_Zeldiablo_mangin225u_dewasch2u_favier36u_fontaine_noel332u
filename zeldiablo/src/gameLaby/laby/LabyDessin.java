@@ -72,10 +72,6 @@ public class LabyDessin implements DessinJeu {
                         gc.setFill(Color.WHITE);
                         gc.fillRect(x*tailleCase, y*tailleCase, tailleCase, tailleCase);
                     }
-                    else {
-                        gc.setFill(Color.BROWN);
-                        gc.fillRect(x*tailleCase, y*tailleCase, tailleCase, tailleCase);
-                    }
                 }
                 // dessin des coffres
                 else if (laby.getCoffre(x,y)!=-1){

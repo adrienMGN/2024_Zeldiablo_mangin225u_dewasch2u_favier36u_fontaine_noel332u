@@ -159,7 +159,7 @@ public class Labyrinthe {
                         break;
                     case PSECRET:
                         psecrets.add(new PassageSecret(PassageSecret.nbPassages,colonne, numeroLigne, laby));
-                        this.murs[colonne][numeroLigne] = false;
+                        this.murs[colonne][numeroLigne] = true;
                         break;
                     case MONSTRE:
                         entites.add(new Monstre(colonne, numeroLigne, 2, laby));
@@ -522,5 +522,15 @@ public class Labyrinthe {
             }
         }
         return -1;
+    }
+
+    public void ouvrirPassageSecret(PassageSecret p){
+        for (int i = 0; i < psecrets.size(); i++) {
+            PassageSecret psecret = psecrets.get(i);
+            if (psecret.equals(p)) {
+                psecret.ouvrir();
+                this.murs[psecret.getX()][psecret.getY()] = false;
+            }
+        }
     }
 }
