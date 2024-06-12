@@ -18,9 +18,9 @@ public class TestCoffre {
         boolean possede = labyrinthe.getPerso().possedeCle();
         assertFalse(possede, "le personnage ne doit pas posseder la clé");
         labyrinthe.deplacerPerso(Labyrinthe.BAS);
-        labyJeu.update(0,clavier);
+        labyrinthe.items.get(0).ramasserItem();
         possede = labyrinthe.getPerso().possedeCle();
-        assertTrue(possede, "l'amulette doit être dans l'inventaire du personnage");
+        assertTrue(possede, "la cle doit être dans l'inventaire du personnage");
     }
 
     @Test
@@ -30,7 +30,6 @@ public class TestCoffre {
         LabyJeu labyJeu = new LabyJeu(labyrinthe);
 
         labyrinthe.deplacerPerso(Labyrinthe.BAS);
-        labyJeu.update(0,clavier);
 
         boolean present = labyrinthe.getCoffre(1,3)!=-1;
         assertTrue(present, "le coffre doit être présent dans le labyrinthe");

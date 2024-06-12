@@ -46,9 +46,12 @@ public abstract class Item extends Case {
      * Methode pour ramasser un item
      */
     public void ramasserItem(){
-        Labyrinthe laby = Main.getLaby();
+        Labyrinthe laby;
         if(getLaby()!=null) {
             laby = getLaby();
+        }
+        else{
+            laby = Main.getLaby();
         }
         // ajout de l'item dans l'inventaire
         laby.getPerso().ajouterInventaire(this);

@@ -36,7 +36,7 @@ public class Fermeture extends Declenchable {
                     if (laby.getMonstre(passage.getX(), passage.getY())) {
                         laby.mouvementsMonstres();
                     }
-                    passage.fermer();
+                    laby.fermerPassageSecret(passage);
                 }
             }
         }

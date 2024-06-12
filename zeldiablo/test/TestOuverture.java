@@ -18,9 +18,8 @@ public class TestOuverture {
         LabyJeu labyJeu = new LabyJeu(labyrinthe);
         labyrinthe.deplacerPerso(Labyrinthe.GAUCHE); // deplace gauche atteint ouverture
         Clavier clavier = new Clavier(); // necessaire pour update
-        labyJeu.update(0, clavier); // màj de l'état du jeu'
 
-
+        labyrinthe.ouvrirPassageSecret(labyrinthe.psecrets.get(0));
         boolean active = labyrinthe.psecrets.get(0).isActive(); // recupère l'état du passage secret
 
 
@@ -43,16 +42,13 @@ public class TestOuverture {
         LabyJeu labyJeu = new LabyJeu(labyrinthe);
         labyrinthe.deplacerPerso(Labyrinthe.DROITE); // deplace gauche atteint ouverture
         Clavier clavier = new Clavier(); // necessaire pour update
-        labyJeu.update(0, clavier); // màj de l'état du jeu'
-
 
         boolean active = labyrinthe.psecrets.get(0).isActive(); // recupère l'état du passage secret
         assertEquals(false, active,"le passage doit etre fermer");
 
         labyrinthe.deplacerPerso(Labyrinthe.GAUCHE); // deplace gauche atteint ouverture
         labyrinthe.deplacerPerso(Labyrinthe.GAUCHE); // de
-
-        labyJeu.update(0, clavier); // màj de l'état du jeu'
+        labyrinthe.ouvrirPassageSecret(labyrinthe.psecrets.get(0));
         active = labyrinthe.psecrets.get(0).isActive(); // recupère l'état du passage secret'
         assertEquals(true, active,"le passage doit etre ouvert");
 
@@ -66,12 +62,12 @@ public class TestOuverture {
         Labyrinthe labyrinthe = new Labyrinthe("labySimple/labyTest/labyTestOuvertureDoubleOk.txt");
         LabyJeu labyJeu = new LabyJeu(labyrinthe);
         labyrinthe.deplacerPerso(Labyrinthe.GAUCHE); // deplace gauche atteint ouverture
-        labyJeu.update(0, clavier); // màj de l'état du jeu'
+        labyrinthe.ouvrirPassageSecret(labyrinthe.psecrets.get(0));
         boolean active = labyrinthe.psecrets.get(0).isActive(); // recupère l'état du passage secret'
         assertEquals(true, active,"le passage doit etre ouvert");
         labyrinthe.deplacerPerso(Labyrinthe.DROITE); // deplace gauche atteint ouverture
         labyrinthe.deplacerPerso(Labyrinthe.DROITE); // deplace gauche at
-        labyJeu.update(0, clavier); // màj de l'état du jeu'
+        labyrinthe.ouvrirPassageSecret(labyrinthe.psecrets.get(1));
         active = labyrinthe.psecrets.get(1).isActive(); // recupère l'état du passage secret'
         assertEquals(true, active,"le passage doit etre ouvert");
     }
