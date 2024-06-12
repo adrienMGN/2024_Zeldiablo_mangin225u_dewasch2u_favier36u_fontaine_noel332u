@@ -5,6 +5,3 @@ out/
 .class
 Thumbs.db
 pom.xml
-
-#ne pas supprimer
-*.pdf
