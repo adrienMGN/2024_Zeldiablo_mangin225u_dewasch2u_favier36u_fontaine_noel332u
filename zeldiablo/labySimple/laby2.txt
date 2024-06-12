@@ -1,6 +1,6 @@
 14
 20
-XXXXXXXXXXXXXXXXXXXX
+XXXXXXXXXXXXXXXXX.XX
 XXC......X...F....XX
 X....M...X..........
 X........X...X......
@@ -11,6 +11,6 @@ X..XF...GH....X....X
 X.....X..X.........X
 XX.....M.XX........X
 .....M...X.........X
-.........X....G..KSX
+.........X....G...SX
 XX.......H.......PXX
 XXXXXXXXXXXXXXXXXXXX

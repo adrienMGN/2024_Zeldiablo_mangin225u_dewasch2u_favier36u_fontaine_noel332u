@@ -67,7 +67,7 @@ public class Main {
         }
         try{
             Labyrinthe newLaby = labyrinthes[labyActuel[0]][labyActuel[1]];
-            newLaby.getPerso().setPv(laby.getPerso().getPv());
+             newLaby.getPerso().setPv(laby.getPerso().getPv());
             newLaby.getPerso().setInventaire(laby.getPerso().getInventaire());
             afficherLabyrinthe(newLaby);
         }catch (ArrayIndexOutOfBoundsException e){
@@ -100,9 +100,10 @@ public class Main {
         Labyrinthe laby4 = new Labyrinthe("labySimple/laby4.txt");
         Labyrinthe laby5 = new Labyrinthe("labySimple/laby5.txt");
         Labyrinthe laby6 = new Labyrinthe("labySimple/laby6.txt");
+        Labyrinthe labyPresentation = new Labyrinthe("labySimple/labyPresentation.txt");
         labyrinthes = new Labyrinthe[][]{
                 {null,null, null, null},
-                {null,null, null, laby5},
+                {null,labyPresentation, null, laby5},
                 {laby6,laby2, laby3, laby4},
                 {null,null, null, null},
                 {null,  null, null, null}};

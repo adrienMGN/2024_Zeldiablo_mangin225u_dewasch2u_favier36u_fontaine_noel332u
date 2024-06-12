@@ -133,7 +133,7 @@ public class LabyDessin implements DessinJeu {
                 double y = item.getY();
                 // on les affiche en fonction de leur type
                 if (item instanceof Amulette)
-                    gc.drawImage(amulette,x*tailleCase,y*tailleCase);
+                    gc.drawImage(amulette,x*tailleCase+tailleCase/7,y*tailleCase, tailleCase-tailleCase/3, tailleCase-tailleCase/8);
                 if (item instanceof Cle)
                     gc.drawImage(cle,x*tailleCase+tailleCase/7,y*tailleCase, tailleCase-tailleCase/3, tailleCase);
                 if (item instanceof Epee)
