@@ -20,8 +20,8 @@ import java.util.List;
 
 /**
  * classe labyrinthe. represente un labyrinthe avec
- * <ul> des murs </ul>
- * <ul> un personnage (x,y) </ul>
+ * des murs
+ *  un personnage (x,y)
  */
 public class Labyrinthe {
 
@@ -106,7 +106,6 @@ public class Labyrinthe {
      * charge le labyrinthe
      *
      * @param nom nom du fichier de labyrinthe
-     * @return labyrinthe cree
      * @throws IOException probleme a la lecture / ouverture
      */
     public Labyrinthe(String nom) throws IOException {
