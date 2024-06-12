@@ -1,3 +1,4 @@
+import gameLaby.Main;
 import gameLaby.entites.Monstre;
 import gameLaby.entites.Perso;
 import gameLaby.laby.LabyJeu;
@@ -18,7 +19,7 @@ public class TestArme {
         Monstre m = (Monstre)labyrinthe.entites.get(1);
         Epee epee = (Epee)labyrinthe.items.get(0);
         labyrinthe.deplacerPerso(Labyrinthe.BAS);
-        epee.ramasserItem();
+        pj.ajouterInventaire(epee);
         boolean possede = pj.getInventaire().get(0) == epee;
         assertTrue(possede, "Le personnage devrait avoir une épée");
         pj.attaquer(m);
@@ -28,15 +29,18 @@ public class TestArme {
     @Test
     public void test_arme_arc() throws Exception {
         Labyrinthe labyrinthe = new Labyrinthe("labySimple/labyTest/labyTestArc.txt");
+        Main.setLabyrinthes(new Labyrinthe[][]{{labyrinthe}});
+        Main.setLabyActuel(new int[]{0, 0});
         Perso pj = labyrinthe.getPerso();
         Monstre m = (Monstre)labyrinthe.entites.get(1);
         Arc arc = (Arc)labyrinthe.items.get(0);
         labyrinthe.deplacerPerso(Labyrinthe.BAS);
-        arc.ramasserItem();
+        pj.ajouterInventaire(arc);
         boolean possede = pj.getInventaire().get(0) == arc;
         assertTrue(possede, "Le personnage devrait avoir une arc");
-        pj.attaquerDistance(Labyrinthe.BAS);
+        arc.tirerFleche(Labyrinthe.BAS);
         assertTrue(m.etreVivant(), "le monstre ne doit pas encore avoir prit de dégats");
+        arc.avancerFleches();
         arc.avancerFleches();
         assertFalse(m.etreVivant(), "le monstre aurait du être tué en un coup");
     }

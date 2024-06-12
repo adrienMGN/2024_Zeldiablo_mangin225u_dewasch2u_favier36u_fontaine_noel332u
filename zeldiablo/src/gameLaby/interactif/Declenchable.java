@@ -11,6 +11,7 @@ public abstract class Declenchable extends Case {
     private int id;
 
     /**
+     * Constructeur de Declenchable
      * @param id
      * @param x
      * @param y
@@ -27,7 +28,8 @@ public abstract class Declenchable extends Case {
     public abstract void action();
 
     /**
-     * @return true si le perso est sur la case
+     * retourne si une entite est sur la case ou non
+     * @return true si une entite est sur la case
      */
     public boolean entitePresente() {
         for (Entite e : getLaby().entites) {
@@ -41,6 +43,7 @@ public abstract class Declenchable extends Case {
 
 
     /**
+     * retourne l'id
      * @return id
      */
     public int getId() {

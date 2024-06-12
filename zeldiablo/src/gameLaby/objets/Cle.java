@@ -8,6 +8,7 @@ import gameLaby.laby.Labyrinthe;
 public class Cle extends Item {
 
     /**
+     * Constructeur pour les cles
      * @param dx
      * @param dy
      * @param laby

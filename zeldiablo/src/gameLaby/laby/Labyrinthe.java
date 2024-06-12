@@ -524,12 +524,30 @@ public class Labyrinthe {
         return -1;
     }
 
+    /**
+     * ouvre le passage secret en parametre
+     * @param p
+     */
     public void ouvrirPassageSecret(PassageSecret p){
         for (int i = 0; i < psecrets.size(); i++) {
             PassageSecret psecret = psecrets.get(i);
             if (psecret.equals(p)) {
                 psecret.ouvrir();
                 this.murs[psecret.getX()][psecret.getY()] = false;
+            }
+        }
+    }
+
+    /**
+     * ouvre le passage secret en parametre
+     * @param p
+     */
+    public void fermerPassageSecret(PassageSecret p){
+        for (int i = 0; i < psecrets.size(); i++) {
+            PassageSecret psecret = psecrets.get(i);
+            if (psecret.equals(p)) {
+                psecret.fermer();
+                this.murs[psecret.getX()][psecret.getY()] = true;
             }
         }
     }

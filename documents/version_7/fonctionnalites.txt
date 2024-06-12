@@ -1,0 +1,72 @@
+Armes
+
+Les armes sont des objets que le héros peut prendre. Une arme augmente d'un
+certain nombre les dégâts du héros.
+Critères de validation
+• Une arme est définie par ses dégâts.
+• Lorsque le héros prend une arme, l'arme est ajoutée à son inventaire et disparait
+du labyrinthe. : OK
+• Lorsqu'un héros possède une arme et attaque un monstre, son attaque est aug-
+mentée des dégâts de l'arme. : OK
+• Un héros ne peut utiliser qu'une seule arme à la fois. Lorsqu'un héros possède : OK
+plusieurs armes dans son inventaire, il s'équipe automatiquement de l'arme la
+plus forte. : OK
+
+Affichage de l'inventaire
+
+L'inventaire est affiché dans la fenêtre de jeu.
+Critères de validation
+• L'inventaire est représenté par 6 cases carrées en haut de la fenêtre de jeu : OK
+• A chaque fois qu'un joueur prend un objet, en plus de disparaitre dans le laby-
+rinthe, celui-ci s'affiche dans l'inventaire : OK
+• Les objets sélectionnés (meilleure arme et meilleur bouclier) sont d'une couleur
+diérente. : NON
+• Les objets affichés dans l'inventaire ont des formes spéciques (rond pour un : Sprite
+bouclier et un trait vertical pour une arme).
+• Lorsqu'un bouclier est détruit, il disparait de l'inventaire. : PAS DE BOUCLIER
+
+Attaque à distance du joueur
+
+Attaque à distance du joueur
+Diculté 
+Le joueur dispose d'une touche particulière pour tirer à l'arc. Lorsqu'il appuie sur
+cette touche ("f" par défaut), le héros lance une flèche qui traverse l'écran dans la
+direction suivie par le héros.
+Critères de validation
+• La èche se déplace de manière rectiligne à partir du héros et selon la direction : ok
+de son dernier déplacement. 
+• la èche se déplace à la vitesse des monstres et du héros (cf tâche suivante) : ok
+• Lorsqu'elle rencontre un obstacle (monstre ou mur), la èche disparait et fait 1
+point de dégât si c'est un monstre. : ok
+• Tant qu'elle n'est pas détruite, la èche se déplace d'une case par évolution du
+jeu. : ok
+• La èche est achée dans la fenêtre de jeu sous la forme d'un petit point rouge
+centré dans la case où la èche se trouve. : ok
+
+
+Vitesse des èches
+Diculté 
+Les èches lancées par le joueur vont deux fois plus vite que les déplacements des
+monstres et du joueur. 
+Critères de validation
+• A chaque évolution du jeu, la èche se déplace de deux cases. : ok
+• La détection d'obstacles se fait dans toutes les cases traversées (pas juste la pre-
+mière et la dernière : ok
+
+
+Retour sur Inventaire, obejt ramasser lorsque le joueur passe dessus
+
+Inventaire
+Diculté : 88999
+Des objets (sans utilité pour le moment) sont disposés dans des cases vides du laby-
+rinthe, lorsque le héros appuie sur la touche d'utilisation ("E" par défaut), il récupère
+les objets de la case où il se trouve et les ajoute dans son inventaire.
+Critères de validation
+• L'inventaire est de taille innie.
+• Lorsque le joueur cherche à prendre un objet alors qu'il n'y a rien sur la case où
+il se trouve, rien ne se passe.
+• Lorsqu'un joueur prend un objet, l'objet disparait du labyrinthe (et n'est plus
+aché) mais apparait dans son inventaire.
+• A chaque évolution du jeu, le jeu ache dans la console l'inventaire du héros.
+• Les objets sont achés dans le labyrinthe tant qu'ils sont présents (sous la forme
+d'un cercle noir)

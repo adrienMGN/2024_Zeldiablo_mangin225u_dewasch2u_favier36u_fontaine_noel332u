@@ -11,6 +11,7 @@ public class Ouverture extends Declenchable {
     public static int nbOuvertures = 0;
 
     /**
+     * constructeur d'une ouverture
      * @param id
      * @param x
      * @param y
@@ -22,7 +23,7 @@ public class Ouverture extends Declenchable {
     }
 
     /**
-     * action pour ouvrir les passages secrets
+     * action pour ouvrir les passages secrets si id correspond
      */
     public void action(){
         Labyrinthe laby = getLaby();

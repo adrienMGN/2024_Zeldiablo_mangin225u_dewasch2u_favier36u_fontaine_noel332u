@@ -8,6 +8,7 @@ import gameLaby.laby.Labyrinthe;
 public class Amulette extends Item {
 
     /**
+     * Constructeur pour les amulettes
      * @param dx
      * @param dy
      * @param laby

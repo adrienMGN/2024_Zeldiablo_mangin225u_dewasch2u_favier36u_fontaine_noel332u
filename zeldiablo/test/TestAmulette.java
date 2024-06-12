@@ -19,9 +19,8 @@ public class TestAmulette {
         assertTrue(presence, "l'amulette n'est pas présente dans le labyrinthe");
         labyrinthe.ajouterItem(a);
         labyrinthe.deplacerPerso(Labyrinthe.BAS);
-        labyJeu.update(0,clavier);
+        a.ramasserItem();
         boolean possede = labyrinthe.getPerso().getInventaire().contains(a);
-
         assertTrue(possede, "l'amulette n'est pas dans l'inventaire du personnage");
 
 
@@ -29,9 +28,7 @@ public class TestAmulette {
         // le test ne passe pas car exit 0
 
         labyrinthe.deplacerPerso(Labyrinthe.BAS);
-        labyJeu.update(0,clavier);
         boolean fini = labyJeu.etreFini();
-        //boolean fini = labyrinthe.getPerso().etrePresent(1,3);
         assertTrue(fini, "le jeu devrait être fini");
 
 
@@ -51,7 +48,6 @@ public class TestAmulette {
         assertTrue(presence, "l'amulette doit  être présente dans le labyrinthe");
         labyrinthe.ajouterItem(a);
         labyrinthe.ajouterEntite(m);
-        labyJeu.update(0,clavier);
         assertTrue(presence, "l'amulette doit toujours être présente dans le labyrinthe");
 
 

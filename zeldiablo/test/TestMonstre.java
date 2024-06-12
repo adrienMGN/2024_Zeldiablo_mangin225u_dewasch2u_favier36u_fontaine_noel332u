@@ -24,14 +24,14 @@ public class TestMonstre {
         Monstre m= new Monstre(1,1, 10, labyrinthe);
         labyrinthe.ajouterEntite(m);
         m.attaquer(pj);
-        labyJeu.update(2, clavier);
         assertTrue( m.etrePresent(1,1),"le monstre devrait être présent en 1,1");
 
 
         Monstre m2 = (Monstre)labyrinthe.entites.get(1);
         assertTrue( m2.etrePresent(3,3),"le monstre devrait être présent en 2,2");
 
-        assertEquals(9, pj.getPv() , "le monstre devrait avoir 9 pv");
+        pj.attaquer(m);
+        assertEquals(9, m.getPv() , "le monstre devrait avoir 9 pv");
     }
 
     @Test
@@ -41,7 +41,6 @@ public class TestMonstre {
         Labyrinthe labyrinthe = new Labyrinthe("labySimple/labyTest/labyMonstre.txt");
         Clavier clavier = new Clavier();
         LabyJeu labyJeu = new LabyJeu(labyrinthe);
-        labyJeu.update(0, clavier);
 
         //System.out.println(labyrinthe.entites.size());
         //System.out.println((labyrinthe.entites.get(1)).getClass().getName());
@@ -50,7 +49,6 @@ public class TestMonstre {
         Monstre m = (Monstre) labyrinthe.entites.get(1);
 
         labyrinthe.mouvementsMonstres();
-        labyJeu.update(0, clavier);
 
 
         assertTrue(m.etrePresent(3,2),"le monstre devrait être en 3,2");
@@ -67,7 +65,6 @@ public class TestMonstre {
         Labyrinthe labyrinthe = new Labyrinthe("labySimple/labyTest/labyMouvementMonstreIntelligent.txt");
         Clavier clavier = new Clavier();
         LabyJeu labyJeu = new LabyJeu(labyrinthe);
-        labyJeu.update(0, clavier);
 
         //System.out.println(labyrinthe.entites.size());
         Monstre m = (Monstre) labyrinthe.entites.get(1);
@@ -98,7 +95,6 @@ public class TestMonstre {
         Fantome m = (Fantome) labyrinthe.entites.get(0);
         LabyJeu labyJeu = new LabyJeu(labyrinthe);
         labyrinthe.mouvementsMonstres();
-        labyJeu.update(0,clavier);
         assertTrue(m.etrePresent(2,1),"le monstre devrait être présent en 1,2");
     }
 

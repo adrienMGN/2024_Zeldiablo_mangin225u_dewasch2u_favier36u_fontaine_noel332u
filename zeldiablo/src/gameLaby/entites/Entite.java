@@ -10,6 +10,7 @@ public abstract class Entite extends Case {
     private int pv ;
 
     /**
+     * Constructeur de la classe Entite
      * @param x
      * @param y
      * @param pv
@@ -21,6 +22,7 @@ public abstract class Entite extends Case {
     }
 
     /**
+     * retourne les pv de l'entite
      * @return pv
      */
     public int getPv(){
@@ -28,6 +30,7 @@ public abstract class Entite extends Case {
     }
 
     /**
+     * modifie les pv de l'entite
      * @param pv
      */
     public void setPv(int pv) {
@@ -35,6 +38,7 @@ public abstract class Entite extends Case {
     }
 
     /**
+     * retourne si l'entite est vivante ou non
      * @return boolean si l'entite est vivante ou non'
      */
     public boolean etreVivant() {
@@ -56,7 +60,7 @@ public abstract class Entite extends Case {
 
 
     /*
-    * methode collision pour savoir si une entite est presente dans une case et s'il faut gérer une collision
+    * methode de collision pour savoir si une entite est presente dans une case et s'il faut gérer une collision
     * @param int[] xy
     * return Entite presente dans la cases
     * */

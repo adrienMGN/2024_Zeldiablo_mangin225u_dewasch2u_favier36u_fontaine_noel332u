@@ -61,9 +61,7 @@ public class TestLaby {
         Perso pj = (Perso) labyrinthe.entites.get(0);
         int m_pv = m.getPv();
         System.out.println(m_pv);
-        labyJeu.update(0,clavier);
         m_pv = m.getPv();
-        labyJeu.update(0,clavier);
         System.out.println(m_pv);
         assertEquals(1,m_pv,"le monstre a perdu 1 pv");
 
@@ -82,9 +80,7 @@ public class TestLaby {
         int m_pv = m.getPv();
         labyrinthe.deplacerPerso(Labyrinthe.HAUT);
         labyrinthe.attaqueDirectionnel(Labyrinthe.HAUT);
-        labyJeu.update(0,clavier);
         m_pv = m.getPv();
-        labyJeu.update(0,clavier);
         assertEquals(2,m_pv,"le monstre ne devrait pas perdre de pv");
 
 
@@ -103,10 +99,8 @@ public class TestLaby {
         System.out.println(pj_pv);
         for (int i = 0; i <5; i++)
         m.attaquer(pj);
-        labyJeu.update(10,clavier);
         pj_pv = pj.getPv();
         System.out.println(pj_pv);
-        labyJeu.update(0,clavier);
         boolean game_over = labyJeu.etreFini();
         assertTrue(game_over,"le jeu est fini");
 

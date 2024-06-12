@@ -8,6 +8,7 @@ import gameLaby.laby.Labyrinthe;
 public class Monstre extends Entite {
 
     /**
+     * constructeur de la classe Monstre
      * @param x
      * @param y
      * @param pv
@@ -18,9 +19,8 @@ public class Monstre extends Entite {
     }
 
     /**
-     * méthode attaquer attaque le perso
+     * méthode attaquer : attaque le perso
      * @param perso
-     * @return
      */
     public void attaquer(Perso perso) {
         perso.subirDegats(1);

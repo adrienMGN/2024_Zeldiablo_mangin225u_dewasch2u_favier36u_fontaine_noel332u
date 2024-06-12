@@ -1,0 +1,15 @@
+Répartition des tâches :
+
+Les diagrammes : 
+
+Léo : diagramme de classe
+Julien : diagramme de séquance avancée d'une flèche
+Clément : diagramme de séquence récupération d'une arme
+Adrien diagramme de séquence utilisation d'un Arc et Epee
+
+Le code :
+
+Léo : implémentation de Arc et Flèche
+Adrien : implémentation de Epee
+Julien : iplémentation de la classe abstraite Arme
+Clément : tests des méthodes Arme

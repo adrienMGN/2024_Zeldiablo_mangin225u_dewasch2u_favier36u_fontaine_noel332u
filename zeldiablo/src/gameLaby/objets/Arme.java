@@ -9,6 +9,7 @@ public abstract class Arme extends Item{
     private int degats;
 
     /**
+     * Constructeur pour les armes
      * @param x
      * @param y
      * @param degats
@@ -20,6 +21,7 @@ public abstract class Arme extends Item{
 
 
     /**
+     * recupere le nombre de degats de l'arme
      * @return degats
      */
     public int getDegats() {

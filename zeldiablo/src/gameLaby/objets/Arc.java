@@ -15,6 +15,7 @@ public class Arc extends Arme{
     private int nbFleches = 5;
 
     /**
+     * Constructeur pour les arcs
      * @param x
      * @param y
      * @param degats
@@ -24,8 +25,8 @@ public class Arc extends Arme{
     }
 
     /**
-     * @param direction
      * tire une fleche dans la direction du joueur
+     * @param direction
      */
     public void tirerFleche(String direction){
         Labyrinthe laby = Main.getLaby();
@@ -59,6 +60,7 @@ public class Arc extends Arme{
     }
 
     /**
+     * retourne la liste des fleches
      * @return liste des fleches
      */
     public ArrayList<Fleche> getFleches(){
@@ -66,6 +68,7 @@ public class Arc extends Arme{
     }
 
     /**
+     * recupere le nombre de fleches restantes
      * @return nbFleches
      */
     public int getNbFleches(){
